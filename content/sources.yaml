@@ -97,7 +97,15 @@ sources:
     url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
     status: verified
     last_verified: 2026-10-13
-    notes: Cross-reference in 64(10) is awkward; see OPEN-QUESTIONS.md Q1.
+    notes: "64(10) originally referred to 'paragraphs 3 to 9'; corrected to 'paragraphs 2 to 9' by the corrigendum of 2 July 2025 (cra_corrigendum_2025_07_02), so the micro/small enterprise derogation covers the Art. 14 fines in 64(2)."
+  cra_corrigendum_2025_07_02:
+    type: regulation
+    binding: true
+    title: Corrigendum to Regulation (EU) 2024/2847, OJ L 2025/90555 (2 July 2025)
+    pinpoint: Art. 64(10) (derogation now covers paragraphs 2 to 9)
+    url: https://data.europa.eu/eli/reg/2024/2847/corrigendum/2025-07-02/oj
+    status: verified
+    last_verified: 2026-10-13
   cra_art69_3:
     type: regulation
     binding: true

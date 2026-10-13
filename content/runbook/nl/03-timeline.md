@@ -58,7 +58,11 @@ volledige informatie; de latere meldingen vullen de details aan.
 - [ ] Leg het tijdstip van indienen en het referentienummer vast in het zaaklogboek.
 - [ ] Beide sporen geraakt? Dan is voor elk spoor een melding nodig.
 
-De 24 uur gemist? Dien **nu** alsnog in, en leg vast waarom het te laat was.
+De 24 uur gemist? Dien **nu** alsnog in, en leg vast waarom het te laat was. Overtreding van
+artikel 14 kan worden beboet met maximaal € 15 miljoen of 2,5% van de wereldwijde jaaromzet. Micro- en
+kleine ondernemingen krijgen geen boete voor het missen van de termijn van 24 uur voor de vroegtijdige
+waarschuwing, maar de meldplicht en de andere termijnen blijven gelden [src:cra_art64]
+[src:cra_corrigendum_2025_07_02].
 
 ## Binnen 72 uur (vanaf op de hoogte raken): melding
 
