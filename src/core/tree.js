@@ -16,8 +16,13 @@ export const OUTCOME_KEYS = [
   'caveat.scope_or_role_unsure', 'caveat.pre_application_check', 'caveat.pre_application_incident', 'caveat.awareness_unsure',
   'routing.nl', 'routing.other_eu', 'routing.non_eu', 'routing.unsure',
   'parallel.cbw', 'parallel.cbw_check', 'parallel.gdpr',
-  'action.record_awareness', 'action.inform_users',
+  'action.record_awareness', 'action.inform_users', 'action.consider_users',
 ];
+
+/** True when any condition in `skipIf` matches: every fact in that condition has its value. */
+export function shouldSkip(node, facts) {
+  return (node.skip_if ?? []).some((cond) => Object.entries(cond).every(([k, v]) => facts[k] === v));
+}
 
 /**
  * Follow the tree from its start node using `answers` ({ nodeId: optionId }).
@@ -31,6 +36,10 @@ export function walk(tree, answers) {
   while (id !== END) {
     const node = tree.nodes[id];
     if (!node) throw new Error(`Unknown node: ${id}`);
+    if (shouldSkip(node, facts)) {
+      id = node.skip_to;
+      continue;
+    }
     const choice = answers[id];
     if (choice === undefined) return { facts, path, pending: id };
     const option = node.options[choice];
@@ -83,21 +92,23 @@ export function derive(f) {
     }
   }
 
+  // Awareness is assessed per track (Art. 14(1) and 14(3) are separate obligations).
   // ENISA FAQ 13 (citing the Commission FAQ): no retroactive reporting of an actively exploited
   // vulnerability the manufacturer was already aware of before 11 Sep 2026. There is no such
   // guidance for severe incidents, so those stay (potentially) reportable.
-  if (f.aware_timing === 'before') {
+  if (f.aware_vulnerability === 'before') {
     if (tracks.vulnerability === 'reportable') tracks.vulnerability = 'no_retroactive_duty';
     else if (tracks.vulnerability === 'potentially_reportable') caveats.add('caveat.pre_application_check');
-    if (TRIGGERED.has(tracks.incident)) {
-      tracks.incident = 'potentially_reportable';
-      caveats.add('caveat.pre_application_incident');
-    }
   }
+  if (f.aware_incident === 'before' && TRIGGERED.has(tracks.incident)) {
+    tracks.incident = 'potentially_reportable';
+    caveats.add('caveat.pre_application_incident');
+  }
+  const unsureTiming = (TRIGGERED.has(tracks.vulnerability) && f.aware_vulnerability === 'unsure')
+    || (TRIGGERED.has(tracks.incident) && f.aware_incident === 'unsure');
+  if (unsureTiming) caveats.add('caveat.awareness_unsure');
 
   const anyTriggered = Object.values(tracks).some((s) => TRIGGERED.has(s));
-  if (anyTriggered && f.aware_timing === 'unsure') caveats.add('caveat.awareness_unsure');
-
   const keys = [
     `track.vulnerability.${tracks.vulnerability}`,
     `track.incident.${tracks.incident}`,
@@ -105,6 +116,9 @@ export function derive(f) {
   ];
   if (anyTriggered) {
     keys.push(`routing.${f.establishment ?? 'unsure'}`, 'action.record_awareness', 'action.inform_users');
+  } else if (tracks.vulnerability === 'no_retroactive_duty') {
+    // No retroactive report does not mean nothing to do: users may still be at risk.
+    keys.push('action.record_awareness', 'action.consider_users');
   }
   if (f.cbw === 'yes') keys.push('parallel.cbw');
   else if (f.cbw === 'unsure') keys.push('parallel.cbw_check');

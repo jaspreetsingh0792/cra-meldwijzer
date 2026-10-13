@@ -37,8 +37,9 @@ date. The maintainers do not advise on individual cases.
 
 ### Your data
 
-The app runs entirely in your browser and sends nothing to the maintainers or anyone else. Do not
-enter credentials, private keys or unnecessary personal or confidential information. Case data and
+The app runs in your browser. It does not transmit case data to the maintainers or anyone else.
+Loading the site makes normal requests to GitHub Pages, which hosts it and, like any web host, can
+see technical data such as your IP address and browser type. Do not enter credentials, private keys or unnecessary personal or confidential information. Case data and
 exported files may contain sensitive information; handle them according to your organisation's
 incident-response and information-handling policies.
 
@@ -84,8 +85,9 @@ herstellen of de inhoud actueel te houden. De makers geven geen advies over indi
 
 ### Je gegevens
 
-De app draait volledig in je browser en stuurt niets naar de makers of naar anderen. Voer geen
-inloggegevens, privésleutels of onnodige persoonlijke of vertrouwelijke informatie in.
+De app draait in je browser. Zaakgegevens worden niet naar de makers of naar anderen verstuurd. Bij
+het laden van de site doet je browser gewone verzoeken aan GitHub Pages, dat de site host en, zoals
+elke webhost, technische gegevens kan zien zoals je IP-adres en browsertype. Voer geen inloggegevens, privésleutels of onnodige persoonlijke of vertrouwelijke informatie in.
 Casusgegevens en geëxporteerde bestanden kunnen gevoelige informatie bevatten; behandel ze volgens
 het incidentrespons- en informatiebeleid van je organisatie.
 

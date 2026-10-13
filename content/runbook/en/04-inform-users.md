@@ -20,7 +20,7 @@ If you do not inform users in time, the CSIRT may do it for you [src:cra_art14_8
 
 | Channel | When |
 |---|---|
-| Security advisory on your website | Always. This is the reference point for everything else. |
+| Security advisory on your website | Recommended in most cases, especially when the affected group is large or unknown: it becomes the reference point for everything else. Not required by law in every case; weigh it against sensitivity and whether a fix exists. |
 | Machine-readable advisory (for example CSAF) | Where appropriate, especially for business customers who process advisories automatically |
 | Direct email or customer portal | For known impacted customers |
 | In-product notice or update message | When users cannot easily be reached otherwise |

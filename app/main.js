@@ -1,5 +1,5 @@
 import { h } from './dom.js';
-import { store, t, loadData, setLang, isStale, oldestVerification } from './state.js';
+import { store, t, loadData, setLang, isStale, oldestVerification, unverifiedSources } from './state.js';
 import { homeView } from './views/home.js';
 import { assessView } from './views/assess.js';
 import { caseView } from './views/case.js';
@@ -32,9 +32,13 @@ function renderChrome(current) {
   $('nav').replaceChildren(...NAV.map(([name, key]) => h('li', {},
     h('a', { href: `#/${name}`, 'aria-current': name === current || (name === 'runbook' && current === 'print') ? 'page' : null }, t(key)))));
   const stale = isStale();
-  $('wip').textContent = stale ? t('ui.stale', { date: oldestVerification() ?? '?' }) : t('ui.wip');
-  $('wip').classList.toggle('stale', stale);
-  $('wip').setAttribute('role', stale ? 'alert' : 'note');
+  const unverified = unverifiedSources().length;
+  $('wip').textContent = stale ? t('ui.stale', { date: oldestVerification() ?? '?' })
+    : unverified ? t('ui.unverified', { count: unverified }) : t('ui.wip');
+  $('wip').classList.toggle('stale', stale || unverified > 0);
+  $('wip').setAttribute('role', stale || unverified ? 'alert' : 'note');
+  $('update-text').textContent = t('ui.update');
+  $('update-reload').textContent = t('ui.reload');
   $('footer-disclaimer').textContent = t('ui.footer.disclaimer');
   $('footer-source').textContent = t('ui.footer.source');
 }
@@ -42,7 +46,7 @@ function renderChrome(current) {
 function render({ focus = false } = {}) {
   const { name, arg } = route();
   renderChrome(name);
-  const rerender = () => render();
+  const rerender = (opts) => render(opts);
   const views = {
     '': () => [homeView(), t('ui.app_name')],
     assess: () => [assessView(rerender), t('ui.assess.title')],
@@ -54,7 +58,12 @@ function render({ focus = false } = {}) {
   const [view, title] = (views[name] ?? views[''])();
   document.title = name ? `${title} · CRA Meldwijzer` : 'CRA Meldwijzer';
   $('main').replaceChildren(view);
-  if (focus) ($('main').querySelector('h1') ?? $('main')).focus();
+  if (focus) {
+    // Selectors in priority order (querySelector with a list would return the first in page order).
+    const selectors = (typeof focus === 'string' ? focus : 'h1').split(',').map((x) => x.trim());
+    const target = selectors.map((sel) => document.querySelector(sel)).find(Boolean) ?? $('main');
+    target.focus();
+  }
 }
 
 async function start() {
@@ -78,6 +87,13 @@ async function start() {
   setInterval(() => document.querySelectorAll('[data-milestones]').forEach((el) => el.refresh?.()), 30_000);
 
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    // A page that was already controlled gets a new worker after an update: tell the user, so
+    // nobody keeps working from an outdated cached version without knowing.
+    const hadController = Boolean(navigator.serviceWorker.controller);
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (hadController) $('update').hidden = false;
+    });
+    $('update-reload').addEventListener('click', () => location.reload());
     navigator.serviceWorker.register('./sw.js').catch(() => { /* offline support is optional */ });
   }
 }

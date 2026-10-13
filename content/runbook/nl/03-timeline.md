@@ -54,6 +54,14 @@ volledige informatie; de latere meldingen vullen de details aan.
 - [ ] **Waar:** MijnNCSC (aanbevolen) of het CRA-meldformulier [src:ncsc_melden]. Hoofdvestiging
       elders? Het coördinerende CSIRT van die lidstaat [src:cra_art14_7].
 - [ ] **Meld dezelfde zaak niet ook bij ENISA.** Het NCSC stuurt hem door [src:ncsc_melden].
+      Achtergrond: de CRA schrijft voor dat je meldt via het centrale meldplatform van ENISA, via het
+      elektronische meldpunt van je coördinerende CSIRT [src:cra_art14_7]. Voor Nederland verwijst
+      het NCSC fabrikanten naar MijnNCSC of het CRA-meldformulier en stuurt het de melding door naar
+      ENISA en andere CSIRT's [src:ncsc_melden].
+- [ ] **Kanaal niet beschikbaar?** Werkt MijnNCSC niet, gebruik dan het CRA-meldformulier, en
+      andersom [src:ncsc_melden]. Volgens de FAQ van ENISA dien je, als het centrale meldplatform
+      tijdelijk niet beschikbaar is, de melding in zodra het weer beschikbaar is [src:enisa_srp_faq].
+      Leg de storing vast (tijden, foutmeldingen, schermafbeeldingen) in het zaaklogboek.
 - [ ] Markeer de melding als **gevoelig** als details aanvallers kunnen helpen [src:ncsc_melden].
 - [ ] Leg het tijdstip van indienen en het referentienummer vast in het zaaklogboek.
 - [ ] Beide sporen geraakt? Dan is voor elk spoor een melding nodig.

@@ -12,7 +12,8 @@ q:
   incident_occurred: Is er een incident geweest dat de beveiliging van dit product raakt, bijvoorbeeld in je ontwikkel-, build-, update- of signeeromgeving?
   incident_a: Heeft het incident een negatief effect, of kan het een negatief effect hebben, op het vermogen van het product om de beschikbaarheid, authenticiteit, integriteit of vertrouwelijkheid van gevoelige of belangrijke gegevens of functies te beschermen?
   incident_b: Heeft het incident geleid, of kan het leiden, tot het binnenbrengen of uitvoeren van kwaadaardige code in het product of in de netwerk- en informatiesystemen van gebruikers?
-  awareness: Wanneer werd je op de hoogte van het misbruik of het incident?
+  awareness_vulnerability: Wanneer werd je op de hoogte van het actieve misbruik van deze kwetsbaarheid?
+  awareness_incident: Wanneer werd je op de hoogte van het ernstige incident?
   cbw: Is je organisatie een essentiële of belangrijke entiteit onder de Cyberbeveiligingswet (de Nederlandse NIS2-wet, van kracht sinds 15 augustus 2026)?
   gdpr: Kunnen persoonsgegevens geraakt zijn (een mogelijk datalek)?
 
@@ -22,12 +23,13 @@ h:
   exclusion: Artikel 2 sluit onder meer producten uit die onder de EU-regels voor medische hulpmiddelen, in-vitrodiagnostiek, motorvoertuigen, burgerluchtvaart en scheepsuitrusting vallen, en producten die uitsluitend voor nationale veiligheid of defensie zijn ontwikkeld. Deze uitzonderingen hebben precieze grenzen; een andere sectorwet sluit een product niet automatisch uit. Twijfel je, kies dan "Weet ik niet zeker".
   role: "Beantwoord dit voor dit product en deze gebeurtenis, per juridische entiteit. Verkoop je het product van een ander onder je eigen naam of merk, of na een ingrijpende wijziging, dan ben je de fabrikant. Verkoop je een component los, dan ben je fabrikant van die component. Ben je steward van een opensourceproject, dan verandert dat niets aan je rol voor een product dat je commercieel verkoopt: beantwoord de vragen voor dat product als fabrikant. Contractlabels zoals \"OEM\", \"reseller\" of \"leverancier\" zijn niet de juridische toets."
   establishment: "Artikel 14(7): de lidstaat waar beslissingen over de cyberbeveiliging van je producten overwegend worden genomen; als dat niet vast te stellen is, waar de fabrikant de meeste werknemers in de EU heeft. Pas dit toe op de fabrikant van dit product, niet automatisch op het statutaire hoofdkantoor van de groep."
-  vuln_contained: Een advisory of KEV-vermelding voor een component is een reden om te controleren, geen conclusie. Stel eerst vast dat de kwetsbare code echt in de betrokken productversies zit.
+  vuln_contained: "Een advisory of KEV-vermelding voor een component is een reden om te controleren, geen conclusie. Stel eerst vast dat de kwetsbare code echt in de betrokken productversies zit. Verkoop je die component zelf los als product, beoordeel hem dan ook apart als fabrikant: één melding dekt niet vanzelf de plicht van elke fabrikant."
   vuln_exploited: "Artikel 3(42). Op zichzelf niet genoeg: een hoge CVSS-score, een openbare proof of concept, een melding van een onderzoeker of bugbounty, of een bevinding uit je eigen tests. Vaak wel relevant: misbruik in je eigen telemetrie of logs, een getroffen klant, een melding van een CSIRT of een KEV-vermelding, telkens beoordeeld op relevantie voor jouw product."
   incident_occurred: Een incident is een gebeurtenis die de beschikbaarheid, authenticiteit, integriteit of vertrouwelijkheid van gegevens of diensten aantast. Voorbeelden hier zijn een gestolen signeersleutel, een gecompromitteerde updateserver of een gecompromitteerde buildpipeline. Beantwoord dit ook als de vragen over kwetsbaarheden al tot "ja" leidden.
   incident_a: Artikel 14(5)(a). Elk van beide criteria is op zichzelf voldoende.
   incident_b: Artikel 14(5)(b). Beantwoord dit ook als je de vorige vraag met "nee" beantwoordde.
-  awareness: Je bent op de hoogte zodra een eerste beoordeling je een redelijke mate van zekerheid geeft (richtsnoeren van de Commissie, niet bindend), meestal na de eerste detectie. Leg detectietijd, het moment van op de hoogte raken en de reden apart vast. Volgens de FAQ van ENISA geldt geen meldplicht met terugwerkende kracht voor misbruik waarvan je al vóór 11 september 2026 op de hoogte was; raak je daarna op de hoogte, dan telt dat ook als de kwetsbaarheid ouder is.
+  awareness_vulnerability: "Je bent op de hoogte zodra een eerste beoordeling je een redelijke mate van zekerheid geeft (richtsnoeren van de Commissie, niet bindend), meestal na de eerste detectie. Antwoord voor het misbruik zelf, niet voor het moment waarop de kwetsbaarheid bekend werd: volgens de FAQ van ENISA geldt geen meldplicht met terugwerkende kracht voor misbruik waarvan je al vóór 11 september 2026 op de hoogte was, maar raak je daarna op de hoogte van misbruik, dan telt dat ook als de kwetsbaarheid ouder is."
+  awareness_incident: "Beantwoord dit los van de kwetsbaarheid: het incident kan op een ander moment bekend zijn geworden. De FAQ van ENISA over het ontbreken van een meldplicht met terugwerkende kracht gaat alleen over kwetsbaarheden, dus bij een incident dat al vóór 11 september 2026 bekend was blijft de tool voorzichtig."
   cbw: De Cyberbeveiligingswet heeft een eigen toets (significant incident) en eigen meldingen. Die beoordeel je los van de CRA.
   gdpr: Onder de AVG meld je een datalek bij de Autoriteit Persoonsgegevens, tenzij het waarschijnlijk geen risico voor personen oplevert. Dat is een aparte beoordeling.
 
@@ -46,7 +48,11 @@ opt:
     other_eu: Een andere EU-lidstaat
     non_eu: Geen vestiging in de EU
     unsure: Weet ik niet zeker
-  awareness:
+  awareness_vulnerability:
+    after: Op of na 11 september 2026
+    before: Vóór 11 september 2026
+    unsure: Weet ik niet zeker
+  awareness_incident:
     after: Op of na 11 september 2026
     before: Vóór 11 september 2026
     unsure: Weet ik niet zeker
@@ -71,7 +77,7 @@ o:
       potentially_reportable: "Ernstig incident: mogelijk meldplichtig, dringende beoordeling nodig. Houd het vroegst denkbare moment van op de hoogte raken aan, schaal op naar je incident- en juridische verantwoordelijken en overweeg het CSIRT om advies te vragen. Wacht niet op een volledige forensische conclusie."
       not_reportable: Op basis van je antwoorden is er geen ernstig incident dat je onder artikel 14 moet melden. Leg je redenering vast en beoordeel opnieuw als er nieuwe feiten zijn. Vrijwillig melden (artikel 15) blijft mogelijk.
   caveat:
-    scope_or_role_unsure: De reikwijdte of je rol is onzeker, dus de uitkomst hierboven is hooguit "mogelijk meldplichtig". Zoek dit snel uit; de termijnen lopen gewoon door.
+    scope_or_role_unsure: De reikwijdte of je rol is onzeker, dus de uitkomst hierboven is hooguit "mogelijk meldplichtig". Zolang dat niet duidelijk is, is het voorzichtig om de termijnen te laten lopen vanaf het moment van op de hoogte raken, en reikwijdte en rol met spoed vast te stellen.
     pre_application_check: Je werd vóór 11 september 2026 op de hoogte, maar de beoordeling is niet afgerond. Controleer of nieuwe feiten of nieuw misbruik na die datum een nieuw moment van op de hoogte raken opleveren.
     pre_application_incident: Je werd vóór 11 september 2026 op de hoogte van het incident. De FAQ van ENISA over het ontbreken van een meldplicht met terugwerkende kracht gaat alleen over actief uitgebuite kwetsbaarheden; voor ernstige incidenten bestaat zo'n richtsnoer niet. Behandel het incident als mogelijk meldplichtig en vraag het NCSC of je juridisch adviseur.
     awareness_unsure: Je weet niet zeker wanneer je op de hoogte raakte. Gebruik het vroegst denkbare moment voor je termijnen.
@@ -86,6 +92,7 @@ o:
     gdpr: Beoordeel apart of dit een datalek is onder de AVG. De verwerkingsverantwoordelijke meldt dit binnen 72 uur na het op de hoogte raken bij de Autoriteit Persoonsgegevens, tenzij het waarschijnlijk geen risico voor personen oplevert.
   action:
     record_awareness: "Leg nu drie dingen vast: wanneer het probleem voor het eerst werd gedetecteerd, wanneer je op de hoogte raakte (jouw beoordeling) en waarom op dat moment."
+    consider_users: "Geen melding met terugwerkende kracht betekent niet dat er niets te doen is. Ga na of getroffen gebruikers nog informatie of maatregelen nodig hebben om zich te beschermen, en blijf monitoren: raak je na 11 september 2026 op de hoogte van nieuw misbruik, dan begint de meldplicht."
     inform_users: Informeer getroffen gebruikers (en waar passend alle gebruikers) over het probleem en de mitigerende of corrigerende maatregelen die zij kunnen nemen, waar passend in een gestructureerd, machineleesbaar formaat (artikel 14(8)). Dit staat los van je melding aan de autoriteiten.
 
 t:
@@ -197,6 +204,9 @@ ui:
   lang_switch: English
   lang_switch_label: Taal wijzigen naar Engels
   wip: "Niet juridisch getoetst. Geen juridisch advies. Gebruik op eigen risico en controleer de officiële informatie van het NCSC."
+  unverified: "Sommige bronnen ({count}) zijn nog niet gecontroleerd. Wees extra voorzichtig met uitspraken die daarop steunen en controleer de officiële informatie van het NCSC."
+  update: Er is een nieuwe versie van deze meldwijzer beschikbaar.
+  reload: Opnieuw laden
   stale: "Verouderd? Sommige bronnen zijn voor het laatst gecontroleerd op {date}, meer dan vier maanden geleden. Wetten en richtsnoeren kunnen sindsdien zijn veranderd: controleer altijd de officiële informatie van het NCSC."
   checked: "gecontroleerd op {date}"
   notice:
@@ -217,7 +227,7 @@ ui:
     runbook: Lees het draaiboek
     templates: Sjablonen voorbereiden
     privacy_title: Je gegevens blijven hier
-    privacy: Alles draait in je browser. Er wordt niets verstuurd. Zaakgegevens blijven in het geheugen, tenzij je ze in deze browser opslaat.
+    privacy: Zaakgegevens blijven in je browser en worden door deze app niet verstuurd. Bij het laden van de site doet je browser gewone verzoeken aan GitHub Pages, waar de site draait. Zaakgegevens blijven in het geheugen, tenzij je ze in deze browser opslaat.
     rules: "Regelversie {version}. Oudste broncontrole: {date}."
   assess:
     title: Beoordeling
@@ -250,6 +260,11 @@ ui:
     case_id: Zaaknummer
     detected_at: Eerste detectie
     times_note: "Tijden voer je in en zie je in Nederlandse tijd; UTC staat ernaast."
+    outer_limits: "Deze termijnen zijn uiterste grenzen. De wet vraagt om melden zonder onnodige vertraging: wacht niet tot een termijn dichtbij komt."
+    time_nonexistent: "Deze tijd bestaat niet in Nederland (de klok springt dit uur over bij de start van de zomertijd). Kies een geldige tijd; er is niets opgeslagen."
+    time_ambiguous: "Deze tijd komt in Nederland twee keer voor (de klok gaat een uur terug). Het eerste van de twee momenten is opgeslagen; pas het aan als je het tweede bedoelde."
+    announce: "{milestone}, {track}: {status}"
+    import_ok: Zaak geïmporteerd.
     applies: Dit spoor is van toepassing
     aware_at: Op de hoogte geraakt
     basis: Waarom op dat moment
@@ -281,6 +296,7 @@ ui:
       aware_before_application: "Je raakte vóór 11 september 2026 op de hoogte. Voor actief uitgebuite kwetsbaarheden zegt de FAQ van ENISA dat er geen meldplicht met terugwerkende kracht is. Voor ernstige incidenten bestaat zo'n richtsnoer niet: de termijnen worden gewoon getoond. Controleer dit bij het NCSC of je juridisch adviseur."
       measure_before_awareness: De maatregel was al beschikbaar voordat je op de hoogte raakte. Bespreek de termijn voor het eindrapport met je juridisch verantwoordelijke.
       submitted_before_awareness: Een tijdstip van indienen ligt vóór het moment van op de hoogte raken. Controleer de tijden.
+      aware_in_future: Het moment van op de hoogte raken ligt in de toekomst. Controleer op een typfout; de termijnen hieronder zijn daarvan berekend.
     needs_awareness: Vul in wanneer je op de hoogte raakte om de klokken te starten.
     not_applicable: Niet geraakt volgens de beoordeling. Vink het vakje aan als het wel van toepassing is.
     ics: Termijnen in agenda zetten (.ics)

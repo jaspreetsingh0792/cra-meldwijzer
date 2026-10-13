@@ -60,6 +60,11 @@ h1:focus { outline: none; }
 .nav { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0; padding: 6px 0 10px; }
 .nav a { color: var(--muted); text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
 .nav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+.update { display: flex; gap: 12px; align-items: center; justify-content: center; padding: 8px var(--gutter); background: var(--info-bg); color: var(--info-fg); border-bottom: 1px solid var(--info-bd); }
+.field-msg { margin: 4px 0 0; font-size: 0.875rem; color: var(--muted); }
+.field-msg:empty { display: none; }
+.field-msg.error { color: var(--alert-fg); font-weight: 600; }
+.outer-limits { margin-top: 12px; }
 .wip.stale { background: var(--alert-bg); color: var(--alert-fg); border-bottom-color: var(--alert-bd); font-weight: 600; }
 .wip { margin: 0; padding: 8px var(--gutter); text-align: center; background: var(--warn-bg); color: var(--warn-fg); border-bottom: 1px solid var(--warn-bd); font-size: 0.9rem; }
 

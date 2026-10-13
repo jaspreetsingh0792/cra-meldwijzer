@@ -21,15 +21,22 @@ const LABEL = 'source-watch';
 
 // --- Targets ----------------------------------------------------------------------
 
-const CELEX_WATCH = [{ celex: '32024R2847', title: 'Regulation (EU) 2024/2847 (CRA): corrigenda, amendments and acts based on it' }];
+// For the CRA, also acts based on or implementing it. For other cited acts, only corrections,
+// amendments and repeals (acts "based on" the GDPR change too often to be useful).
+const ALL_RELATIONS = ['amends', 'based_on', 'corrects', 'implements', 'repeals'];
+const CHANGES_ONLY = ['amends', 'corrects', 'repeals'];
+const CELEX_WATCH = [
+  { celex: '32024R2847', eli: '/eli/reg/2024/2847', relations: ALL_RELATIONS, title: 'Regulation (EU) 2024/2847 (CRA): corrigenda, amendments and acts based on it' },
+  { celex: '32026R0881', eli: '/eli/reg_del/2026/881', relations: CHANGES_ONLY, title: 'Delegated Regulation (EU) 2026/881: corrigenda and amendments' },
+  { celex: '31971R1182', eli: '/eli/reg/1971/1182', relations: CHANGES_ONLY, title: 'Regulation 1182/71 (time limits): corrigenda and amendments' },
+  { celex: '32016R0679', eli: '/eli/reg/2016/679', relations: CHANGES_ONLY, title: 'Regulation (EU) 2016/679 (GDPR): corrigenda and amendments' },
+];
 
-const SPARQL = (celex) => `PREFIX cdm: <http://publications.europa.eu/ontology/cdm#>
+const SPARQL = (celex, relations) => `PREFIX cdm: <http://publications.europa.eu/ontology/cdm#>
 SELECT DISTINCT ?celex ?rel ?date WHERE {
   ?base cdm:resource_legal_id_celex ?bc . FILTER(str(?bc) = "${celex}")
   ?work ?rel ?base .
-  FILTER(?rel IN (cdm:resource_legal_amends_resource_legal, cdm:resource_legal_based_on_resource_legal,
-                  cdm:resource_legal_corrects_resource_legal, cdm:resource_legal_implements_resource_legal,
-                  cdm:resource_legal_repeals_resource_legal))
+  FILTER(?rel IN (${relations.map((r) => `cdm:resource_legal_${r}_resource_legal`).join(', ')}))
   ?work cdm:resource_legal_id_celex ?celex .
   OPTIONAL { ?work cdm:work_date_document ?date }
 } ORDER BY ?date ?celex`;
@@ -43,9 +50,9 @@ export function targets(content) {
     t.sourceIds.push(id);
     byUrl.set(s.url, t);
   }
-  const celex = CELEX_WATCH.map(({ celex: c, title }) => ({
-    key: `eurlex-${c}`, url: `https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:${c}`, title, celex: c,
-    sourceIds: Object.entries(content.sources).filter(([, s]) => s.url?.includes('/eli/reg/2024/2847')).map(([id]) => id),
+  const celex = CELEX_WATCH.map(({ celex: c, eli, relations, title }) => ({
+    key: `eurlex-${c}`, url: `https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:${c}`, title, celex: c, relations,
+    sourceIds: Object.entries(content.sources).filter(([, s]) => s.url?.includes(eli)).map(([id]) => id),
   }));
   // The NCSC CRA form shows its content fields only after a report type is chosen, so its page
   // text misses them. Watch the form definition (JSON schema embedded in the page) as well.
@@ -123,11 +130,11 @@ export function htmlToText(html) {
 
 async function fetchText(target) {
   if (target.celex) {
-    const url = `https://publications.europa.eu/webapi/rdf/sparql?query=${encodeURIComponent(SPARQL(target.celex))}`;
+    const url = `https://publications.europa.eu/webapi/rdf/sparql?query=${encodeURIComponent(SPARQL(target.celex, target.relations))}`;
     const res = await fetch(url, { headers: { accept: 'application/sparql-results+json', 'user-agent': UA }, signal: AbortSignal.timeout(60_000) });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const rows = (await res.json()).results.bindings;
-    if (rows.length === 0) throw new Error('empty SPARQL result');
+    if (rows.length === 0) return `(no related acts for ${target.celex})`;
     return rows.map((b) => `${b.date?.value ?? '????-??-??'} ${b.celex.value} ${b.rel.value.split('#')[1].replace('resource_legal_', '').replace('_resource_legal', '')}`).join('\n');
   }
   const res = await fetch(target.url, { headers: { 'user-agent': UA }, redirect: 'follow', signal: AbortSignal.timeout(60_000) });
@@ -216,12 +223,26 @@ function changeIssueBody(change) {
   ].join('\n');
 }
 
+function unreachableIssueBody(f) {
+  return [
+    `The weekly watcher could not read **${f.title}**, so changes to it would go unnoticed.`,
+    '',
+    `- URL: ${f.url}`,
+    `- Error: \`${f.error}\``,
+    `- Source ids: ${f.sourceIds.map((s) => `\`${s}\``).join(', ') || '(none)'}`,
+    '',
+    'Check whether the page moved or the site blocks the watcher. If the URL changed, update',
+    '`content/sources.yaml` after re-reading the new page, then run `npm run watch -- --update`.',
+    'Close this issue once the watcher reads the source again.',
+  ].join('\n');
+}
+
 function staleIssueBody(stale) {
   return [
-    `These sources were last verified more than ${STALE_DAYS} days ago. Re-check each one against the`,
+    `These sources are not verified yet, or were last verified more than ${STALE_DAYS} days ago. Re-check each one against the`,
     'official text, update `last_verified` in `content/sources.yaml`, and open a pull request.',
     '',
-    ...stale.map((s) => `- [ ] \`${s.id}\` (last verified ${s.last_verified ?? 'never'}): ${s.url ?? 'no URL yet'}`),
+    ...stale.map((s) => `- [ ] \`${s.id}\` (${s.status === 'verified' ? `last verified ${s.last_verified}` : 'not verified yet'}): ${s.url ?? 'no URL yet'}`),
     '',
     'If the project is no longer maintained, archive the repository instead. The app warns users',
     'automatically when its sources have not been checked for a long time.',
@@ -243,7 +264,7 @@ async function main() {
     try {
       text = `${await fetchText(target)}\n`;
     } catch (err) {
-      failures.push(`${target.url}: ${err.message}`);
+      failures.push({ ...target, error: err.message });
       continue;
     }
     const before = existsSync(file) ? readFileSync(file, 'utf8') : null;
@@ -265,9 +286,9 @@ async function main() {
   const today = new Date();
   const overdue = Object.entries(content.sources)
     .map(([id, s]) => ({ id, ...s }))
-    .filter((s) => s.status === 'verified' && (today - new Date(s.last_verified)) / 86_400_000 > STALE_DAYS);
+    .filter((s) => s.status !== 'verified' || (today - new Date(s.last_verified)) / 86_400_000 > STALE_DAYS);
 
-  for (const f of failures) console.warn(`unreachable ${f}`);
+  for (const f of failures) console.warn(`unreachable ${f.url}: ${f.error}`);
   for (const c of changes) {
     console.log(`\nCHANGED ${c.key}\n  ${c.url}\n  cited by: ${c.citedBy.join(', ') || '-'}`);
     console.log(c.diff.slice(0, 20).map((l) => `  ${l}`).join('\n'));
@@ -277,7 +298,9 @@ async function main() {
     gh(['label', 'create', LABEL, '--color', 'd93f0b', '--description', 'Official source changed or overdue for review', '--force']);
     for (const c of changes) console.log(upsertIssue(`Source changed: ${c.title}`, changeIssueBody(c)));
     if (overdue.length) console.log(upsertIssue('Source review overdue', staleIssueBody(overdue)));
-    if (failures.length >= targets(content).length) process.exit(1); // everything unreachable: fail loudly
+    // An unreachable source is exactly when a maintainer needs to look: open an issue and fail the run.
+    for (const f of failures) console.log(upsertIssue(`Source unreachable: ${f.title}`, unreachableIssueBody(f)));
+    if (failures.length) process.exitCode = 1;
   }
   if (mode === 'report' && changes.length) process.exitCode = 2;
 }

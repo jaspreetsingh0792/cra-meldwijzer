@@ -1,7 +1,7 @@
 import { h, uid, download } from '../dom.js';
 import {
   store, t, newCase, log, persist, setSave, storageAvailable, clearCase, isCase,
-  toInputValue, fromInputValue, fmtTime, fmtDuration,
+  toInputValue, fromInputValue, wallKindOfInput, fmtTime, fmtDuration,
 } from '../state.js';
 import { pageTitle, legalNotice } from '../components.js';
 import { computeCase } from '../core/clock.js';
@@ -11,22 +11,53 @@ const TRACKS = ['vulnerability', 'incident'];
 
 function timeField(labelKey, get, set, onChange) {
   const id = uid();
-  const input = h('input', { type: 'datetime-local', id, value: get() ? toInputValue(Date.parse(get())) : '' });
+  const msgId = `${id}-msg`;
+  const input = h('input', { type: 'datetime-local', id, value: get() ? toInputValue(Date.parse(get())) : '', 'aria-describedby': msgId });
+  const msg = h('p', { id: msgId, class: 'field-msg', role: 'status' });
   const commit = (ms) => {
     set(ms == null ? null : new Date(ms).toISOString());
     onChange(labelKey, ms);
   };
-  input.addEventListener('change', () => commit(fromInputValue(input.value)));
+  input.addEventListener('change', () => {
+    const kind = wallKindOfInput(input.value);
+    msg.textContent = '';
+    msg.classList.remove('error');
+    if (kind === 'nonexistent') {
+      // Never silently move a time the user entered: refuse it and keep the saved value.
+      msg.textContent = t('ui.case.time_nonexistent');
+      msg.classList.add('error');
+      input.setAttribute('aria-invalid', 'true');
+      input.value = get() ? toInputValue(Date.parse(get())) : '';
+      return;
+    }
+    input.removeAttribute('aria-invalid');
+    if (kind === 'ambiguous') msg.textContent = t('ui.case.time_ambiguous');
+    commit(fromInputValue(input.value));
+  });
   const now = h('button', { type: 'button', class: 'btn small', onClick: () => {
     const ms = Date.now();
     input.value = toInputValue(ms);
     commit(ms);
   } }, t('ui.case.now'));
-  return h('div', { class: 'field' }, h('label', { for: id }, t(labelKey)), h('div', { class: 'row' }, input, now));
+  return h('div', { class: 'field' }, h('label', { for: id }, t(labelKey)), h('div', { class: 'row' }, input, now), msg);
 }
+
+// Screen readers hear when a deadline changes state (for example to overdue), not every tick.
+const announcer = () => document.getElementById('announcer');
 
 function renderMilestones(el, kind) {
   const result = computeCase(store.case, { now: Date.now() })[kind];
+  const statuses = Object.fromEntries((result.milestones ?? []).map((m) => [m.id, m.status]));
+  if (el.lastStatuses) {
+    for (const [id, status] of Object.entries(statuses)) {
+      if (status !== el.lastStatuses[id] && ['due_soon', 'overdue'].includes(status) && announcer()) {
+        announcer().textContent = t('ui.case.announce', {
+          milestone: t(`ui.case.milestone.${id}`), track: t(`ui.case.track.${kind}`), status: t(`ui.case.status.${status}`),
+        });
+      }
+    }
+  }
+  el.lastStatuses = statuses;
   const items = [];
   if (result.status === 'not_applicable') items.push(h('p', { class: 'muted' }, t('ui.case.not_applicable')));
   else if (result.status === 'needs_awareness') items.push(h('p', { class: 'notice' }, t('ui.case.needs_awareness')));
@@ -111,7 +142,8 @@ function trackSection(kind, onLogChange) {
     h('h2', { id: `track-${kind}` }, trackName),
     h('div', { class: 'check-row' }, applies, h('label', { for: appliesId }, t('ui.case.applies'))),
     off,
-    grid);
+    grid,
+    h('p', { class: 'small muted outer-limits' }, t('ui.case.outer_limits')));
 }
 
 function logEntryText(e) {
@@ -178,16 +210,22 @@ function actionsSection(rerender) {
   file.addEventListener('change', async () => {
     const f = file.files?.[0];
     if (!f) return;
+    let imported;
     try {
-      const imported = JSON.parse(await f.text());
-      if (!isCase(imported)) throw new Error('not a case');
-      store.case = imported;
-      store.answers = { ...imported.answers };
-      log({ type: 'imported' });
-      rerender();
+      imported = JSON.parse(await f.text());
     } catch {
-      status.textContent = t('ui.case.import_error');
+      imported = null;
     }
+    // Validate completely before touching the current case.
+    if (!isCase(imported)) {
+      status.textContent = t('ui.case.import_error');
+      file.value = '';
+      return;
+    }
+    store.case = imported;
+    store.answers = { ...imported.answers };
+    log({ type: 'imported' });
+    rerender();
   });
 
   const saveId = uid();
@@ -243,6 +281,7 @@ export function caseView(rerender) {
   });
 
   return h('div', { class: 'case' },
+    h('p', { id: 'announcer', class: 'visually-hidden', 'aria-live': 'polite' }),
     pageTitle(t('ui.case.title')),
     legalNotice(),
     h('section', { class: 'panel case-head' },

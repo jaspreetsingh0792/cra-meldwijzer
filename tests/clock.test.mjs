@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  HOUR, DAY, APPLICATION_START, computeTrack, computeCase, zonedToUtc, addMonthsClamped, reg1182,
+  HOUR, DAY, APPLICATION_START, computeTrack, computeCase, zonedToUtc, addMonthsClamped, reg1182, wallTimeKind,
 } from '../src/core/clock.js';
 
 const t = (iso) => Date.parse(iso);
@@ -185,4 +185,16 @@ test('computeCase keeps separate awareness times per track', () => {
 test('zonedToUtc: ambiguous DST fall-back time returns the earlier instant', () => {
   // 25 Oct 2026 02:30 Amsterdam occurs at 00:30Z (CEST) and 01:30Z (CET)
   assert.equal(iso(zonedToUtc(2026, 10, 25, 2, 30, 0, 'Europe/Amsterdam')), '2026-10-25T00:30:00.000Z');
+});
+
+test('wallTimeKind detects DST gaps and repeated hours in Amsterdam', () => {
+  assert.equal(wallTimeKind(2027, 3, 28, 2, 30, 0, 'Europe/Amsterdam'), 'nonexistent');
+  assert.equal(wallTimeKind(2026, 10, 25, 2, 30, 0, 'Europe/Amsterdam'), 'ambiguous');
+  assert.equal(wallTimeKind(2026, 10, 13, 14, 30, 0, 'Europe/Amsterdam'), 'ok');
+});
+
+test('awareness in the future is flagged', () => {
+  const r = computeTrack({ kind: 'vulnerability', triggered: true, awareAt: t(AWARE) + 2 * DAY }, { now: NOW });
+  assert.ok(r.flags.includes('aware_in_future'));
+  assert.ok(!computeTrack({ kind: 'vulnerability', triggered: true, awareAt: AWARE }, { now: NOW }).flags.includes('aware_in_future'));
 });

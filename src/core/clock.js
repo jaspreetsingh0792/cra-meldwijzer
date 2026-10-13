@@ -49,17 +49,32 @@ function tzOffset(ms, tz) {
  * (day 32 -> next month). For an ambiguous time (DST fall-back) the earlier instant
  * is returned; for a non-existent time (DST spring-forward gap) the earlier candidate.
  */
-export function zonedToUtc(y, mo, d, h, mi, s, tz) {
+function wallCandidates(y, mo, d, h, mi, s, tz) {
   const guess = Date.UTC(y, mo - 1, d, h, mi, s);
   const want = new Date(guess);
   const candidates = [...new Set([tzOffset(guess - 3 * HOUR, tz), tzOffset(guess + 3 * HOUR, tz)])]
     .map((off) => guess - off);
-  const valid = candidates.filter((c) => {
+  const valid = [...new Set(candidates.filter((c) => {
     const p = wallParts(c, tz);
     return p.y === want.getUTCFullYear() && p.mo === want.getUTCMonth() + 1 && p.d === want.getUTCDate()
       && p.h === want.getUTCHours() && p.mi === want.getUTCMinutes() && p.s === want.getUTCSeconds();
-  });
+  }))];
+  return { candidates, valid };
+}
+
+export function zonedToUtc(y, mo, d, h, mi, s, tz) {
+  const { candidates, valid } = wallCandidates(y, mo, d, h, mi, s, tz);
   return Math.min(...(valid.length ? valid : candidates));
+}
+
+/**
+ * Classify a wall-clock time in `tz`: 'ok', 'nonexistent' (skipped by a DST change, for example
+ * 02:30 on the last Sunday of March in Amsterdam) or 'ambiguous' (occurs twice when clocks go back).
+ */
+export function wallTimeKind(y, mo, d, h, mi, s, tz) {
+  const { valid } = wallCandidates(y, mo, d, h, mi, s, tz);
+  if (valid.length === 0) return 'nonexistent';
+  return valid.length > 1 ? 'ambiguous' : 'ok';
 }
 
 function daysInMonth(y, monthIndex) {
@@ -190,6 +205,8 @@ export function computeTrack(track, { now = Date.now(), dueSoonMs = DEFAULT_DUE_
   const awareBefore = awareAt < APPLICATION_START;
   const preApplication = awareBefore && kind === 'vulnerability';
   if (awareBefore) flags.push('aware_before_application');
+  // A typo can put awareness in the future and make every deadline look far away.
+  if (awareAt > now_ + 5 * 60_000) flags.push('aware_in_future');
   const ctx = { now: now_, dueSoonMs, preApplication, awareAt };
 
   // Both early deadlines are anchored to awareness. A late early warning never moves the 72h deadline.

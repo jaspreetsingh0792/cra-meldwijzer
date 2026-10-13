@@ -7,9 +7,13 @@
 #
 # Wording keys: text -> q.<node>, help -> h.<node>, option label -> opt.<node>.<option>
 # (falls back to opt.<option>).
+#
+# A node may have `skip_if`: a list of fact conditions (any matching condition skips it; all
+# facts within one condition must match). A skipped node is not asked and the walk continues at
+# `skip_to`. Used to ask the awareness date only for tracks that may be triggered.
 
 schema: 1
-version: 0.2.0
+version: 0.3.0
 last_reviewed: 2026-10-13
 start: product
 
@@ -72,7 +76,7 @@ nodes:
     sources: [cra_art14_3_5]
     options:
       yes:    { set: { incident_occurred: 'yes' }, next: incident_a }
-      no:     { set: { incident_occurred: 'no' }, next: awareness }
+      no:     { set: { incident_occurred: 'no' }, next: awareness_vulnerability }
       unsure: { set: { incident_occurred: unsure }, next: incident_a }
 
   incident_a:
@@ -85,17 +89,30 @@ nodes:
   incident_b:
     sources: [cra_art14_3_5]
     options:
-      yes:    { set: { severe_b: 'yes' }, next: awareness }
-      no:     { set: { severe_b: 'no' }, next: awareness }
-      unsure: { set: { severe_b: unsure }, next: awareness }
+      yes:    { set: { severe_b: 'yes' }, next: awareness_vulnerability }
+      no:     { set: { severe_b: 'no' }, next: awareness_vulnerability }
+      unsure: { set: { severe_b: unsure }, next: awareness_vulnerability }
 
   # --- Timing and parallel regimes --------------------------------------------
-  awareness:
-    sources: [cra_art71_2, enisa_srp_faq, ec_cra_reporting]
+  # Awareness is assessed per track: a vulnerability and an incident can become known at
+  # different moments (Art. 14(1) and 14(3) are separate obligations).
+  awareness_vulnerability:
+    sources: [cra_art14_1_2, cra_art71_2, enisa_srp_faq]
+    skip_if: [{ vuln_contained: 'no' }, { vuln_exploited: 'no' }]
+    skip_to: awareness_incident
     options:
-      after:  { set: { aware_timing: after }, next: cbw }
-      before: { set: { aware_timing: before }, next: cbw }
-      unsure: { set: { aware_timing: unsure }, next: cbw }
+      after:  { set: { aware_vulnerability: after }, next: awareness_incident }
+      before: { set: { aware_vulnerability: before }, next: awareness_incident }
+      unsure: { set: { aware_vulnerability: unsure }, next: awareness_incident }
+
+  awareness_incident:
+    sources: [cra_art14_3_5, cra_art71_2, enisa_srp_faq]
+    skip_if: [{ incident_occurred: 'no' }, { severe_a: 'no', severe_b: 'no' }]
+    skip_to: cbw
+    options:
+      after:  { set: { aware_incident: after }, next: cbw }
+      before: { set: { aware_incident: before }, next: cbw }
+      unsure: { set: { aware_incident: unsure }, next: cbw }
 
   cbw:
     sources: [cbw, ncsc_cbw_meldplicht]
@@ -138,3 +155,4 @@ outcomes:
   parallel.gdpr:                           { sources: [gdpr_art33_34] }
   action.record_awareness:                 { sources: [ec_cra_reporting, interpretation] }
   action.inform_users:                     { sources: [cra_art14_8] }
+  action.consider_users:                   { sources: [cra_art14_8, interpretation] }

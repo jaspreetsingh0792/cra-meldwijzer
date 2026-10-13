@@ -1,5 +1,5 @@
 // App state, wording lookup, persistence and time helpers.
-import { zonedToUtc, LEGAL_TZ } from './core/clock.js';
+import { zonedToUtc, wallTimeKind, LEGAL_TZ } from './core/clock.js';
 
 const KEY = { lang: 'cra-meldwijzer:lang', case: 'cra-meldwijzer:case' };
 
@@ -82,6 +82,9 @@ export function oldestVerification() {
   return dates[0] ?? null;
 }
 
+/** Sources not yet verified (status todo). */
+export const unverifiedSources = () => Object.values(store.data.sources).filter((s) => s.status !== 'verified');
+
 export function isStale(now = Date.now()) {
   const oldest = oldestVerification();
   return !oldest || (now - Date.parse(oldest)) / 86_400_000 > STALE_AFTER_DAYS;
@@ -89,8 +92,31 @@ export function isStale(now = Date.now()) {
 
 // --- Case -----------------------------------------------------------------------
 
-export const isCase = (c) => c?.app === 'cra-meldwijzer' && c.schema === 1
-  && c.tracks?.vulnerability && c.tracks?.incident && c.awarenessAssessments;
+// Full structural check, used before a saved or imported case replaces the current one.
+const isObj = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
+const isTime = (v) => v === null || (typeof v === 'string' && !Number.isNaN(Date.parse(v)));
+const isStr = (v) => typeof v === 'string';
+const TRACK_TIMES = {
+  vulnerability: ['earlyWarningSubmittedAt', 'notificationSubmittedAt', 'finalReportSubmittedAt', 'measureAvailableAt'],
+  incident: ['earlyWarningSubmittedAt', 'notificationSubmittedAt', 'finalReportSubmittedAt'],
+};
+
+export function isCase(c) {
+  if (!isObj(c) || c.app !== 'cra-meldwijzer' || c.schema !== 1) return false;
+  if (!isStr(c.caseId) || !isTime(c.createdAt) || !isTime(c.detectedAt ?? null)) return false;
+  if (!isObj(c.answers) || !Object.values(c.answers).every(isStr)) return false;
+  if (!Array.isArray(c.outcomeKeys) || !c.outcomeKeys.every(isStr)) return false;
+  if (!isObj(c.fields) || !Object.values(c.fields).every(isStr)) return false;
+  if (!Array.isArray(c.log) || !c.log.every((e) => isObj(e) && isTime(e.at) && isStr(e.type))) return false;
+  if (!isObj(c.tracks) || !isObj(c.awarenessAssessments)) return false;
+  for (const [kind, times] of Object.entries(TRACK_TIMES)) {
+    const tr = c.tracks[kind];
+    const aw = c.awarenessAssessments[kind];
+    if (!isObj(tr) || typeof tr.triggered !== 'boolean' || !times.every((k) => isTime(tr[k] ?? null))) return false;
+    if (!isObj(aw) || !isTime(aw.awareAt ?? null) || !isStr(aw.basis ?? '')) return false;
+  }
+  return true;
+}
 
 export function persist() {
   if (store.save && store.case && !storage.set(KEY.case, JSON.stringify(store.case))) store.save = false;
@@ -170,6 +196,11 @@ const wallFmt = new Intl.DateTimeFormat('sv-SE', {
 export const toInputValue = (ms) => wallFmt.format(new Date(ms)).replace(' ', 'T');
 
 /** "YYYY-MM-DDTHH:MM" in Amsterdam time -> instant (ms), or null. */
+export function wallKindOfInput(v) {
+  const m = v?.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+  return m ? wallTimeKind(+m[1], +m[2], +m[3], +m[4], +m[5], 0, LEGAL_TZ) : null;
+}
+
 export function fromInputValue(v) {
   const m = v?.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
   return m ? zonedToUtc(+m[1], +m[2], +m[3], +m[4], +m[5], 0, LEGAL_TZ) : null;
