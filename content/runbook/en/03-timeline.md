@@ -58,7 +58,10 @@ information; the later reports fill in the details.
 - [ ] Record the submission time and the reference number in the case log.
 - [ ] Both tracks triggered? Then you need a report for each.
 
-Missed the 24 hours? Submit **now** anyway, and record why it was late.
+Missed the 24 hours? Submit **now** anyway, and record why it was late. Breaching Article 14 can be
+fined up to €15 million or 2.5% of worldwide annual turnover. Micro and small enterprises cannot be
+fined for missing the 24-hour early warning deadline, but the duty to report and the other deadlines
+still apply [src:cra_art64] [src:cra_corrigendum_2025_07_02].
 
 ## Within 72 hours (from awareness): notification
 
