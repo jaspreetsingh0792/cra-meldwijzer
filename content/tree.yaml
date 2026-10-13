@@ -8,12 +8,15 @@
 # Wording keys: text -> q.<node>, help -> h.<node>, option label -> opt.<node>.<option>
 # (falls back to opt.<option>).
 #
+# When the CRA part ends early (out of scope, not the manufacturer), the walk still continues to
+# the Cyberbeveiligingswet and GDPR questions: those regimes are independent of the CRA.
+#
 # A node may have `skip_if`: a list of fact conditions (any matching condition skips it; all
 # facts within one condition must match). A skipped node is not asked and the walk continues at
 # `skip_to`. Used to ask the awareness date only for tracks that may be triggered.
 
 schema: 1
-version: 0.3.0
+version: 0.4.0
 last_reviewed: 2026-10-13
 start: product
 
@@ -22,20 +25,20 @@ nodes:
     sources: [cra_art2, cra_art3]
     options:
       yes:    { next: market }
-      no:     { set: { scope: out, scope_reason: not_pde }, next: end }
+      no:     { set: { scope: out, scope_reason: not_pde }, next: cbw }
       unsure: { set: { scope: unsure }, next: market }
 
   market:
     sources: [cra_art69_3, cra_art71_2]
     options:
       yes:    { next: exclusion }
-      no:     { set: { scope: out, scope_reason: not_on_market }, next: end }
+      no:     { set: { scope: out, scope_reason: not_on_market }, next: cbw }
       unsure: { set: { scope: unsure }, next: exclusion }
 
   exclusion:
     sources: [cra_art2]
     options:
-      yes:    { set: { scope: out, scope_reason: excluded }, next: end }
+      yes:    { set: { scope: out, scope_reason: excluded }, next: cbw }
       no:     { next: role }
       unsure: { set: { scope: unsure }, next: role }
 
@@ -44,8 +47,8 @@ nodes:
     options:
       manufacturer:          { set: { role: manufacturer }, next: establishment }
       own_brand_or_modified: { set: { role: manufacturer }, next: establishment }
-      importer_distributor:  { set: { role: importer_distributor }, next: end }
-      steward:               { set: { role: steward }, next: end }
+      importer_distributor:  { set: { role: importer_distributor }, next: cbw }
+      steward:               { set: { role: steward }, next: cbw }
       unsure:                { set: { role: unsure }, next: establishment }
 
   establishment:
@@ -115,7 +118,7 @@ nodes:
       unsure: { set: { aware_incident: unsure }, next: cbw }
 
   cbw:
-    sources: [cbw, ncsc_cbw_meldplicht]
+    sources: [cbw, cbw_besluit, ncsc_cbw_meldplicht]
     options:
       yes:    { set: { cbw: 'yes' }, next: gdpr }
       no:     { set: { cbw: 'no' }, next: gdpr }

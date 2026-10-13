@@ -72,12 +72,21 @@ const TRIGGERED = new Set(['reportable', 'potentially_reportable']);
  * Returns { kind, keys, tracks } where `keys` is the ordered list of outcome
  * keys to show and `tracks` holds the per-track status.
  */
+// Cyberbeveiligingswet and GDPR are independent of the CRA: always offered, whatever the CRA result.
+function parallelKeys(f) {
+  const keys = [];
+  if (f.cbw === 'yes') keys.push('parallel.cbw');
+  else if (f.cbw === 'unsure') keys.push('parallel.cbw_check');
+  if (f.personal_data === 'yes' || f.personal_data === 'unsure') keys.push('parallel.gdpr');
+  return keys;
+}
+
 export function derive(f) {
   if (f.scope === 'out') {
-    return { kind: 'out_of_scope', keys: [`scope.out.${f.scope_reason}`], tracks: null };
+    return { kind: 'out_of_scope', keys: [`scope.out.${f.scope_reason}`, ...parallelKeys(f)], tracks: null };
   }
   if (f.role === 'importer_distributor' || f.role === 'steward') {
-    return { kind: 'not_manufacturer', keys: [`role.${f.role}`], tracks: null };
+    return { kind: 'not_manufacturer', keys: [`role.${f.role}`, ...parallelKeys(f)], tracks: null };
   }
 
   const tracks = { vulnerability: vulnerabilityStatus(f), incident: incidentStatus(f) };
@@ -120,9 +129,7 @@ export function derive(f) {
     // No retroactive report does not mean nothing to do: users may still be at risk.
     keys.push('action.record_awareness', 'action.consider_users');
   }
-  if (f.cbw === 'yes') keys.push('parallel.cbw');
-  else if (f.cbw === 'unsure') keys.push('parallel.cbw_check');
-  if (f.personal_data === 'yes' || f.personal_data === 'unsure') keys.push('parallel.gdpr');
+  keys.push(...parallelKeys(f));
 
   return { kind: 'assessed', keys, tracks };
 }

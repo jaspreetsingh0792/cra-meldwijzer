@@ -60,8 +60,11 @@ information; the later reports fill in the details.
       to ENISA and other CSIRTs [src:ncsc_melden].
 - [ ] **Channel unavailable?** If MijnNCSC does not work, use the CRA reporting form, and the other
       way round [src:ncsc_melden]. ENISA's FAQ says that if the single reporting platform is
-      temporarily unavailable, you submit as soon as it is available again [src:enisa_srp_faq].
-      Record the outage (times, error messages, screenshots) in the case log.
+      temporarily unavailable, you submit as soon as it is available again. If immediate
+      communication is necessary before then, you may contact your coordinating CSIRT (in the
+      Netherlands the NCSC) directly, but you must **still submit the notification through the
+      platform** once it is back [src:enisa_srp_faq]. Record the outage (times, error messages,
+      screenshots) and any direct contact in the case log.
 - [ ] Mark the report as **sensitive** if details could help attackers [src:ncsc_melden].
 - [ ] Record the submission time and the reference number in the case log.
 - [ ] Both tracks triggered? Then you need a report for each.
