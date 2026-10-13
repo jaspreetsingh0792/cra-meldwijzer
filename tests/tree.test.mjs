@@ -74,16 +74,22 @@ test('uncertain scope or role caps the result at potentially reportable', () => 
   assert.equal(run({ role: 'unsure', vuln_contained: 'yes', vuln_exploited: 'yes' }).tracks.vulnerability, 'potentially_reportable');
 });
 
-test('out of scope answers stop the walk with a reason', () => {
-  assert.deepEqual(evaluate(tree, { product: 'no' }).outcome.keys, ['scope.out.not_pde']);
-  assert.deepEqual(evaluate(tree, { product: 'yes', market: 'no' }).outcome.keys, ['scope.out.not_on_market']);
-  assert.deepEqual(evaluate(tree, { product: 'yes', market: 'yes', exclusion: 'yes' }).outcome.keys, ['scope.out.excluded']);
+test('out of scope: CRA part ends, but the Cbw and GDPR questions still follow', () => {
+  const parallel = { cbw: 'no', gdpr: 'no' };
+  assert.equal(walk(tree, { product: 'no' }).pending, 'cbw');
+  assert.deepEqual(evaluate(tree, { product: 'no', ...parallel }).outcome.keys, ['scope.out.not_pde']);
+  assert.deepEqual(evaluate(tree, { product: 'yes', market: 'no', ...parallel }).outcome.keys, ['scope.out.not_on_market']);
+  assert.deepEqual(evaluate(tree, { product: 'yes', market: 'yes', exclusion: 'yes', ...parallel }).outcome.keys, ['scope.out.excluded']);
+  assert.deepEqual(evaluate(tree, { product: 'no', cbw: 'yes', gdpr: 'unsure' }).outcome.keys,
+    ['scope.out.not_pde', 'parallel.cbw', 'parallel.gdpr']);
 });
 
-test('importers/distributors and stewards get role outcomes', () => {
-  const base = { product: 'yes', market: 'yes', exclusion: 'no' };
+test('importers/distributors and stewards get role outcomes, plus the parallel regimes', () => {
+  const base = { product: 'yes', market: 'yes', exclusion: 'no', cbw: 'no', gdpr: 'no' };
+  assert.equal(walk(tree, { product: 'yes', market: 'yes', exclusion: 'no', role: 'steward' }).pending, 'cbw');
   assert.deepEqual(evaluate(tree, { ...base, role: 'importer_distributor' }).outcome.keys, ['role.importer_distributor']);
   assert.deepEqual(evaluate(tree, { ...base, role: 'steward' }).outcome.keys, ['role.steward']);
+  assert.deepEqual(evaluate(tree, { ...base, role: 'steward', cbw: 'unsure' }).outcome.keys, ['role.steward', 'parallel.cbw_check']);
   assert.equal(run({ role: 'own_brand_or_modified', vuln_contained: 'yes', vuln_exploited: 'yes' }).tracks.vulnerability, 'reportable');
 });
 

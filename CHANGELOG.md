@@ -3,6 +3,19 @@
 Content changes that affect what users are told: decision logic, deadlines, reporting routes,
 runbook and templates. Newest first. Dates are when the change was published.
 
+## 2026-10-13: rules version 0.4.0 (fourth external review)
+
+- **Cyberbeveiligingswet and GDPR are always offered.** When the CRA part ended early (out of scope,
+  importer or distributor, steward), the tool used to stop before the Cbw and GDPR questions. Those
+  regimes are independent of the CRA, so the questions now always follow.
+- **Trust services under the Cbw:** if the incident affects the trust service, the notification is
+  due within 24 hours instead of 72. Stated precisely in the outcome and in runbook chapter 6.
+- **Reporting platform outage:** ENISA FAQ 25 also allows contacting the coordinating CSIRT directly
+  when immediate communication is necessary, while the notification must still go through the
+  platform afterwards. An earlier version left this out.
+- **Cyberbeveiligingswet sources:** now the law itself (Staatsblad 2026, 187) and the commencement
+  decree (Staatsblad 2026, 189, Art. 35), instead of a government press release.
+
 ## 2026-10-13: rules version 0.3.0 (third external review)
 
 - **Awareness timing is now asked per track.** The single "before or after 11 September 2026"

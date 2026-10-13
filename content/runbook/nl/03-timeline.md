@@ -60,8 +60,11 @@ volledige informatie; de latere meldingen vullen de details aan.
       ENISA en andere CSIRT's [src:ncsc_melden].
 - [ ] **Kanaal niet beschikbaar?** Werkt MijnNCSC niet, gebruik dan het CRA-meldformulier, en
       andersom [src:ncsc_melden]. Volgens de FAQ van ENISA dien je, als het centrale meldplatform
-      tijdelijk niet beschikbaar is, de melding in zodra het weer beschikbaar is [src:enisa_srp_faq].
-      Leg de storing vast (tijden, foutmeldingen, schermafbeeldingen) in het zaaklogboek.
+      tijdelijk niet beschikbaar is, de melding in zodra het weer beschikbaar is. Is direct contact
+      eerder nodig, dan mag je je coördinerende CSIRT (in Nederland het NCSC) rechtstreeks benaderen,
+      maar je moet de melding **daarna alsnog via het platform indienen** zodra het weer werkt
+      [src:enisa_srp_faq]. Leg de storing (tijden, foutmeldingen, schermafbeeldingen) en eventueel
+      direct contact vast in het zaaklogboek.
 - [ ] Markeer de melding als **gevoelig** als details aanvallers kunnen helpen [src:ncsc_melden].
 - [ ] Leg het tijdstip van indienen en het referentienummer vast in het zaaklogboek.
 - [ ] Beide sporen geraakt? Dan is voor elk spoor een melding nodig.

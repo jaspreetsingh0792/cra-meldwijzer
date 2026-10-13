@@ -15,7 +15,7 @@ andere.
 
 ## Cyberbeveiligingswet
 
-De Nederlandse NIS2-wet geldt sinds 15 augustus 2026 [src:cbw]. Is je organisatie een essentiële
+De Nederlandse NIS2-wet geldt sinds 15 augustus 2026 [src:cbw] [src:cbw_besluit]. Is je organisatie een essentiële
 of belangrijke entiteit, beoordeel dan apart of de gebeurtenis een **significant incident** is voor
 je diensten. Een kwetsbaarheid in je product hoeft dat niet te zijn, en een incident in je
 organisatie hoeft niet aan de CRA-triggers te voldoen.
@@ -30,9 +30,11 @@ organisatie hoeft niet aan de CRA-triggers te voldoen.
   eindverslag binnen één maand na de melding. Loopt het incident na een maand nog? Stuur dan een
   voortgangsverslag, en het eindverslag binnen één maand nadat het incident is afgehandeld
   [src:ncsc_cbw_meldplicht].
-- **Uitzonderingen:** verleners van vertrouwensdiensten melden sneller, en organisaties onder een
-  sectorwet met eigen meldregels (bijvoorbeeld DORA) melden mogelijk via die route. Twijfel je, vraag
-  het je toezichthouder [src:ncsc_cbw_meldplicht].
+- **Uitzonderingen:** verleen je een **vertrouwensdienst** en raakt het incident die dienst, dan is
+  de melding al binnen **24 uur in plaats van 72 uur** verschuldigd (de vroegtijdige waarschuwing
+  blijft 24 uur). Organisaties onder een sectorwet met eigen meldregels (bijvoorbeeld DORA, of de
+  netcode cybersecurity voor elektriciteit) melden mogelijk via die route, soms met kortere
+  termijnen. Twijfel je, vraag het je toezichthouder [src:ncsc_cbw_meldplicht].
 
 ## AVG
 

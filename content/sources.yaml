@@ -201,12 +201,20 @@ sources:
   cbw:
     type: national_law
     binding: true
-    title: Cyberbeveiligingswet (Dutch NIS2 implementation)
-    pinpoint: in force since 15 August 2026 (government announcement)
-    url: https://www.rijksoverheid.nl/actueel/nieuws/2026/07/07/cyberbeveiligingswet-en-wet-weerbaarheid-kritieke-entiteiten-vanaf-15-augustus-2026-van-kracht
+    title: Cyberbeveiligingswet, Wet van 8 juli 2026 (Stb. 2026, 187)
+    pinpoint: Dutch implementation of Directive (EU) 2022/2555 (NIS2)
+    url: https://zoek.officielebekendmakingen.nl/stb-2026-187.html
     status: verified
     last_verified: 2026-10-13
-    notes: Official consolidated text on wetten.overheid.nl not found yet; replace the URL when it is available.
+    notes: In force since 15 August 2026 (Cyberbeveiligingsbesluit, Art. 35; source cbw_besluit). Add the consolidated text on wetten.overheid.nl when it appears.
+  cbw_besluit:
+    type: national_law
+    binding: true
+    title: Cyberbeveiligingsbesluit, Besluit van 8 juli 2026 (Stb. 2026, 189)
+    pinpoint: Art. 35 (Cyberbeveiligingswet and Besluit in force from 15 August 2026)
+    url: https://zoek.officielebekendmakingen.nl/stb-2026-189.html
+    status: verified
+    last_verified: 2026-10-13
   ncsc_cbw_meldplicht:
     type: ncsc
     binding: false

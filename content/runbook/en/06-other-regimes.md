@@ -14,7 +14,7 @@ moment and its own report**. A CRA report does not replace either of the others.
 
 ## Cyberbeveiligingswet
 
-The Dutch NIS2 law has applied since 15 August 2026 [src:cbw]. If your organisation is an
+The Dutch NIS2 law has applied since 15 August 2026 [src:cbw] [src:cbw_besluit]. If your organisation is an
 essential or important entity, assess separately whether the event is a **significant incident**
 for your services. A product vulnerability may not be one, and an incident in your organisation may
 not meet the CRA triggers.
@@ -29,9 +29,11 @@ not meet the CRA triggers.
   final report within one month of the notification. Still ongoing after a month? Send a progress
   report, and the final report within one month after the incident is handled
   [src:ncsc_cbw_meldplicht].
-- **Exceptions:** trust service providers report faster, and organisations under sector laws with
-  their own reporting rules (for example DORA) may report through that route instead. Ask your
-  supervisor if unsure [src:ncsc_cbw_meldplicht].
+- **Exceptions:** if you provide a **trust service** and the incident affects it, the
+  notification is due within **24 hours instead of 72** (the early warning stays at 24 hours).
+  Organisations under a sector law with its own reporting rules (for example DORA, or the network
+  code on cybersecurity for electricity) may have to report through that route instead, sometimes
+  with shorter deadlines. Ask your supervisor if unsure [src:ncsc_cbw_meldplicht].
 
 ## GDPR
 
