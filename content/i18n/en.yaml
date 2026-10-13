@@ -180,3 +180,128 @@ t:
     update_availability: { label: Update, hint: "Whether an update is available, where to get it, and how to verify it." }
     contact: { label: Questions, hint: How users can reach you. }
     next_update: { label: Next update of this advisory, hint: When you will inform users again. }
+
+ui:
+  app_name: CRA Meldwijzer
+  tagline: CRA Article 14 reporting guide for makers and sellers of software and connected products in the Netherlands
+  skip: Skip to content
+  lang_switch: Nederlands
+  lang_switch_label: Switch language to Dutch
+  wip: "Work in progress (v0.1): not yet reviewed by a lawyer. Not legal advice. Do not rely on it alone in a real incident."
+  nav:
+    home: Home
+    assess: Assess
+    case: Case and deadlines
+    templates: Templates
+    runbook: Runbook
+  home:
+    title: Do we have to report, by when, and where?
+    lead: Since 11 September 2026, manufacturers must report actively exploited vulnerabilities and severe incidents under Article 14 of the Cyber Resilience Act. This tool helps you decide, keeps the deadlines, and prepares the reports.
+    who: Do you sell software, an app, firmware or a connected device in the EU? Then you are probably a "manufacturer" under the CRA.
+    start: Start the assessment
+    runbook: Read the runbook
+    templates: Prepare report templates
+    privacy_title: Your data stays here
+    privacy: Everything runs in your browser. Nothing is sent anywhere. Case data is kept in memory unless you choose to save it in this browser.
+    rules: "Rules version {version}, last reviewed {date}."
+  assess:
+    title: Assessment
+    question: "Question {n}"
+    back: Back
+    restart: Start over
+    sources: Sources
+    result_title: Result
+    result_lead: Based on your answers. Each statement shows what it rests on.
+    start_case: Start a case with these results
+    apply_case: Update the open case with these results
+    answers: Your answers
+  layer:
+    regulation: Law
+    delegated_act: Law
+    national_law: Law
+    commission_guidance: Commission guidance
+    enisa: ENISA practice
+    ncsc: NCSC practice
+    interpretation: Our interpretation
+  case:
+    title: Case and deadlines
+    track:
+      vulnerability: Actively exploited vulnerability
+      incident: Severe incident
+    now: Now
+    applied: Assessment applied to the case
+    none: No case yet. Start with the assessment, or open a blank case.
+    blank: Open a blank case
+    case_id: Case number
+    detected_at: First detected
+    times_note: "Times are entered and shown in Amsterdam time; UTC is shown alongside."
+    applies: This track applies
+    aware_at: Became aware
+    basis: Why at that moment
+    early_warning_submitted: Early warning submitted
+    notification_submitted: Notification submitted
+    measure_available: Corrective or mitigating measure available
+    final_submitted: Final report submitted
+    milestone:
+      early_warning: Early warning
+      notification: Notification
+      final_report: Final report
+    due: Deadline
+    reg1182: "Reg. 1182/71 reading: {time}. Shown for comparison only; see OPEN-QUESTIONS Q2."
+    remaining: "{time} left"
+    overdue_by: "Overdue by {time}"
+    submitted_at: "Submitted {time}"
+    anchor_missing:
+      measure_available: Starts when a corrective or mitigating measure is available.
+      notification_submitted: Starts when the notification is submitted.
+    status:
+      running: Running
+      due_soon: Due soon
+      overdue: Overdue
+      submitted: Submitted
+      submitted_late: Submitted late
+      not_started: Not started
+      pre_application: Before 11 Sep 2026
+    flag:
+      aware_before_application: You became aware before 11 September 2026. ENISA's FAQ says there is no retroactive reporting duty; check this.
+      measure_before_awareness: The measure was available before you became aware. Check the final report deadline with your legal lead.
+      submitted_before_awareness: A submission time is earlier than the awareness time. Check the times.
+    needs_awareness: Enter when you became aware to start the clocks.
+    not_applicable: Not triggered by the assessment. Tick the box if it does apply.
+    ics: Add deadlines to calendar (.ics)
+    export: Export case (.json)
+    import: Import case
+    import_error: This file is not a CRA Meldwijzer case.
+    clear: Clear case
+    clear_confirm: Click again to delete this case
+    save: Save this case in this browser
+    save_note: "Off by default. Anyone with access to this browser profile can read saved cases."
+    save_unavailable: Saving is not available in this browser.
+    timeline: Case log
+    note: Add a note to the log
+    add: Add
+    log:
+      created: Case opened
+      changed: "{field} set to {value}"
+      cleared: "{field} cleared"
+      imported: Case imported
+    unit:
+      d: d
+      h: h
+      m: min
+  templates:
+    title: Report templates
+    lead: Values you enter here are shared between templates and saved with the case. Copy fields one by one into MijnNCSC or the CRA reporting form.
+    copy: Copy
+    copied: Copied
+    copy_all: Copy all as text
+    download: Download (.md)
+    no_case: "No case open: values are kept only until you close this tab."
+  runbook:
+    title: Runbook
+    chapters: Chapters
+    print: Print the whole runbook
+    print_title: CRA Meldwijzer runbook
+  footer:
+    disclaimer: Not legal advice. Independent project; not endorsed by ENISA, the European Commission, the NCSC or the RDI.
+    source: Source code

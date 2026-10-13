@@ -10,7 +10,8 @@
     "check": "node scripts/check.mjs",
     "build": "node scripts/build.mjs",
     "templates": "node scripts/templates.mjs",
-    "templates:check": "node scripts/templates.mjs --check"
+    "templates:check": "node scripts/templates.mjs --check",
+    "start": "node scripts/serve.mjs"
   },
   "license": "MIT",
   "type": "module",

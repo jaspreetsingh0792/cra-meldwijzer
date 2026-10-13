@@ -180,3 +180,128 @@ t:
     update_availability: { label: Update, hint: "Of er een update is, waar die te krijgen is en hoe je die controleert." }
     contact: { label: Vragen, hint: Hoe gebruikers je kunnen bereiken. }
     next_update: { label: Volgende versie van dit advies, hint: Wanneer je gebruikers opnieuw informeert. }
+
+ui:
+  app_name: CRA Meldwijzer
+  tagline: Meldwijzer voor artikel 14 van de CRA, voor makers en verkopers van software en verbonden producten in Nederland
+  skip: Naar de inhoud
+  lang_switch: English
+  lang_switch_label: Taal wijzigen naar Engels
+  wip: "In ontwikkeling (v0.1): nog niet juridisch getoetst. Geen juridisch advies. Vertrouw er bij een echt incident niet alleen op."
+  nav:
+    home: Start
+    assess: Beoordelen
+    case: Zaak en termijnen
+    templates: Sjablonen
+    runbook: Draaiboek
+  home:
+    title: Moeten we melden, wanneer, en waar?
+    lead: Sinds 11 september 2026 moeten fabrikanten actief uitgebuite kwetsbaarheden en ernstige incidenten melden onder artikel 14 van de Cyber Resilience Act. Deze tool helpt je beslissen, bewaakt de termijnen en bereidt de meldingen voor.
+    who: Verkoop je software, een app, firmware of een verbonden apparaat in de EU? Dan ben je waarschijnlijk "fabrikant" onder de CRA.
+    start: Start de beoordeling
+    runbook: Lees het draaiboek
+    templates: Sjablonen voorbereiden
+    privacy_title: Je gegevens blijven hier
+    privacy: Alles draait in je browser. Er wordt niets verstuurd. Zaakgegevens blijven in het geheugen, tenzij je ze in deze browser opslaat.
+    rules: "Regelversie {version}, laatst gecontroleerd op {date}."
+  assess:
+    title: Beoordeling
+    question: "Vraag {n}"
+    back: Terug
+    restart: Opnieuw beginnen
+    sources: Bronnen
+    result_title: Uitkomst
+    result_lead: Op basis van je antwoorden. Bij elke uitspraak staat waarop die rust.
+    start_case: Start een zaak met deze uitkomst
+    apply_case: Werk de open zaak bij met deze uitkomst
+    answers: Je antwoorden
+  layer:
+    regulation: Wet
+    delegated_act: Wet
+    national_law: Wet
+    commission_guidance: Richtsnoer Commissie
+    enisa: Praktijk ENISA
+    ncsc: Praktijk NCSC
+    interpretation: Onze interpretatie
+  case:
+    title: Zaak en termijnen
+    track:
+      vulnerability: Actief uitgebuite kwetsbaarheid
+      incident: Ernstig incident
+    now: Nu
+    applied: Beoordeling toegepast op de zaak
+    none: Nog geen zaak. Begin met de beoordeling, of open een lege zaak.
+    blank: Open een lege zaak
+    case_id: Zaaknummer
+    detected_at: Eerste detectie
+    times_note: "Tijden voer je in en zie je in Nederlandse tijd; UTC staat ernaast."
+    applies: Dit spoor is van toepassing
+    aware_at: Op de hoogte geraakt
+    basis: Waarom op dat moment
+    early_warning_submitted: Vroegtijdige waarschuwing ingediend
+    notification_submitted: Melding ingediend
+    measure_available: Corrigerende of mitigerende maatregel beschikbaar
+    final_submitted: Eindrapport ingediend
+    milestone:
+      early_warning: Vroegtijdige waarschuwing
+      notification: Melding
+      final_report: Eindrapport
+    due: Termijn
+    reg1182: "Lezing Vo. 1182/71: {time}. Alleen ter vergelijking; zie OPEN-QUESTIONS Q2."
+    remaining: "nog {time}"
+    overdue_by: "{time} te laat"
+    submitted_at: "Ingediend {time}"
+    anchor_missing:
+      measure_available: Start zodra een corrigerende of mitigerende maatregel beschikbaar is.
+      notification_submitted: Start zodra de melding is ingediend.
+    status:
+      running: Loopt
+      due_soon: Bijna verlopen
+      overdue: Verlopen
+      submitted: Ingediend
+      submitted_late: Te laat ingediend
+      not_started: Nog niet gestart
+      pre_application: Vóór 11 sep 2026
+    flag:
+      aware_before_application: Je raakte vóór 11 september 2026 op de hoogte. Volgens de FAQ van ENISA geldt geen meldplicht met terugwerkende kracht; controleer dit.
+      measure_before_awareness: De maatregel was al beschikbaar voordat je op de hoogte raakte. Bespreek de termijn voor het eindrapport met je juridisch verantwoordelijke.
+      submitted_before_awareness: Een tijdstip van indienen ligt vóór het moment van op de hoogte raken. Controleer de tijden.
+    needs_awareness: Vul in wanneer je op de hoogte raakte om de klokken te starten.
+    not_applicable: Niet geraakt volgens de beoordeling. Vink het vakje aan als het wel van toepassing is.
+    ics: Termijnen in agenda zetten (.ics)
+    export: Zaak exporteren (.json)
+    import: Zaak importeren
+    import_error: Dit bestand is geen zaak van CRA Meldwijzer.
+    clear: Zaak wissen
+    clear_confirm: Klik nogmaals om deze zaak te verwijderen
+    save: Deze zaak in deze browser opslaan
+    save_note: "Standaard uit. Iedereen met toegang tot dit browserprofiel kan opgeslagen zaken lezen."
+    save_unavailable: Opslaan is in deze browser niet beschikbaar.
+    timeline: Zaaklogboek
+    note: Notitie toevoegen aan het logboek
+    add: Toevoegen
+    log:
+      created: Zaak geopend
+      changed: "{field} gezet op {value}"
+      cleared: "{field} gewist"
+      imported: Zaak geïmporteerd
+    unit:
+      d: d
+      h: u
+      m: min
+  templates:
+    title: Sjablonen voor meldingen
+    lead: Wat je hier invult, wordt gedeeld tussen de sjablonen en bewaard bij de zaak. Kopieer velden één voor één naar MijnNCSC of het CRA-meldformulier.
+    copy: Kopiëren
+    copied: Gekopieerd
+    copy_all: Alles als tekst kopiëren
+    download: Downloaden (.md)
+    no_case: "Geen zaak geopend: waarden blijven alleen bewaard tot je dit tabblad sluit."
+  runbook:
+    title: Draaiboek
+    chapters: Hoofdstukken
+    print: Het hele draaiboek printen
+    print_title: Draaiboek CRA Meldwijzer
+  footer:
+    disclaimer: Geen juridisch advies. Onafhankelijk project; niet onderschreven door ENISA, de Europese Commissie, het NCSC of de RDI.
+    source: Broncode

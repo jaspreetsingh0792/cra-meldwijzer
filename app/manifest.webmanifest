@@ -1,0 +1,11 @@
+{
+  "name": "CRA Meldwijzer",
+  "short_name": "Meldwijzer",
+  "description": "CRA Article 14 reporting guide for the Netherlands. Offline, open source.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f7f5",
+  "theme_color": "#1f4fa3",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

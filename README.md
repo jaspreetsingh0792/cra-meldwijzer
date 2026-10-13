@@ -2,6 +2,7 @@
 
 **CRA Article 14 reporting guide for makers and sellers of software and connected products in the Netherlands. Bilingual (NL/EN), offline, open source.**
 
+**Use the app:** https://jaspreetsingh0792.github.io/cra-meldwijzer/ (works offline after the first visit)  
 **Read the runbook:** [English](content/runbook/en/00-overview.md) · [Nederlands](content/runbook/nl/00-overview.md)  
 **Report templates:** [English](templates/en/README.md) · [Nederlands](templates/nl/README.md)
 
@@ -44,7 +45,7 @@ MijnNCSC of het CRA-meldformulier). Geen juridisch advies; zie [DISCLAIMER.md](D
 | YAML -> JSON build and content checks | ✅ |
 | Runbook (`content/runbook/`): preparation, roles, timeline, informing users, evidence, Cbw/GDPR, other roles, drill | ✅ v0.1, NL + EN |
 | Report templates (`content/templates.yaml` -> `templates/`): 6 reports + user advisory, NCSC form sections, Art. 14 content | ✅ v0.1, NL + EN (character limits not yet verified) |
-| Static web app, print view, offline package | ⏳ |
+| Web app (`app/`): assessment, case with deadlines and .ics export, templates with per-field copy, runbook and print view, offline (service worker), NL/EN | ✅ v0.1 |
 | Legal review (release gate) | ⏳ |
 
 ## How it is built
@@ -58,10 +59,13 @@ content/          source of truth: editable without touching code
   runbook/nl, en  the runbook chapters; cite sources as [src:id]
   templates.yaml  report templates (language-neutral)
 templates/        generated blank templates (npm run templates), committed
-src/core/         pure functions, no DOM, no network
+app/              static web app (no framework, no dependencies)
+src/core/         pure functions, no DOM, no network (shared by app, build and tests)
   tree.js         walk the tree, derive outcomes
   clock.js        Article 14 deadlines
   templates.js    render report templates
+  markdown.js     safe Markdown -> HTML for the runbook
+  ics.js          calendar export
 scripts/          build (YAML -> JSON) and content checks
 tests/            node:test suites
 ```
@@ -89,7 +93,8 @@ npm install
 npm test          # tree + deadline tests (including every possible answer path)
 npm run check     # content integrity: sources, reachability, NL/EN parity, runbook citations and links
 npm run templates # regenerate templates/ after changing content (CI checks they are current)
-npm run build     # compile content to dist/data/*.json
+npm run build     # build the site into dist/
+npm start         # serve dist/ on http://localhost:8787/
 ```
 
 ## Contributing
