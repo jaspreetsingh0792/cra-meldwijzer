@@ -1,0 +1,33 @@
+As of 11 September 2026, manufacturers are required to report actively exploited vulnerabilities and severe incidents impacting the security of products with digital elements.
+In accordance with Article 71(2) of the CRA, open-source software stewards are subject to reporting obligations (Article 24(3)) from 11 December 2027.
+What are the main rules?
+The CRA requires manufacturers to notify actively exploited vulnerabilities and severe incidents having an impact on the security of their product with digital elements. They need to submit an early warning within 24 hours of becoming aware, and a full notification within 72 hours. A final report needs to be submitted no later than 14 days after a corrective measure is available for actively exploited vulnerabilities and within a month from the 72-hour notification for severe incidents. Reporting obligations are also foreseen for open-source software stewards in accordance with Article 24(3) of the CRA .
+Manufacturers report only once through the CRA Single Reporting Platform (SRP) . The notification is addressed to the Computer Security Incident Response Team (CSIRT) where they have their main establishment and, unless particularly exceptional circumstances apply, the information is made available simultaneously to ENISA. The CSIRT initially receiving the notification will share without delay the notification with all the other CSIRTs on the territory of which the product with digital elements has been made available.
+In exceptional circumstances and based on justified cybersecurity-related grounds, the CSIRT may decide to delay dissemination to other CSIRTs: on 11 December 2025, the Commission adopted a delegated act further specifying the terms and conditions for applying such cybersecurity-related grounds.
+Where should manufacturers submit their notifications?
+Pursuant to Article 16 of the CRA, and in close cooperation with the CSIRT Network, ENISA has established the CRA Single Reporting Platform (SRP), operational as of 11 September 2026. Manufacturers and open-source software stewards are required to submit their notifications through that platform.
+The link to ENISA's Single Reporting Platform can be found on ENISA's Single Reporting Platform (SRP) webpage .
+Where can further information on reporting obligations and the SRP be found?
+ENISA has published a range of resources on how to use the CRA SRP, including FAQs, user guidance, a CRA SRP glossary and training materials. All such resources can be accessed on ENISA's Single Reporting Platform (SRP) webpage .
+Further clarifications on reporting obligations are also contained in Section 9.1 of the Commission guidance on the CRA, as well as in Section 5 of the Commission's Frequently Asked Questions on the CRA implementation.
+Relevant cooperation bodies
+ENISA
+CSIRT Network
+Reference documents and links
+ENISA’s webpage on the Single Reporting Platform
+Frequently Asked Questions on the CRA implementation
+Commission guidance on the CRA
+Delegated act on CSIRTs withholding notifications to be disseminated through the Single Reporting Platform
+Quick Links
+Cyber Resilience Act - Legal text
+Cyber Resilience Act - Summary of the legal text
+Commission guidance on the CRA
+Commission FAQs on the CRA
+ENISA's webpage on the Single Reporting Platform
+Related Content
+Big Picture
+Cyber Resilience Act
+The Cyber Resilience Act (CRA) aims to make sure all digital products are safe from cyber threats. This rulebook requires that devices and software are designed, updated, and maintained to protect users in our increasingly digital world.
+Last update
+11 September 2026
+Print as PDF

@@ -104,6 +104,13 @@ Corrections to legal content are the most valuable contribution. Change the YAML
 `content/sources.yaml` (with `last_verified`), update or add a test, and explain the change in the
 pull request. **Never include real vulnerability or incident details**; see [SECURITY.md](SECURITY.md).
 
+## Keeping it current
+
+A weekly GitHub Action checks the NCSC, ENISA and Commission pages and EUR-Lex (corrigenda and
+amendments to the CRA) and opens an issue when something changes. The app shows when each source was
+last checked, and warns users automatically when the oldest check is more than four months old. See
+[MAINTAINING.md](MAINTAINING.md) and [CHANGELOG.md](CHANGELOG.md).
+
 ## No individual advice
 
 The maintainers do not advise on individual cases. Issues and discussions are for improving the

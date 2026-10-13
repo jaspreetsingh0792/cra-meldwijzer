@@ -188,6 +188,8 @@ ui:
   lang_switch: Nederlands
   lang_switch_label: Switch language to Dutch
   wip: "Not legally reviewed. Not legal advice. Use at your own risk and check the official NCSC guidance."
+  stale: "Outdated? Some sources were last checked on {date}, more than four months ago. Laws and guidance may have changed since: always check the official NCSC guidance."
+  checked: "checked {date}"
   notice:
     text: This is an aid, not legal advice, and it has not been reviewed by a lawyer. You remain responsible for your own reporting decisions.
     ncsc: Official NCSC guidance
@@ -207,7 +209,7 @@ ui:
     templates: Prepare report templates
     privacy_title: Your data stays here
     privacy: Everything runs in your browser. Nothing is sent anywhere. Case data is kept in memory unless you choose to save it in this browser.
-    rules: "Rules version {version}, last reviewed {date}."
+    rules: "Rules version {version}. Oldest source check: {date}."
   assess:
     title: Assessment
     question: "Question {n}"

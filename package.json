@@ -11,7 +11,8 @@
     "build": "node scripts/build.mjs",
     "templates": "node scripts/templates.mjs",
     "templates:check": "node scripts/templates.mjs --check",
-    "start": "node scripts/serve.mjs"
+    "start": "node scripts/serve.mjs",
+    "watch": "node scripts/watch-sources.mjs"
   },
   "license": "MIT",
   "type": "module",

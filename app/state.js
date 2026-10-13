@@ -69,6 +69,24 @@ export function setLang(lang) {
   storage.set(KEY.lang, lang);
 }
 
+// --- Freshness --------------------------------------------------------------------
+
+export const STALE_AFTER_DAYS = 120;
+
+/** Oldest last_verified date over all verified sources (YYYY-MM-DD), or null. */
+export function oldestVerification() {
+  const dates = Object.values(store.data.sources)
+    .filter((s) => s.status === 'verified' && s.last_verified)
+    .map((s) => s.last_verified)
+    .sort();
+  return dates[0] ?? null;
+}
+
+export function isStale(now = Date.now()) {
+  const oldest = oldestVerification();
+  return !oldest || (now - Date.parse(oldest)) / 86_400_000 > STALE_AFTER_DAYS;
+}
+
 // --- Case -----------------------------------------------------------------------
 
 export const isCase = (c) => c?.app === 'cra-meldwijzer' && c.schema === 1

@@ -1,0 +1,34 @@
+Cyber Resilience Act (CRA)
+Artikel
+Leestijd:
+Wet- en regelgeving
+Groeien
+De Cyber Resilience Act (CRA) is een Europese verordening die zich richt op het verbeteren van de beveiliging van digitale producten. De CRA heet in het Nederlands de ‘Verordening cyberweerbaarheid’. Gebruikers in de EU moeten erop kunnen vertrouwen dat producten digitaal veilig zijn. Door de CRA moeten digitale producten vanaf 11 december 2027 aan essentiële veiligheidseisen voldoen en moeten deze producten veilig gehouden worden door updates. Dit zorgt ervoor dat consumenten en bedrijven veilig gebruik kunnen maken van digitale producten.
+Wie krijgen met de CRA te maken?
+Zowel fabrikanten, importeurs en distributeurs hebben verplichtingen in de CRA. Op deze manier weten consumenten beter waar ze op kunnen rekenen. Namelijk: veiligere producten met een ondersteuningsperiode die redelijkerwijs te verwachten is.
+Fabrikanten: Een fabrikant ontwikkelt of vervaardigt producten, of laat producten ontwerpen, ontwikkelen of vervaardigen en brengt deze onder (merk)naam in de handel. Fabrikanten van producten met digitale elementen krijgen te maken met de meeste verplichtingen. Zij dragen integraal de verantwoordelijkheid voor een veilig product en moeten vanaf de ontwerpfase rekening houden met de CRA.
+Importeurs: Voor importeurs geldt dat ze in moeten staan voor de veiligheid van het product en actief moeten controleren of producten aan de CRA voldoen. Brengt een importeur het product onder zijn eigen merk op de markt? Dan wordt de importeur beschouwd als fabrikant en gelden alle plichten die ook op een fabrikant van toepassing zijn.
+Distributeurs: Een distribiteur hoeft alleen passende zorgvuldigheid toe te passen. Dat betekent dat de distributeur moet controleren op de aanwezigheid van de CE-markering op het product. Twijfelt de distributeur of het product wel voldoet aan de wet? Dan brengt die het product niet op de markt.
+Welke producten moeten aan de CRA voldoen?
+De CRA is van toepassing op producten met digitale elementen die op de Europese markt aangeboden worden. Dit zijn niet alleen fysieke producten zoals IoT-apparatuur, firewalls of netwerkapparatuur. Denk ook aan software zoals videogames, mobiele apps en besturingssystemen. De verordening maakt onderscheid in vier verschillende producten: regulier product, belangrijk product klasse I, belangrijk product klasse II en kritiek product. Kijk voor een overzicht van de producten in de Gids Cyber Resilience Act van de RDI .
+Welke eisen stelt de CRA?
+De CRA stelt zowel producteisen als proceseisen.
+Producteisen
+De belangrijkste eisen uit de CRA worden gesteld aan de producten die op de markt worden gebracht. De fabrikant voert een risicoanalyse uit, die de basis moet vormen voor het veilig ontwerpen van het product. Het is van belang dat hierbij alle kwetsbaarheden en reële risico’s worden weggenomen.
+Proceseisen
+Producten moeten – na ingebruikname – veilig worden gehouden. De ondersteuningsperiode geldt voor de complete verwachte levensduur van het product, maar minimaal voor een periode van vijf jaar zijn. Als er een kwetsbaarheid wordt ontdekt, moet zo snel mogelijk een gratis veiligheidsupdate worden aangeboden. Bovendien moeten fabrikanten het melden als ze kennis krijgen van een actief misbruikte kwetsbaarheid of als er sprake is van een ernstig incident dat gevolgen heeft voor de beveiliging van het product. Zo'n CRA-melding vindt vanaf 11 september 2026 plaats bij het Nationaal Cyber Security Centrum via MijnNCSC of het CRA-formulier .
+De wet schrijft voor dat de melding zonder onnodige vertraging en in ieder geval binnen 24 uur na de ontdekking plaats vindt. Lees meer over doen van CRA-meldingen .
+Wie doet de beoordeling van producten?
+De fabrikant is verplicht om te laten controleren of het product voldoet aan de eisen van de CRA. In veel gevallen mag de fabrikant zo’n conformiteitsbeoordeling zelf uitvoeren: een zogenaamde zelfbeoordeling. In andere gevallen moet dit door een externe partij gebeuren. Hieronder zie je wanneer welke beoordeling van toepassing is. De fabrikant is verantwoordelijk dat dit gebeurt en voert de CE-markering op het product, zodat deze als zodanig herkenbaar is.
+De beoordeling hangt af van het type product:
+Reguliere producten. Zoals mobiele apps, videogames en IoT-apparatuur. Voor deze producten mag de fabrikant een zelfbeoordeling uitvoeren.
+Belangrijke producten type 1. Zoals beveiligingssoftware of apparatuur, netwerkapparatuur en besturingssystemen. Zelfbeoordeling van deze producten mag alleen op basis van geharmoniseerde Europese normen. Zijn deze er niet? Dan is de fabrikant verplicht om gebruik te maken van een notified body.
+Belangrijke producten type 2. Zoals hypervisors, firewalls en intrusion detection & prevention systemen en manipulatiebestendige microprocessoren en -controllers. Fabrikanten van deze producten moeten de beoordeling laten uitvoeren door een notified body.
+Kritieke producten. Zoals smartcards, hardware apparaten met beveiligingskastje en gateways voor slimme meters die bi-directioneel verbruik kunnen meten. Fabrikanten moeten gebruikmaken van een notified body.
+In Uitvoeringsverordening 2025/2392 zijn de technische beschrijvingen van de categorieën belangrijke en kritieke producten vastgesteld. Voordat het product in de handel wordt gebracht, moet een fabrikant bepalen of een product tot één of meerdere van deze categorieën behoort. De fabrikant doet dit door te controleren of de belangrijkste functionaliteit van het product overeenkomt met de technische beschrijving van deze categorieën. Het is bij deze controle belangrijk om onderscheid te maken tussen kernfunctionaliteit en ondersteunende functionaliteit. Een voorbeeld hiervan is een smartphone die de ondersteunende functionaliteit bevat om wachtwoorden te beheren. Ter illustratie is bij iedere categorie een aantal voorbeelden opgenomen van veelvoorkomende producten per categorie.
+Meer informatie
+Lees voor meer informatie de ‘ Gids Cyber Resilience Act ’ van de RDI of de Uitvoeringsverordening van de Commissie .
+CRA Gids v2.0 september 2025 NL PDF , 311 kB , 3-8-2026
+Download
+Resultaten laden...
+Alles binnen Wet- en regelgeving

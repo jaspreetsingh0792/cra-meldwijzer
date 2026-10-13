@@ -1,5 +1,5 @@
 import { h } from './dom.js';
-import { store, t, loadData, setLang } from './state.js';
+import { store, t, loadData, setLang, isStale, oldestVerification } from './state.js';
 import { homeView } from './views/home.js';
 import { assessView } from './views/assess.js';
 import { caseView } from './views/case.js';
@@ -31,7 +31,10 @@ function renderChrome(current) {
   lang.setAttribute('aria-label', t('ui.lang_switch_label'));
   $('nav').replaceChildren(...NAV.map(([name, key]) => h('li', {},
     h('a', { href: `#/${name}`, 'aria-current': name === current || (name === 'runbook' && current === 'print') ? 'page' : null }, t(key)))));
-  $('wip').textContent = t('ui.wip');
+  const stale = isStale();
+  $('wip').textContent = stale ? t('ui.stale', { date: oldestVerification() ?? '?' }) : t('ui.wip');
+  $('wip').classList.toggle('stale', stale);
+  $('wip').setAttribute('role', stale ? 'alert' : 'note');
   $('footer-disclaimer').textContent = t('ui.footer.disclaimer');
   $('footer-source').textContent = t('ui.footer.source');
 }

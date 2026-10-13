@@ -1,0 +1,8 @@
+CRA-meldformulier
+Ben je fabrikant, importeur of distributeur van producten met een digitale element? Dan heb je de plicht om melding te maken als er actief misbruik van een kwetsbaarheid geconstateerd is. Ook moet je ernstige incidenten in je producten melden. Dat kan via onderstaand CRA-meldformulier.
+Niet CRA-plichtig?
+Wil je als organisatie een cyberincident melden op grond van de Cbw, de Netcode, DORA of vrijwillig? Gebruik dan dit meldformulier .
+Heb je een beveiligingslek of kwetsbaarheid ontdekt in een systeem van de Rijksoverheid? Laat het ons weten via het CVD-formulier .
+Twijfel je of dit de juiste plek is om te melden? Bekijk welke criteria de Cyber Resilience Act hanteert in Melden onder de CRA .
+Resultaten laden...
+Alles over incidenten en herstellen

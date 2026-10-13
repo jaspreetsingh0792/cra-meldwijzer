@@ -1,5 +1,5 @@
 import { h } from '../dom.js';
-import { store, t } from '../state.js';
+import { store, t, oldestVerification } from '../state.js';
 import { pageTitle } from '../components.js';
 
 export function homeView() {
@@ -15,5 +15,5 @@ export function homeView() {
     h('section', { class: 'panel' },
       h('h2', {}, t('ui.home.privacy_title')),
       h('p', {}, t('ui.home.privacy'))),
-    h('p', { class: 'muted' }, t('ui.home.rules', { version: tree.version, date: tree.last_reviewed })));
+    h('p', { class: 'muted' }, t('ui.home.rules', { version: tree.version, date: oldestVerification() ?? '?' })));
 }

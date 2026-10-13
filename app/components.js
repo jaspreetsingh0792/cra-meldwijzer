@@ -14,7 +14,8 @@ export function sourceChip(id) {
   const s = store.data.sources[id];
   if (!s) return null;
   const label = `${layerLabel(s)}: ${shortSource(s)}`;
-  const title = s.pinpoint ? `${s.title}, ${s.pinpoint}` : s.title;
+  const checked = s.last_verified ? ` · ${t('ui.checked', { date: s.last_verified })}` : '';
+  const title = `${s.pinpoint ? `${s.title}, ${s.pinpoint}` : s.title}${checked}`;
   return s.url
     ? h('a', { class: `chip layer-${s.type}`, href: s.url, target: '_blank', rel: 'noopener noreferrer', title }, label)
     : h('span', { class: `chip layer-${s.type}`, title }, label);

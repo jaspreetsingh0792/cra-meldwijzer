@@ -1,0 +1,77 @@
+Melden onder de Cyber Resilience Act
+Artikel
+Wet- en regelgeving
+Groeien
+Vanaf 11 september 2026 meld je als fabrikant een actief misbruikte kwetsbaarheid of een ernstig incident in je product bij het Nationaal Cyber Security Centrum (NCSC). Je hebt 24 uur voor je eerste melding.
+Moet jij melden?
+Je meldt als je fabrikant bent van een product met digitale elementen dat je op de Europese markt aanbiedt. Dat gaat om hardware en software die verbinding kan maken met een ander apparaat of een netwerk. Denk aan bedrijfssoftware, mobiele apps, besturingssystemen, netwerkapparatuur en IoT-apparaten.
+Je bent fabrikant als je het product onder je eigen naam of merk op de markt brengt. De omvang van je organisatie maakt niet uit. Ook als softwareontwikkeling een nevenactiviteit is, val je onder de meldplicht.
+Importeur of distributeur: je hebt geen eigen meldplicht, tenzij je het product onder je eigen naam of merk aanbiedt of het product substantieel wijzigt. Dan gelden voor jou alle plichten van een fabrikant.
+Open source software steward: je meldt een lichtere variant, namelijk actief misbruikte kwetsbaarheden voor zover je betrokken bent bij de ontwikkeling en ernstige incidenten voor zover die je eigen systemen raken.
+Kleine of micro-onderneming: je hebt een meldplicht. Maar je krijgt geen boete als je de eerste termijn van 24 uur niet haalt.
+De meldplicht geldt ook voor producten die je jaren geleden op de markt hebt gebracht. Alles wat op 11 september 2026 op de Europese markt beschikbaar is, valt eronder.
+Twijfel je of jouw product onder de CRA valt? Kijk in de Gids Cyber Resilience Act van de Rijksinspectie Digitale Infrastructuur (RDI).
+Meld een kwetsbaarheid of incident
+Moet je je registreren?
+Nee. De CRA kent geen registratieplicht. Je hoeft je vooraf niet aan te melden en niet in een register te staan.
+Toch raden wij je aan om te melden via MijnNCSC. De CRA vraagt 3 meldingen over dezelfde zaak: een waarschuwing, een melding en een eindverslag. In MijnNCSC blijven die bij elkaar en bouw je je vervolgmelding op wat je al hebt gemeld. Zonder account moet je dat zelf bijhouden met je referentienummer.
+Val je ook onder de Cyberbeveiligingswet? Dan ben je waarschijnlijk al geregistreerd op MijnNCSC. Je gebruikt hetzelfde account voor je CRA-melding. De registratieplicht zelf komt uit de Cyberbeveiligingswet en staat los van de CRA.
+Wat meld je?
+Er zijn 2 situaties waarin je moet melden.
+1. Een actief misbruikte kwetsbaarheid
+Er is betrouwbaar bewijs dat iemand met kwade bedoelingen de kwetsbaarheid in je product heeft misbruikt in een systeem, zonder toestemming van de eigenaar van dat systeem.
+Dit geldt niet voor elke gevonden kwetsbaarheid of elke CVE. Een kwetsbaarheid die je zelf vindt of die via responsible disclosure bij je binnenkomt en die nog niet aantoonbaar is misbruikt, hoef je niet te melden.
+2. Een ernstig incident dat de beveiliging van je product raakt
+Het incident raakt de beschikbaarheid, authenticiteit, integriteit of vertrouwelijkheid van gevoelige gegevens of functies. Of het incident leidt ertoe dat kwaadaardige code in je product of in de systemen van je gebruiker terechtkomt. Denk aan remote code execution of een gecompromitteerde toeleveringsketen.
+Zit de kwetsbaarheid in een component van een leverancier? Dan meld jij die voor jouw product. De maker van het component meldt zelf ook, als dat component apart op de markt is gebracht.
+Wanneer meld je?
+Alle termijnen starten op het moment dat jij kennis krijgt van de kwetsbaarheid of het incident.
+Stap | Termijn | Wat lever je aan
+Vroegtijdige waarschuwing | Binnen 24 uur | Een signalering en in welke lidstaten je product beschikbaar is
+Melding | Binnen 72 uur | Informatie over het product, de aard van de kwetsbaarheid of het incident en de maatregelen die je neemt en aanbeveelt
+Eindverslag bij een kwetsbaarheid | Uiterlijk 14 dagen nadat je een oplossing beschikbaar stelt | Beschrijving van de kwetsbaarheid, informatie over de aanvaller als je die hebt en details over de update
+Eindverslag bij een incident | Binnen 1 maand na je melding | Beschrijving van het incident, de vermoedelijke oorzaak en de maatregelen die je hebt genomen
+Het NCSC kan je tussendoor om een statusupdate vragen. Dat gebeurt alleen als daar aanleiding voor is.
+Hoe doe je een melding?
+Er zijn 2 manieren om te melden. Wij raden de eerste aan.
+1. Via MijnNCSC
+Meld via MijnNCSC . Ben je al geregistreerd onder de Cyberbeveiligingswet, dan gebruik je hetzelfde account. Heb je nog geen account, dan registreer je met eHerkenning of SSOnRijk.
+Het voordeel: je waarschuwing, je melding binnen 72 uur en je eindverslag horen bij dezelfde zaak en blijven bij elkaar staan. Je vult je vervolgmelding aan op wat je al hebt gemeld.
+2. Via het meldformulier op ncsc.nl
+Kun of wil je niet registreren? Meld dan via het CRA-meldformulier . Je hebt geen account en geen inlogmiddel nodig.
+Je krijgt een referentienummer per e-mail. Bewaar dat nummer. Je hebt het nodig om je vervolgmelding te koppelen aan je eerste melding.
+Waar meld je?
+Je meldt in Nederland als je hoofdvestiging in Nederland staat. Heeft jouw concern meerdere vestigingen in Europa? Dan meldt de entiteit met de hoofdvestiging, bij het aangewezen CSIRT van dat land.
+Het NCSC zorgt ervoor dat je melding terechtkomt bij ENISA en bij de CSIRT's in de andere lidstaten waar je product beschikbaar is. Je hoeft dus niet op 2 plekken te melden.
+Vind je je melding gevoelig, bijvoorbeeld omdat de details bruikbaar zijn als aanvalstechniek? Geef dat aan in je melding. Wij wegen dat mee bij het verspreiden.
+Wat doet het NCSC met je melding?
+Het NCSC richt in Nederland het meldloket in en ontvangt je melding. Wij zijn geen toezichthouder. Je melding gebruiken wij om:
+snel zicht te krijgen op misbruik dat ook andere organisaties raakt
+andere lidstaten en ENISA te informeren, zodat de schade beperkt blijft
+waar nodig gebruikers te informeren als jij dat niet tijdig doet
+Een melding bij het NCSC is geen boetemelding en geen aangifte.
+Je kunt ook vrijwillig melden
+Zie je een incident of een bijna-incident dat je niet hoeft te melden, maar dat wel nuttig is om te delen? Dan kun je dat vrijwillig doen. Je kiest zelf of je die melding bij het NCSC doet of bij ENISA. Een vrijwillige melding leidt niet tot extra verplichtingen.
+Melden is niet je enige plicht
+De CRA vraagt meer dan melden. Je houdt je product veilig gedurende de hele verwachte gebruiksduur, met gratis veiligheidsupdates. Die ondersteuningsperiode is minimaal 5 jaar. Vanaf 11 december 2027 gelden daarnaast de producteisen, de conformiteitsbeoordeling en de CE-markering.
+Maak je een belangrijk of kritiek product? Dan laat je dat beoordelen door een aangemelde conformiteitsbeoordelingsinstantie, ook wel testhuis. De RDI wijst die instanties aan. Kijk op de website van de RDI voor de actuele stand.
+Wie gaat waarover?
+Vraag | Ga naar
+Ik wil een melding doen of heb hulp nodig bij mijn melding. | NCSC
+Valt mijn product onder de CRA en in welke categorie? | RDI
+Ik zoek een aangemeld testhuis voor mijn product. | RDI
+Hoe werkt het toezicht en wat gebeurt er als ik niet voldoe? | RDI
+Wat betekent de wet precies en welke ondersteuning is er voor het mkb? | Min EZK
+Meer vragen en antwoorden
+Wat meld ik niet?
+Kwetsbaarheden die je zelf vindt, die uit een pentest komen of die via responsible disclosure of een bug bounty bij je binnenkomen en waarvan geen misbruik bekend is. Ook een zeroday hoef je alleen te melden als er betrouwbaar bewijs is dat iemand die misbruikt. Je mag deze situaties wel vrijwillig melden.
+Wat is een product met digitale elementen?
+Alle hardware en software die direct of indirect verbinding kan maken met een apparaat of netwerk, plus de bijbehorende oplossingen voor gegevensverwerking op afstand. Van bedrijfssoftware en mobiele apps tot besturingssystemen, netwerkapparatuur en IoT-apparaten. Zelfstandige SaaS-diensten vallen er in beginsel buiten, tenzij ze onder de definitie van gegevensverwerking op afstand vallen.
+Hoe werkt het als mijn concern in meerdere landen zit?
+De entiteit met de hoofdvestiging meldt bij het aangewezen CSIRT van dat land. Staat je hoofdvestiging in Nederland, dan meld je bij het NCSC. Je meldt niet in elk land apart.
+Waarom nu al melden terwijl de CRA pas in december 2027 geldt?
+De verordening laat de meldplicht bewust eerder ingaan, op 11 september 2026. De overige verplichtingen, zoals de producteisen en de CE-markering, gelden vanaf 11 december 2027.
+Waarom is er een meldplicht voor fabrikanten?
+Digitale producten zitten in elkaars keten. Een kwetsbaarheid in 1 product raakt vaak duizenden organisaties in meerdere landen tegelijk. Door misbruik snel te melden, kunnen andere lidstaten en gebruikers eerder maatregelen nemen. De Europese Commissie noemt elke misbruikte kwetsbaarheid in een product met digitale elementen daarom een bedreiging voor de interne markt.
+Resultaten laden...
+Alles binnen Wet- en regelgeving

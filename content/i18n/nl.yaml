@@ -188,6 +188,8 @@ ui:
   lang_switch: English
   lang_switch_label: Taal wijzigen naar Engels
   wip: "Niet juridisch getoetst. Geen juridisch advies. Gebruik op eigen risico en controleer de officiële informatie van het NCSC."
+  stale: "Verouderd? Sommige bronnen zijn voor het laatst gecontroleerd op {date}, meer dan vier maanden geleden. Wetten en richtsnoeren kunnen sindsdien zijn veranderd: controleer altijd de officiële informatie van het NCSC."
+  checked: "gecontroleerd op {date}"
   notice:
     text: Dit is een hulpmiddel, geen juridisch advies, en het is niet juridisch getoetst. Je blijft zelf verantwoordelijk voor je meldbesluiten.
     ncsc: Officiële informatie van het NCSC
@@ -207,7 +209,7 @@ ui:
     templates: Sjablonen voorbereiden
     privacy_title: Je gegevens blijven hier
     privacy: Alles draait in je browser. Er wordt niets verstuurd. Zaakgegevens blijven in het geheugen, tenzij je ze in deze browser opslaat.
-    rules: "Regelversie {version}, laatst gecontroleerd op {date}."
+    rules: "Regelversie {version}. Oudste broncontrole: {date}."
   assess:
     title: Beoordeling
     question: "Vraag {n}"
