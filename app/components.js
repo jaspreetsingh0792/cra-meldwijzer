@@ -34,6 +34,16 @@ export function citeHtml(id) {
     : `<span class="${cls}" title="${title}">${label}</span>`;
 }
 
+/** Reminder shown on every screen where a decision is made. */
+export function legalNotice() {
+  const ncsc = store.data.sources.ncsc_melden?.url;
+  return h('aside', { class: 'legal-notice', 'aria-label': t('ui.notice.disclaimer') },
+    h('p', {}, t('ui.notice.text'), ' ',
+      ncsc ? h('a', { href: ncsc, target: '_blank', rel: 'noopener noreferrer' }, t('ui.notice.ncsc')) : null,
+      ' · ',
+      h('a', { href: 'https://github.com/jaspreetsingh0792/cra-meldwijzer/blob/main/DISCLAIMER.md', target: '_blank', rel: 'noopener noreferrer' }, t('ui.notice.disclaimer'))));
+}
+
 export function pageTitle(text) {
   return h('h1', { tabindex: '-1' }, text);
 }

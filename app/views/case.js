@@ -3,7 +3,7 @@ import {
   store, t, newCase, log, persist, setSave, storageAvailable, clearCase, isCase,
   toInputValue, fromInputValue, fmtTime, fmtDuration,
 } from '../state.js';
-import { pageTitle } from '../components.js';
+import { pageTitle, legalNotice } from '../components.js';
 import { computeCase } from '../core/clock.js';
 import { toIcs } from '../core/ics.js';
 
@@ -244,6 +244,7 @@ export function caseView(rerender) {
 
   return h('div', { class: 'case' },
     pageTitle(t('ui.case.title')),
+    legalNotice(),
     h('section', { class: 'panel case-head' },
       h('div', { class: 'field' }, h('label', { for: 'case-id' }, t('ui.case.case_id')), idInput),
       detected,

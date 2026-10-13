@@ -6,9 +6,10 @@
 **Read the runbook:** [English](content/runbook/en/00-overview.md) · [Nederlands](content/runbook/nl/00-overview.md)  
 **Report templates:** [English](templates/en/README.md) · [Nederlands](templates/nl/README.md)
 
-> ⚠️ **Work in progress (v0.1).** Not ready for use in a real incident. The legal logic has not
-> been reviewed by a lawyer yet; see [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md). Not legal advice; see
-> [DISCLAIMER.md](DISCLAIMER.md).
+> ⚠️ **Not legally reviewed. Not legal advice.** This is a free aid, provided as is, without any
+> warranty. You remain responsible for your own reporting decisions: always check the official
+> [NCSC guidance](https://www.ncsc.nl/wet-en-regelgeving/cyber-resilience-act-cra/melden). Known open
+> points are in [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md); see [DISCLAIMER.md](DISCLAIMER.md).
 
 Since **11 September 2026**, manufacturers of products with digital elements must report actively
 exploited vulnerabilities and severe incidents under Article 14 of the Cyber Resilience Act
@@ -46,7 +47,7 @@ MijnNCSC of het CRA-meldformulier). Geen juridisch advies; zie [DISCLAIMER.md](D
 | Runbook (`content/runbook/`): preparation, roles, timeline, informing users, evidence, Cbw/GDPR, other roles, drill | ✅ v0.1, NL + EN |
 | Report templates (`content/templates.yaml` -> `templates/`): 6 reports + user advisory, NCSC form sections, Art. 14 content | ✅ v0.1, NL + EN (character limits not yet verified) |
 | Web app (`app/`): assessment, case with deadlines and .ics export, templates with per-field copy, runbook and print view, offline (service worker), NL/EN | ✅ v0.1 |
-| Legal review (release gate) | ⏳ |
+| Legal review | Not done; see [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) |
 
 ## How it is built
 
@@ -102,6 +103,18 @@ npm start         # serve dist/ on http://localhost:8787/
 Corrections to legal content are the most valuable contribution. Change the YAML or Markdown, cite a source in
 `content/sources.yaml` (with `last_verified`), update or add a test, and explain the change in the
 pull request. **Never include real vulnerability or incident details**; see [SECURITY.md](SECURITY.md).
+
+## No individual advice
+
+The maintainers do not advise on individual cases. Issues and discussions are for improving the
+project, not for questions like "do we have to report this?". For those, contact the
+[NCSC](https://www.ncsc.nl/wet-en-regelgeving/cyber-resilience-act-cra/melden) or your own legal
+adviser.
+
+## Non-commercial
+
+CRA Meldwijzer is a free, non-commercial project. It is not sold, carries no advertising and is not
+linked to any paid service.
 
 ## Related projects
 

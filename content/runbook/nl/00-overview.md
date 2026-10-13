@@ -2,7 +2,8 @@
 
 Wat je doet als een van je producten actief wordt misbruikt, of als een incident de beveiliging van
 je product raakt, onder artikel 14 van de Cyber Resilience Act (CRA). Geschreven voor bedrijven die
-in Nederland gevestigd zijn. Geen juridisch advies; zie de vrijwaring.
+in Nederland gevestigd zijn. Geen juridisch advies, en niet juridisch getoetst; zie de vrijwaring.
+Je blijft zelf verantwoordelijk voor je meldbesluiten.
 
 ## Is dit voor jou?
 

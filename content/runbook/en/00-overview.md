@@ -2,7 +2,8 @@
 
 What to do when one of your products is being exploited or your product security is hit by an
 incident, under Article 14 of the Cyber Resilience Act (CRA). Written for companies established in
-the Netherlands. Not legal advice; see the disclaimer.
+the Netherlands. Not legal advice, and not reviewed by a lawyer; see the disclaimer. You remain
+responsible for your own reporting decisions.
 
 ## Is this for you?
 

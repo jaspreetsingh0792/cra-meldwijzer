@@ -1,6 +1,6 @@
 # Final report: severe incident
 
-> Template from CRA Meldwijzer. Not legal advice. Check the current NCSC form before submitting.
+> Template from CRA Meldwijzer. Not legal advice; not legally reviewed. Check the current NCSC form before submitting.
 
 | | |
 |---|---|

@@ -1,6 +1,6 @@
 import { h, uid, download, copyButton } from '../dom.js';
 import { store, t, persist, toInputValue } from '../state.js';
-import { pageTitle, sourceChips } from '../components.js';
+import { pageTitle, sourceChips, legalNotice } from '../components.js';
 import { documentIds, documentSections, renderMarkdown as renderTemplate, templateFileName, ADVISORY } from '../core/templates.js';
 
 const docTitle = (id) => (id === ADVISORY ? t('t.doc.advisory_title') : t(`t.report.${id}.title`));
@@ -52,6 +52,7 @@ export function templatesView(docId) {
 
   return h('div', { class: 'templates' },
     pageTitle(t('ui.templates.title')),
+    legalNotice(),
     h('p', { class: 'lead' }, t('ui.templates.lead')),
     store.case ? null : h('p', { class: 'notice' }, t('ui.templates.no_case')),
     h('nav', { 'aria-label': t('ui.templates.title') },

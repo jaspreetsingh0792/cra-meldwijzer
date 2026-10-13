@@ -1,6 +1,6 @@
 # Vroegtijdige waarschuwing: ernstig incident
 
-> Sjabloon van CRA Meldwijzer. Geen juridisch advies. Controleer het actuele NCSC-formulier voordat je indient.
+> Sjabloon van CRA Meldwijzer. Geen juridisch advies; niet juridisch getoetst. Controleer het actuele NCSC-formulier voordat je indient.
 
 | | |
 |---|---|

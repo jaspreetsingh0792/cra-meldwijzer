@@ -1,6 +1,6 @@
 # Beveiligingsadvies voor gebruikers
 
-> Sjabloon van CRA Meldwijzer. Geen juridisch advies. Controleer het actuele NCSC-formulier voordat je indient.
+> Sjabloon van CRA Meldwijzer. Geen juridisch advies; niet juridisch getoetst. Controleer het actuele NCSC-formulier voordat je indient.
 
 > Dit is geen melding aan de autoriteiten. Het is de informatie die je gebruikers volgens artikel 14(8) moet geven.
 

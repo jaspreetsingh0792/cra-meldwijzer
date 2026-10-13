@@ -96,7 +96,7 @@ t:
     fill_in: "[fill in]"
     prepared_in_advance: Prepare this before an incident; it is the same for every report.
     not_a_report: This is not a report to the authorities. It is the information Article 14(8) requires you to give users.
-    disclaimer: Template from CRA Meldwijzer. Not legal advice. Check the current NCSC form before submitting.
+    disclaimer: Template from CRA Meldwijzer. Not legal advice; not legally reviewed. Check the current NCSC form before submitting.
     advisory_title: Security advisory for users
   need:
     legal: Required by Article 14
@@ -187,7 +187,11 @@ ui:
   skip: Skip to content
   lang_switch: Nederlands
   lang_switch_label: Switch language to Dutch
-  wip: "Work in progress (v0.1): not yet reviewed by a lawyer. Not legal advice. Do not rely on it alone in a real incident."
+  wip: "Not legally reviewed. Not legal advice. Use at your own risk and check the official NCSC guidance."
+  notice:
+    text: This is an aid, not legal advice, and it has not been reviewed by a lawyer. You remain responsible for your own reporting decisions.
+    ncsc: Official NCSC guidance
+    disclaimer: Full disclaimer
   nav:
     home: Home
     assess: Assess

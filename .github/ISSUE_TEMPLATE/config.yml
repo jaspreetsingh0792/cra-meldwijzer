@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: "Do we have to report? / Moeten wij melden?"
+    url: https://www.ncsc.nl/wet-en-regelgeving/cyber-resilience-act-cra/melden
+    about: "This project gives no individual advice. Ask the NCSC or your own legal adviser. Never post details of a real vulnerability or incident here. / Dit project geeft geen individueel advies. Vraag het NCSC of je eigen adviseur. Zet nooit details van een echte kwetsbaarheid of een echt incident hier."

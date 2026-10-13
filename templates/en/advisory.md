@@ -1,6 +1,6 @@
 # Security advisory for users
 
-> Template from CRA Meldwijzer. Not legal advice. Check the current NCSC form before submitting.
+> Template from CRA Meldwijzer. Not legal advice; not legally reviewed. Check the current NCSC form before submitting.
 
 > This is not a report to the authorities. It is the information Article 14(8) requires you to give users.
 

@@ -1,6 +1,6 @@
 import { h } from '../dom.js';
 import { store, t, has, newCase, applyAssessment } from '../state.js';
-import { pageTitle, sourceChips } from '../components.js';
+import { pageTitle, sourceChips, legalNotice } from '../components.js';
 import { walk, derive } from '../core/tree.js';
 
 const optionLabel = (node, opt) => (has(`opt.${node}.${opt}`) ? t(`opt.${node}.${opt}`) : t(`opt.${opt}`));
@@ -55,6 +55,7 @@ export function assessView(rerender) {
   };
   return h('div', { class: 'assess' },
     pageTitle(t('ui.assess.result_title')),
+    legalNotice(),
     h('p', { class: 'lead' }, t('ui.assess.result_lead')),
     h('ul', { class: 'outcomes' }, outcome.keys.map((key) => h('li', { class: `outcome tone-${tone(key)}` },
       h('p', {}, t(`o.${key}`)),

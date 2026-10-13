@@ -1,7 +1,8 @@
-# Open legal questions (release gate for v1)
+# Known open points
 
-These questions are **unresolved**. The code does not treat them as settled law. v1 is not
-released until a CRA lawyer or specialist has reviewed each one and the answer is recorded here.
+**This project has not been reviewed by a lawyer.** The points below are known to be uncertain.
+The code does not treat them as settled law and takes the cautious reading where it can. This list
+is not complete: other content may also be wrong. See [DISCLAIMER.md](DISCLAIMER.md).
 
 | # | Question | What the code does now | Status |
 |---|---|---|---|
@@ -11,5 +12,5 @@ released until a CRA lawyer or specialist has reviewed each one and the answer i
 | Q4 | **Start of applicability at 00:00 on 11 Sep 2026: which time zone?** | Uses 00:00 Europe/Amsterdam (= 2026-09-10T22:00Z). | Open |
 | Q5 | **ENISA FAQ: no retroactive reporting** for exploitation known before 11 Sep 2026. Verify the current FAQ wording. | Outcome `no_retroactive_duty`, labelled as guidance. | Needs verification against the FAQ text |
 
-When a question is resolved: record the answer, the reviewer, the date and the source here, then
-update the code, the tests and `content/sources.yaml` in the same pull request.
+When a point is resolved: record the answer, the source and the date here, then update the code,
+the tests and `content/sources.yaml` in the same pull request.

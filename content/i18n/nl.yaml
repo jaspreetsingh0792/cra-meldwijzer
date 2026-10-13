@@ -96,7 +96,7 @@ t:
     fill_in: "[invullen]"
     prepared_in_advance: Bereid dit voor vóór een incident; het is voor elke melding hetzelfde.
     not_a_report: Dit is geen melding aan de autoriteiten. Het is de informatie die je gebruikers volgens artikel 14(8) moet geven.
-    disclaimer: Sjabloon van CRA Meldwijzer. Geen juridisch advies. Controleer het actuele NCSC-formulier voordat je indient.
+    disclaimer: Sjabloon van CRA Meldwijzer. Geen juridisch advies; niet juridisch getoetst. Controleer het actuele NCSC-formulier voordat je indient.
     advisory_title: Beveiligingsadvies voor gebruikers
   need:
     legal: Verplicht volgens artikel 14
@@ -187,7 +187,11 @@ ui:
   skip: Naar de inhoud
   lang_switch: English
   lang_switch_label: Taal wijzigen naar Engels
-  wip: "In ontwikkeling (v0.1): nog niet juridisch getoetst. Geen juridisch advies. Vertrouw er bij een echt incident niet alleen op."
+  wip: "Niet juridisch getoetst. Geen juridisch advies. Gebruik op eigen risico en controleer de officiële informatie van het NCSC."
+  notice:
+    text: Dit is een hulpmiddel, geen juridisch advies, en het is niet juridisch getoetst. Je blijft zelf verantwoordelijk voor je meldbesluiten.
+    ncsc: Officiële informatie van het NCSC
+    disclaimer: Volledige vrijwaring
   nav:
     home: Start
     assess: Beoordelen
