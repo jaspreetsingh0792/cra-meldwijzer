@@ -1,0 +1,201 @@
+# Source registry. Every rule, question and outcome cites ids from this file.
+#
+# type:     regulation | delegated_act | commission_guidance | enisa | ncsc | national_law | interpretation
+# binding:  true only for legislation. Guidance and platform documentation are never binding.
+# status:   verified | todo   (todo = citation needed before v1; CI warns)
+# last_verified: date a maintainer last checked the claim against the source itself.
+
+schema: 1
+sources:
+
+  # --- Regulation (EU) 2024/2847 (Cyber Resilience Act) ---------------------
+  cra_art2:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 2 (scope and exclusions)
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
+  cra_art3:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 3 (definitions; 3(42) actively exploited vulnerability)
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
+  cra_art14_1_2:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 14(1)-(2) (actively exploited vulnerabilities; 24h / 72h / final report)
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
+  cra_art14_3_5:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 14(3)-(5) (severe incidents; severity test in 14(5))
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
+  cra_art14_7:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 14(7) (main establishment; routing to coordinating CSIRT)
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
+  cra_art14_8:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 14(8) (informing impacted users)
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
+  cra_art15:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 15 (voluntary reporting)
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
+  cra_art21_22:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 21-22 (importers/distributors treated as manufacturer; substantial modification)
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
+  cra_art24_3:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 24(3) (open-source software stewards)
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
+  cra_art64:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 64(2), 64(10) (fines; micro/small enterprise and steward derogations)
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
+    notes: Cross-reference in 64(10) is awkward; see OPEN-QUESTIONS.md Q1.
+  cra_art69_3:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 69(3) (Art. 14 applies to in-scope products placed on the market before 11 Dec 2027)
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
+  cra_art71_2:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 71(2) (Art. 14 applies from 11 Sep 2026)
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
+
+  # --- Other EU legislation ---------------------------------------------------
+  delreg_2026_881:
+    type: delegated_act
+    binding: true
+    title: Commission Delegated Regulation (EU) 2026/881
+    pinpoint: Conditions for CSIRTs to delay dissemination of notifications (vulnerabilities and severe incidents)
+    url: https://eur-lex.europa.eu/eli/reg_del/2026/881
+    status: verified
+    last_verified: 2026-10-13
+  reg_1182_71:
+    type: regulation
+    binding: true
+    title: Regulation (EEC, Euratom) No 1182/71 (periods, dates and time limits)
+    pinpoint: Art. 3
+    url: https://eur-lex.europa.eu/eli/reg/1971/1182/oj
+    status: verified
+    last_verified: 2026-10-13
+    notes: How it applies to CRA Art. 14 deadlines is unconfirmed; see OPEN-QUESTIONS.md Q2.
+  gdpr_art33_34:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2016/679 (GDPR)
+    pinpoint: Art. 33-34 (personal data breach notification)
+    url: https://eur-lex.europa.eu/eli/reg/2016/679/oj
+    status: verified
+    last_verified: 2026-10-13
+
+  # --- Guidance (non-binding) -------------------------------------------------
+  ec_cra_reporting:
+    type: commission_guidance
+    binding: false
+    title: European Commission - CRA reporting obligations
+    url: https://digital-strategy.ec.europa.eu/en/policies/cra-reporting
+    status: verified
+    last_verified: 2026-10-13
+  enisa_srp:
+    type: enisa
+    binding: false
+    title: ENISA - Single Reporting Platform (SRP)
+    url: https://www.enisa.europa.eu/topics/product-security/vulnerability-services/eu-incident-response-and-cyber-crisis-management/single-reporting-platform-srp
+    status: verified
+    last_verified: 2026-10-13
+    notes: SRP upgraded to v1.1 on 12 Oct 2026. Re-check field and counter behaviour on every ENISA release.
+  enisa_srp_faq:
+    type: enisa
+    binding: false
+    title: ENISA - SRP Frequently Asked Questions
+    url: https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/frequently-asked-questions
+    status: todo
+    last_verified: null
+    notes: Claims used here (no retroactive reporting before 11 Sep 2026; 72h counter behaviour; outage handling) come from secondary summaries. Verify against the FAQ text.
+
+  # --- Netherlands ------------------------------------------------------------
+  ncsc_cra:
+    type: ncsc
+    binding: false
+    title: NCSC - Cyber Resilience Act (CRA)
+    url: https://www.ncsc.nl/wet-en-regelgeving/cyber-resilience-act-cra
+    status: verified
+    last_verified: 2026-10-13
+  ncsc_melden:
+    type: ncsc
+    binding: false
+    title: NCSC - CRA melden
+    url: https://www.ncsc.nl/wet-en-regelgeving/cyber-resilience-act-cra/melden
+    status: verified
+    last_verified: 2026-10-13
+    notes: MijnNCSC (recommended) or CRA-meldformulier; NCSC forwards to ENISA and other CSIRTs; no CRA registration duty; micro/small enterprises not fined for missing 24h.
+  ncsc_form:
+    type: ncsc
+    binding: false
+    title: NCSC - CRA-meldformulier
+    url: https://www.ncsc.nl/cra-meldformulier
+    status: verified
+    last_verified: 2026-10-13
+  cbw:
+    type: national_law
+    binding: true
+    title: Cyberbeveiligingswet (Dutch NIS2 implementation), in force 15 Aug 2026
+    url: null
+    status: todo
+    last_verified: null
+    notes: Add official wetten.overheid.nl link and NCSC Cbw reporting page.
+
+  # --- Our own reading ----------------------------------------------------------
+  interpretation:
+    type: interpretation
+    binding: false
+    title: CRA Meldwijzer interpretation (not legal advice)
+    url: null
+    status: verified
+    last_verified: 2026-10-13

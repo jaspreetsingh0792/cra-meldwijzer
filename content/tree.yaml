@@ -1,0 +1,140 @@
+# Decision tree. Language-neutral: all wording lives in content/i18n/*.yaml.
+#
+# A node asks one question. Each option may `set` facts and names the `next` node
+# (`end` finishes the walk). The tree only collects facts; outcomes are derived from
+# those facts by src/core/tree.js -> derive(), so both Article 14 triggers are always
+# evaluated independently.
+#
+# Wording keys: text -> q.<node>, help -> h.<node>, option label -> opt.<node>.<option>
+# (falls back to opt.<option>).
+
+schema: 1
+version: 0.1.0
+last_reviewed: 2026-10-13
+start: product
+
+nodes:
+  product:
+    sources: [cra_art2, cra_art3]
+    options:
+      yes:    { next: market }
+      no:     { set: { scope: out, scope_reason: not_pde }, next: end }
+      unsure: { set: { scope: unsure }, next: market }
+
+  market:
+    sources: [cra_art69_3, cra_art71_2]
+    options:
+      yes:    { next: exclusion }
+      no:     { set: { scope: out, scope_reason: not_on_market }, next: end }
+      unsure: { set: { scope: unsure }, next: exclusion }
+
+  exclusion:
+    sources: [cra_art2]
+    options:
+      yes:    { set: { scope: out, scope_reason: excluded }, next: end }
+      no:     { next: role }
+      unsure: { set: { scope: unsure }, next: role }
+
+  role:
+    sources: [cra_art21_22, cra_art24_3, ncsc_melden]
+    options:
+      manufacturer:          { set: { role: manufacturer }, next: establishment }
+      own_brand_or_modified: { set: { role: manufacturer }, next: establishment }
+      importer_distributor:  { set: { role: importer_distributor }, next: end }
+      steward:               { set: { role: steward }, next: end }
+      unsure:                { set: { role: unsure }, next: establishment }
+
+  establishment:
+    sources: [cra_art14_7, ncsc_melden]
+    options:
+      nl:       { set: { establishment: nl }, next: vuln_contained }
+      other_eu: { set: { establishment: other_eu }, next: vuln_contained }
+      non_eu:   { set: { establishment: non_eu }, next: vuln_contained }
+      unsure:   { set: { establishment: unsure }, next: vuln_contained }
+
+  # --- Trigger A: actively exploited vulnerability ----------------------------
+  vuln_contained:
+    sources: [cra_art3, cra_art14_1_2]
+    options:
+      yes:    { set: { vuln_contained: 'yes' }, next: vuln_exploited }
+      no:     { set: { vuln_contained: 'no' }, next: incident_occurred }
+      unsure: { set: { vuln_contained: unsure }, next: vuln_exploited }
+
+  vuln_exploited:
+    sources: [cra_art3, ncsc_melden]
+    options:
+      yes:    { set: { vuln_exploited: 'yes' }, next: incident_occurred }
+      no:     { set: { vuln_exploited: 'no' }, next: incident_occurred }
+      unsure: { set: { vuln_exploited: unsure }, next: incident_occurred }
+
+  # --- Trigger B: severe incident (always asked, independent of trigger A) ----
+  incident_occurred:
+    sources: [cra_art14_3_5]
+    options:
+      yes:    { set: { incident_occurred: 'yes' }, next: incident_a }
+      no:     { set: { incident_occurred: 'no' }, next: awareness }
+      unsure: { set: { incident_occurred: unsure }, next: incident_a }
+
+  incident_a:
+    sources: [cra_art14_3_5]
+    options:
+      yes:    { set: { severe_a: 'yes' }, next: incident_b }
+      no:     { set: { severe_a: 'no' }, next: incident_b }
+      unsure: { set: { severe_a: unsure }, next: incident_b }
+
+  incident_b:
+    sources: [cra_art14_3_5]
+    options:
+      yes:    { set: { severe_b: 'yes' }, next: awareness }
+      no:     { set: { severe_b: 'no' }, next: awareness }
+      unsure: { set: { severe_b: unsure }, next: awareness }
+
+  # --- Timing and parallel regimes --------------------------------------------
+  awareness:
+    sources: [cra_art71_2, enisa_srp_faq, ec_cra_reporting]
+    options:
+      after:  { set: { aware_timing: after }, next: cbw }
+      before: { set: { aware_timing: before }, next: cbw }
+      unsure: { set: { aware_timing: unsure }, next: cbw }
+
+  cbw:
+    sources: [cbw]
+    options:
+      yes:    { set: { cbw: 'yes' }, next: gdpr }
+      no:     { set: { cbw: 'no' }, next: gdpr }
+      unsure: { set: { cbw: unsure }, next: gdpr }
+
+  gdpr:
+    sources: [gdpr_art33_34]
+    options:
+      yes:    { set: { personal_data: 'yes' }, next: end }
+      no:     { set: { personal_data: 'no' }, next: end }
+      unsure: { set: { personal_data: unsure }, next: end }
+
+# Every outcome key derive() can emit, with its sources. Wording: o.<key>.
+outcomes:
+  scope.out.not_pde:                       { sources: [cra_art2, cra_art3] }
+  scope.out.not_on_market:                 { sources: [cra_art2, cra_art69_3] }
+  scope.out.excluded:                      { sources: [cra_art2] }
+  role.importer_distributor:               { sources: [cra_art21_22, ncsc_melden] }
+  role.steward:                            { sources: [cra_art24_3, cra_art71_2, ec_cra_reporting] }
+  track.vulnerability.reportable:          { sources: [cra_art14_1_2] }
+  track.vulnerability.potentially_reportable: { sources: [cra_art14_1_2, interpretation] }
+  track.vulnerability.not_reportable:      { sources: [cra_art3, cra_art15, ncsc_melden] }
+  track.vulnerability.no_retroactive_duty: { sources: [enisa_srp_faq, cra_art71_2] }
+  track.incident.reportable:               { sources: [cra_art14_3_5] }
+  track.incident.potentially_reportable:   { sources: [cra_art14_3_5, interpretation] }
+  track.incident.not_reportable:           { sources: [cra_art14_3_5, cra_art15] }
+  track.incident.no_retroactive_duty:      { sources: [enisa_srp_faq, cra_art71_2] }
+  caveat.scope_or_role_unsure:             { sources: [interpretation] }
+  caveat.pre_application_check:            { sources: [enisa_srp_faq, interpretation] }
+  caveat.awareness_unsure:                 { sources: [interpretation] }
+  routing.nl:                              { sources: [ncsc_melden, ncsc_form, cra_art14_7] }
+  routing.other_eu:                        { sources: [cra_art14_7, ec_cra_reporting] }
+  routing.non_eu:                          { sources: [cra_art14_7] }
+  routing.unsure:                          { sources: [cra_art14_7] }
+  parallel.cbw:                            { sources: [cbw] }
+  parallel.cbw_check:                      { sources: [cbw] }
+  parallel.gdpr:                           { sources: [gdpr_art33_34] }
+  action.record_awareness:                 { sources: [ec_cra_reporting, interpretation] }
+  action.inform_users:                     { sources: [cra_art14_8] }

@@ -1,0 +1,95 @@
+# CRA Meldwijzer
+
+**CRA Article 14 reporting guide for manufacturers in the Netherlands. Bilingual (NL/EN), offline, open source.**
+
+> ⚠️ **Work in progress (v0.1).** Not ready for use in a real incident. The legal logic has not
+> been reviewed by a lawyer yet; see [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md). Not legal advice; see
+> [DISCLAIMER.md](DISCLAIMER.md).
+
+Since **11 September 2026**, manufacturers of products with digital elements must report actively
+exploited vulnerabilities and severe incidents under Article 14 of the Cyber Resilience Act
+(Regulation (EU) 2024/2847): an early warning within 24 hours, a notification within 72 hours and a
+final report. CRA Meldwijzer helps a Dutch manufacturer answer three questions fast:
+
+1. **Do we have to report?** A decision tree that checks both triggers (actively exploited
+   vulnerability, severe incident) independently, and never turns "unsure" into "no".
+2. **By when?** A deadline engine with separate clocks per track, anchored to awareness, and
+   conservative when the law is ambiguous.
+3. **Where and what?** The Dutch route (NCSC via MijnNCSC or the CRA reporting form), plus
+   prompts for the separate Cyberbeveiligingswet and GDPR assessments.
+
+## Nederlands
+
+Sinds **11 september 2026** moeten fabrikanten van producten met digitale elementen actief
+uitgebuite kwetsbaarheden en ernstige incidenten melden onder artikel 14 van de Cyber Resilience
+Act. CRA Meldwijzer helpt je snel bepalen óf je moet melden, wanneer, en waar (bij het NCSC via
+MijnNCSC of het CRA-meldformulier). Geen juridisch advies; zie [DISCLAIMER.md](DISCLAIMER.md).
+
+## Status
+
+| Part | State |
+|---|---|
+| Source registry (`content/sources.yaml`) | ✅ v0.1, 2 sources still `todo` |
+| Decision tree (`content/tree.yaml`, `src/core/tree.js`) | ✅ v0.1, exhaustively tested |
+| Deadline engine (`src/core/clock.js`) | ✅ v0.1, tested incl. DST and month ends |
+| YAML -> JSON build and content checks | ✅ |
+| Runbook text (roles, hour-by-hour steps, evidence, user communication) | ⏳ |
+| Report templates sized to the reporting forms | ⏳ |
+| Static web app, print view, offline package | ⏳ |
+| Legal review (release gate) | ⏳ |
+
+## How it is built
+
+```
+content/          source of truth: editable without touching code
+  sources.yaml    every citation: type, binding or not, URL, last verified
+  tree.yaml       decision tree (language-neutral) + outcome citations
+  i18n/nl.yaml    Dutch wording
+  i18n/en.yaml    English wording
+src/core/         pure functions, no DOM, no network
+  tree.js         walk the tree, derive outcomes
+  clock.js        Article 14 deadlines
+scripts/          build (YAML -> JSON) and content checks
+tests/            node:test suites
+```
+
+Four kinds of authority are kept apart, and every outcome shows which one it rests on: **the
+law** (binding), **Commission guidance**, **NCSC/ENISA practice** (non-binding) and **our own
+interpretation**.
+
+### Deadlines
+
+| Track | Early warning | Notification | Final report |
+|---|---|---|---|
+| Actively exploited vulnerability | 24h after awareness | 72h after awareness | 14 days after a corrective or mitigating measure is available |
+| Severe incident | 24h after awareness | 72h after awareness | 1 month after the notification was submitted |
+
+A late early warning never moves the 72h deadline. Where the law's time computation is unclear
+(Regulation 1182/71), the engine shows the **earlier** reading; see OPEN-QUESTIONS.md Q2.
+
+## Develop
+
+Requires Node.js 22 or later.
+
+```bash
+npm install
+npm test          # tree + deadline tests (including every possible answer path)
+npm run check     # content integrity: sources, reachability, NL/EN parity
+npm run build     # compile content to dist/data/*.json
+```
+
+## Contributing
+
+Corrections to legal content are the most valuable contribution. Change the YAML, cite a source in
+`content/sources.yaml` (with `last_verified`), update or add a test, and explain the change in the
+pull request. **Never include real vulnerability or incident details**; see [SECURITY.md](SECURITY.md).
+
+## Related projects
+
+- [Hour Zero](https://github.com/Sisuthros/hour-zero): static CRA Art. 14 deadline clock (MIT)
+- [CRA Article 14 Reporting Kit](https://github.com/stavenor-hq/cra-article-14-reporting-kit): SRP field list (CC BY 4.0)
+- [OpenChain CRA Compliance](https://github.com/OpenChain-Project/CRA-Compliance)
+
+## Licence
+
+Code: [MIT](LICENSE). Content in `content/`: [CC BY 4.0](LICENSE-content).

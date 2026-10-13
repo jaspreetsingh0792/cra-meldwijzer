@@ -1,0 +1,22 @@
+{
+  "name": "cra-meldwijzer",
+  "version": "0.1.0",
+  "description": "CRA Meldwijzer: bilingual, offline CRA Article 14 reporting guide for manufacturers in the Netherlands",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node --test tests/",
+    "check": "node scripts/check.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "yaml": "^2.6.1"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  }
+}

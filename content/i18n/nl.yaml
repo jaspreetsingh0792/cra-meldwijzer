@@ -1,0 +1,89 @@
+schema: 1
+lang: nl
+
+q:
+  product: Gaat het om een product met digitale elementen, dus software of hardware (inclusief de gegevensverwerking op afstand) met een directe of indirecte dataverbinding met een apparaat of netwerk?
+  market: Is het product op de EU-markt aangeboden (nu of in het verleden)? Ook producten die vóór 11 december 2027 in de handel zijn gebracht tellen mee.
+  exclusion: Geldt er een specifieke CRA-uitzondering voor dit product?
+  role: Wat is jouw rol voor dit product?
+  establishment: Waar ligt de hoofdvestiging van de fabrikant in de zin van de CRA?
+  vuln_contained: Zit er een kwetsbaarheid in dit product, ook in een ingebouwde component van derden of een opensourcecomponent?
+  vuln_exploited: Is er betrouwbaar bewijs dat een kwaadwillende actor deze kwetsbaarheid heeft uitgebuit in een systeem, zonder toestemming van de eigenaar?
+  incident_occurred: Is er een incident geweest dat de beveiliging van dit product raakt, bijvoorbeeld in je ontwikkel-, build-, update- of signeeromgeving?
+  incident_a: Heeft het incident een negatief effect, of kan het een negatief effect hebben, op het vermogen van het product om de beschikbaarheid, authenticiteit, integriteit of vertrouwelijkheid van gevoelige of belangrijke gegevens of functies te beschermen?
+  incident_b: Heeft het incident geleid, of kan het leiden, tot het binnenbrengen of uitvoeren van kwaadaardige code in het product of in de netwerk- en informatiesystemen van gebruikers?
+  awareness: Wanneer werd je op de hoogte van het misbruik of het incident?
+  cbw: Is je organisatie een essentiële of belangrijke entiteit onder de Cyberbeveiligingswet (de Nederlandse NIS2-wet, van kracht sinds 15 augustus 2026)?
+  gdpr: Kunnen persoonsgegevens geraakt zijn (een mogelijk datalek)?
+
+h:
+  product: Losse SaaS valt in principe buiten de CRA. Een cloudbackend kan er wel onder vallen als het gegevensverwerking op afstand is zonder welke het product een van zijn functies niet kan uitvoeren. Dat iets in de cloud draait of als abonnement wordt verkocht, beslist dit niet.
+  market: Artikel 69(3) laat de meldplicht van artikel 14 gelden voor alle producten binnen de reikwijdte die vóór 11 december 2027 in de handel zijn gebracht, ook als ze niet zijn gewijzigd. De leeftijd van het product doet er niet toe.
+  exclusion: Artikel 2 sluit onder meer producten uit die onder de EU-regels voor medische hulpmiddelen, in-vitrodiagnostiek, motorvoertuigen, burgerluchtvaart en scheepsuitrusting vallen, en producten die uitsluitend voor nationale veiligheid of defensie zijn ontwikkeld. Deze uitzonderingen hebben precieze grenzen; een andere sectorwet sluit een product niet automatisch uit. Twijfel je, kies dan "Weet ik niet zeker".
+  role: Bepaal dit per product en per juridische entiteit. Contractlabels zoals "OEM", "reseller" of "leverancier" zijn niet de juridische toets.
+  establishment: "Artikel 14(7): de lidstaat waar beslissingen over de cyberbeveiliging van je producten overwegend worden genomen; als dat niet vast te stellen is, waar de fabrikant de meeste werknemers in de EU heeft. Pas dit toe op de fabrikant van dit product, niet automatisch op het statutaire hoofdkantoor van de groep."
+  vuln_contained: Een advisory of KEV-vermelding voor een component is een reden om te controleren, geen conclusie. Stel eerst vast dat de kwetsbare code echt in de betrokken productversies zit.
+  vuln_exploited: "Artikel 3(42). Op zichzelf niet genoeg: een hoge CVSS-score, een openbare proof of concept, een melding van een onderzoeker of bugbounty, of een bevinding uit je eigen tests. Vaak wel relevant: misbruik in je eigen telemetrie of logs, een getroffen klant, een melding van een CSIRT of een KEV-vermelding, telkens beoordeeld op relevantie voor jouw product."
+  incident_occurred: Een incident is een gebeurtenis die de beschikbaarheid, authenticiteit, integriteit of vertrouwelijkheid van gegevens of diensten aantast. Voorbeelden hier zijn een gestolen signeersleutel, een gecompromitteerde updateserver of een gecompromitteerde buildpipeline. Beantwoord dit ook als de vragen over kwetsbaarheden al tot "ja" leidden.
+  incident_a: Artikel 14(5)(a). Elk van beide criteria is op zichzelf voldoende.
+  incident_b: Artikel 14(5)(b). Beantwoord dit ook als je de vorige vraag met "nee" beantwoordde.
+  awareness: Je bent op de hoogte zodra een eerste beoordeling je een redelijke mate van zekerheid geeft (richtsnoeren van de Commissie, niet bindend), meestal na de eerste detectie. Leg detectietijd, het moment van op de hoogte raken en de reden apart vast. Volgens de FAQ van ENISA geldt geen meldplicht met terugwerkende kracht voor misbruik waarvan je al vóór 11 september 2026 op de hoogte was; raak je daarna op de hoogte, dan telt dat ook als de kwetsbaarheid ouder is.
+  cbw: De Cyberbeveiligingswet heeft een eigen toets (significant incident) en eigen meldingen. Die beoordeel je los van de CRA.
+  gdpr: Onder de AVG meld je een datalek bij de Autoriteit Persoonsgegevens, tenzij het waarschijnlijk geen risico voor personen oplevert. Dat is een aparte beoordeling.
+
+opt:
+  "yes": "Ja"
+  "no": "Nee"
+  unsure: Weet ik niet zeker
+  role:
+    manufacturer: We ontwikkelen het product (of laten het maken) en brengen het op de markt onder onze eigen naam of ons eigen merk
+    own_brand_or_modified: We importeren of distribueren het, maar verkopen het onder onze eigen naam of ons eigen merk, of hebben het ingrijpend gewijzigd
+    importer_distributor: We importeren of distribueren het alleen, onder de naam van de fabrikant
+    steward: We zijn een opensourcesoftwarebeheerder (steward), niet de fabrikant
+    unsure: Weet ik niet zeker
+  establishment:
+    nl: Nederland
+    other_eu: Een andere EU-lidstaat
+    non_eu: Geen vestiging in de EU
+    unsure: Weet ik niet zeker
+  awareness:
+    after: Op of na 11 september 2026
+    before: Vóór 11 september 2026
+    unsure: Weet ik niet zeker
+
+o:
+  scope:
+    out:
+      not_pde: Op basis van je antwoorden lijkt dit geen product met digitale elementen, dus artikel 14 van de CRA lijkt niet van toepassing. Leg je redenering vast.
+      not_on_market: Op basis van je antwoorden is het product niet op de EU-markt aangeboden, dus artikel 14 van de CRA lijkt niet van toepassing. Leg je redenering vast.
+      excluded: Op basis van je antwoorden lijkt een specifieke CRA-uitzondering te gelden. Controleer de precieze grens van die uitzondering en of de eigen meldregels van die sector in plaats daarvan gelden.
+  role:
+    importer_distributor: Een importeur of distributeur die het product niet onder eigen naam verkoopt en het niet ingrijpend heeft gewijzigd, heeft geen eigen meldplicht onder artikel 14. Informeer de fabrikant direct en ondersteun diens melding.
+    steward: De meldplicht voor opensourcesoftwarebeheerders (artikel 24(3)) geldt vanaf 11 december 2027 en is beperkter dan die van een fabrikant. Breng je dit product ook als fabrikant op de markt, beantwoord de vragen dan als fabrikant.
+  track:
+    vulnerability:
+      reportable: "Op basis van je antwoorden lijkt dit een meldplichtige actief uitgebuite kwetsbaarheid. Vroegtijdige waarschuwing binnen 24 uur na het op de hoogte raken; melding binnen 72 uur na het op de hoogte raken; eindrapport uiterlijk 14 dagen nadat een corrigerende of mitigerende maatregel beschikbaar is."
+      potentially_reportable: "Actief uitgebuite kwetsbaarheid: mogelijk meldplichtig, dringende beoordeling nodig. Houd het vroegst denkbare moment van op de hoogte raken aan, schaal op naar je incident- en juridische verantwoordelijken en overweeg het CSIRT om advies te vragen. Wacht niet op een volledige forensische conclusie."
+      not_reportable: Op basis van je antwoorden is er geen actief uitgebuite kwetsbaarheid die je onder artikel 14 moet melden. Leg je redenering vast, behandel de kwetsbaarheid via je normale proces en beoordeel opnieuw als er bewijs van misbruik opduikt. Vrijwillig melden (artikel 15) blijft mogelijk.
+      no_retroactive_duty: Je werd vóór 11 september 2026 op de hoogte van het misbruik. Volgens de FAQ van ENISA geldt dan geen meldplicht met terugwerkende kracht. Dit is een richtsnoer, niet de tekst van de verordening; bewaar het bewijs voor je datum van op de hoogte raken.
+    incident:
+      reportable: "Op basis van je antwoorden lijkt dit een meldplichtig ernstig incident. Vroegtijdige waarschuwing binnen 24 uur na het op de hoogte raken, inclusief of je onrechtmatige of kwaadwillige handelingen vermoedt; melding binnen 72 uur na het op de hoogte raken; eindrapport binnen één maand na het indienen van de melding."
+      potentially_reportable: "Ernstig incident: mogelijk meldplichtig, dringende beoordeling nodig. Houd het vroegst denkbare moment van op de hoogte raken aan, schaal op naar je incident- en juridische verantwoordelijken en overweeg het CSIRT om advies te vragen. Wacht niet op een volledige forensische conclusie."
+      not_reportable: Op basis van je antwoorden is er geen ernstig incident dat je onder artikel 14 moet melden. Leg je redenering vast en beoordeel opnieuw als er nieuwe feiten zijn. Vrijwillig melden (artikel 15) blijft mogelijk.
+      no_retroactive_duty: Je werd vóór 11 september 2026 op de hoogte van het incident. Volgens de FAQ van ENISA geldt dan geen meldplicht met terugwerkende kracht. Dit is een richtsnoer, niet de tekst van de verordening; bewaar het bewijs voor je datum van op de hoogte raken.
+  caveat:
+    scope_or_role_unsure: De reikwijdte of je rol is onzeker, dus de uitkomst hierboven is hooguit "mogelijk meldplichtig". Zoek dit snel uit; de termijnen lopen gewoon door.
+    pre_application_check: Je werd vóór 11 september 2026 op de hoogte, maar de beoordeling is niet afgerond. Controleer of nieuwe feiten of nieuw misbruik na die datum een nieuw moment van op de hoogte raken opleveren.
+    awareness_unsure: Je weet niet zeker wanneer je op de hoogte raakte. Gebruik het vroegst denkbare moment voor je termijnen.
+  routing:
+    nl: Meld bij het NCSC via MijnNCSC (aanbevolen; inloggen met eHerkenning of SSOnRijk) of via het CRA-meldformulier (geen account nodig; bewaar het referentienummer voor vervolgmeldingen). Het NCSC stuurt je melding door naar ENISA en naar de CSIRT's van andere lidstaten. Meld dezelfde zaak niet nog een keer bij ENISA.
+    other_eu: Meld bij het coördinerende CSIRT van de lidstaat van je hoofdvestiging, via de officiële meldroute van dat CSIRT. ENISA publiceert de lijst van coördinerende CSIRT's.
+    non_eu: "Zonder hoofdvestiging in de EU bepaalt artikel 14(7) de lidstaat in deze volgorde: waar je gemachtigde voor de meeste producten gevestigd is; anders de importeur die de meeste van je producten in de handel brengt; anders de distributeur die er de meeste aanbiedt; anders de lidstaat met de meeste gebruikers."
+    unsure: "Bepaal eerst je hoofdvestiging (artikel 14(7)): waar beslissingen over de cyberbeveiliging van de producten overwegend worden genomen; anders waar de fabrikant de meeste werknemers in de EU heeft. Laat dit je vroegtijdige waarschuwing niet vertragen."
+  parallel:
+    cbw: Beoordeel apart of dit een significant incident is onder de Cyberbeveiligingswet. Die wet heeft een eigen toets, eigen termijnen en een eigen melding; een CRA-melding vervangt die niet.
+    cbw_check: Controleer of je organisatie onder de Cyberbeveiligingswet valt. Zo ja, beoordeel deze gebeurtenis apart.
+    gdpr: Beoordeel apart of dit een datalek is onder de AVG. De verwerkingsverantwoordelijke meldt dit binnen 72 uur na het op de hoogte raken bij de Autoriteit Persoonsgegevens, tenzij het waarschijnlijk geen risico voor personen oplevert.
+  action:
+    record_awareness: "Leg nu drie dingen vast: wanneer het probleem voor het eerst werd gedetecteerd, wanneer je op de hoogte raakte (jouw beoordeling) en waarom op dat moment."
+    inform_users: Informeer getroffen gebruikers (en waar passend alle gebruikers) over het probleem en de mitigerende of corrigerende maatregelen die zij kunnen nemen, waar passend in een gestructureerd, machineleesbaar formaat (artikel 14(8)). Dit staat los van je melding aan de autoriteiten.

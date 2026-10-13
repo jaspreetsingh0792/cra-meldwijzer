@@ -1,0 +1,89 @@
+schema: 1
+lang: en
+
+q:
+  product: Is the affected item a product with digital elements, i.e. software or hardware (including its remote data processing) with a direct or indirect data connection to a device or network?
+  market: Is the product (or was it) made available on the EU market? This includes products placed on the market before 11 December 2027.
+  exclusion: Does a specific CRA exclusion apply to this product?
+  role: What is your role for this product?
+  establishment: Where is the manufacturer's main establishment for CRA purposes?
+  vuln_contained: Is there a vulnerability contained in this product, including in a third-party or open-source component integrated into it?
+  vuln_exploited: Is there reliable evidence that a malicious actor has exploited this vulnerability in a system without the owner's permission?
+  incident_occurred: Has there been an incident affecting the security of this product, for example in your development, build, update or signing environment?
+  incident_a: Does the incident negatively affect, or is it capable of negatively affecting, the product's ability to protect the availability, authenticity, integrity or confidentiality of sensitive or important data or functions?
+  incident_b: Has the incident led, or is it capable of leading, to the introduction or execution of malicious code in the product or in users' network and information systems?
+  awareness: When did you become aware of the exploitation or the incident?
+  cbw: Is your organisation an essential or important entity under the Cyberbeveiligingswet (the Dutch NIS2 law, in force since 15 August 2026)?
+  gdpr: Could personal data be affected (a possible personal data breach)?
+
+h:
+  product: Standalone SaaS is generally out of scope. A cloud backend can be in scope when it is remote data processing without which the product cannot perform one of its functions. Being cloud-hosted or sold as a subscription does not decide this on its own.
+  market: Article 69(3) applies the Article 14 reporting duty to all in-scope products placed on the market before 11 December 2027, even unmodified ones. The age of the product does not matter.
+  exclusion: Article 2 excludes, among others, products covered by the EU rules on medical devices, in vitro diagnostics, motor vehicles, civil aviation and marine equipment, and products developed exclusively for national security or defence. These exclusions have precise boundaries; another sector law does not automatically exclude a product. If in doubt, answer "unsure".
+  role: Decide this per product and per legal entity. Contract labels such as "OEM", "reseller" or "supplier" are not the legal test.
+  establishment: "Article 14(7): the Member State where decisions on the cybersecurity of your products are predominantly taken; if that cannot be determined, where the manufacturer has the most employees in the EU. Apply this to the manufacturer entity for this product, not automatically to the group's registered head office."
+  vuln_contained: An advisory or KEV listing for a component is a reason to check, not a conclusion. First confirm the vulnerable code is actually present in the affected product versions.
+  vuln_exploited: "Article 3(42). Not enough on its own: a high CVSS score, a public proof of concept, a researcher or bug bounty report, or a finding from your own testing. Often relevant: exploitation seen in your telemetry or logs, a compromised customer, a CSIRT notice, or a KEV listing, each assessed for relevance to your product."
+  incident_occurred: An incident is an event that compromises the availability, authenticity, integrity or confidentiality of data or services. Examples relevant here are a stolen signing key, a compromised update server or a compromised build pipeline. Answer this even if the vulnerability questions already led to a "yes".
+  incident_a: Article 14(5)(a). Either limb is enough on its own.
+  incident_b: Article 14(5)(b). Answer this even if you answered "no" to the previous question.
+  awareness: Awareness is when an initial assessment gives you a reasonable degree of certainty (Commission guidance, non-binding), usually after first detection. Record detection time, awareness time and the reason separately. ENISA's FAQ says there is no retroactive reporting for exploitation you were already aware of before 11 September 2026; becoming aware after that date counts even if the vulnerability is older.
+  cbw: The Cyberbeveiligingswet has its own test (significant incident) and its own reports. It is assessed separately from the CRA.
+  gdpr: Under the GDPR, a breach is notified to the Autoriteit Persoonsgegevens unless it is unlikely to result in a risk to individuals. That is a separate assessment.
+
+opt:
+  "yes": "Yes"
+  "no": "No"
+  unsure: Unsure
+  role:
+    manufacturer: We develop the product (or have it made) and market it under our own name or trademark
+    own_brand_or_modified: We import or distribute it, but sell it under our own name or trademark, or have substantially modified it
+    importer_distributor: We only import or distribute it under the manufacturer's name
+    steward: We are an open-source software steward, not the manufacturer
+    unsure: Unsure
+  establishment:
+    nl: The Netherlands
+    other_eu: Another EU Member State
+    non_eu: No establishment in the EU
+    unsure: Unsure
+  awareness:
+    after: On or after 11 September 2026
+    before: Before 11 September 2026
+    unsure: Unsure
+
+o:
+  scope:
+    out:
+      not_pde: Based on your answers, this does not appear to be a product with digital elements, so CRA Article 14 does not seem to apply. Record your reasoning.
+      not_on_market: Based on your answers, the product has not been made available on the EU market, so CRA Article 14 does not seem to apply. Record your reasoning.
+      excluded: Based on your answers, a specific CRA exclusion appears to apply. Check the exact boundary of that exclusion and whether that sector's own reporting rules apply instead.
+  role:
+    importer_distributor: An importer or distributor that does not sell the product under its own name and has not substantially modified it has no separate Article 14 reporting duty. Inform the manufacturer immediately and support its report.
+    steward: Reporting obligations for open-source software stewards (Article 24(3)) apply from 11 December 2027 and are narrower than a manufacturer's. If you also place this product on the market as a manufacturer, answer as a manufacturer instead.
+  track:
+    vulnerability:
+      reportable: "Based on your answers, this appears to be a reportable actively exploited vulnerability. Early warning within 24 hours of awareness; notification within 72 hours of awareness; final report no later than 14 days after a corrective or mitigating measure is available."
+      potentially_reportable: "Actively exploited vulnerability: potentially reportable, urgent assessment required. Keep the earliest plausible awareness time, escalate to your incident and legal leads, and consider asking the CSIRT for advice. Do not wait for a full forensic conclusion."
+      not_reportable: Based on your answers, there is no actively exploited vulnerability to report under Article 14. Record your reasoning, keep handling the vulnerability through your normal process, and reassess if evidence of exploitation emerges. Voluntary reporting (Article 15) remains possible.
+      no_retroactive_duty: You became aware of the exploitation before 11 September 2026. According to ENISA's FAQ there is no retroactive reporting duty in that case. This is guidance, not the regulation text; keep the evidence for your awareness date.
+    incident:
+      reportable: "Based on your answers, this appears to be a reportable severe incident. Early warning within 24 hours of awareness, including whether you suspect unlawful or malicious acts; notification within 72 hours of awareness; final report within one month after submitting the notification."
+      potentially_reportable: "Severe incident: potentially reportable, urgent assessment required. Keep the earliest plausible awareness time, escalate to your incident and legal leads, and consider asking the CSIRT for advice. Do not wait for a full forensic conclusion."
+      not_reportable: Based on your answers, there is no severe incident to report under Article 14. Record your reasoning and reassess if new facts emerge. Voluntary reporting (Article 15) remains possible.
+      no_retroactive_duty: You became aware of the incident before 11 September 2026. According to ENISA's FAQ there is no retroactive reporting duty in that case. This is guidance, not the regulation text; keep the evidence for your awareness date.
+  caveat:
+    scope_or_role_unsure: Scope or your role is uncertain, so the result above is "potentially reportable" at most. Resolve this quickly; the deadlines run regardless.
+    pre_application_check: You became aware before 11 September 2026, but the assessment is not complete. Check whether new facts or new exploitation after that date create a new awareness moment.
+    awareness_unsure: You are unsure when you became aware. Use the earliest plausible awareness time for your deadlines.
+  routing:
+    nl: Report to the NCSC through MijnNCSC (recommended; log in with eHerkenning or SSOnRijk) or the CRA reporting form (no account needed; keep the reference number for follow-up reports). The NCSC forwards your report to ENISA and to the CSIRTs of other Member States. Do not report the same case a second time to ENISA.
+    other_eu: Report to the coordinating CSIRT of the Member State of your main establishment, through that CSIRT's official reporting route. ENISA publishes the list of coordinating CSIRTs.
+    non_eu: "Without a main establishment in the EU, Article 14(7) sets the Member State in this order: where your authorised representative for the most products is established; otherwise the importer placing most of your products on the market; otherwise the distributor making most available; otherwise the Member State with the most users."
+    unsure: "Determine your main establishment first (Article 14(7)): where cybersecurity decisions about the products are predominantly taken; otherwise where the manufacturer has the most EU employees. Do not let this delay your early warning."
+  parallel:
+    cbw: Separately assess whether this is a significant incident under the Cyberbeveiligingswet. It has its own test, its own deadlines and its own report, and a CRA report does not replace it.
+    cbw_check: Check whether your organisation falls under the Cyberbeveiligingswet. If it does, assess this event separately.
+    gdpr: Separately assess whether this is a personal data breach under the GDPR. The controller notifies the Autoriteit Persoonsgegevens within 72 hours of becoming aware, unless the breach is unlikely to result in a risk to individuals.
+  action:
+    record_awareness: "Record three things now: when the issue was first detected, when you became aware (your assessment), and why at that moment."
+    inform_users: Inform impacted users (and, where appropriate, all users) about the issue and the mitigating or corrective measures they can take, in a structured, machine-readable format where appropriate (Article 14(8)). This is separate from your report to the authorities.
