@@ -1,7 +1,7 @@
 {
   "name": "cra-meldwijzer",
   "version": "0.1.0",
-  "description": "CRA Meldwijzer: bilingual, offline CRA Article 14 reporting guide for manufacturers in the Netherlands",
+  "description": "CRA Meldwijzer: bilingual, offline CRA Article 14 reporting guide for makers and sellers of software and connected products in the Netherlands",
   "directories": {
     "test": "tests"
   },

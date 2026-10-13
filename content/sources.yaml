@@ -65,6 +65,14 @@ sources:
     url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
     status: verified
     last_verified: 2026-10-13
+  cra_art17:
+    type: regulation
+    binding: true
+    title: Regulation (EU) 2024/2847 (CRA)
+    pinpoint: Art. 17 (CSIRT may inform the public, 17(2); notifying does not by itself increase liability, 17(4))
+    url: https://eur-lex.europa.eu/eli/reg/2024/2847/oj
+    status: verified
+    last_verified: 2026-10-13
   cra_art21_22:
     type: regulation
     binding: true

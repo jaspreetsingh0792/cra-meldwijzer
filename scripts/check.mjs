@@ -1,11 +1,11 @@
 // Content integrity checks. Exit code 1 on any error; warnings do not fail the build.
-import { loadContent, flatten } from './content.mjs';
+import { loadContent, flatten, citations, chapterLinks } from './content.mjs';
 import { OUTCOME_KEYS, END } from '../src/core/tree.js';
 
 const SOURCE_TYPES = new Set(['regulation', 'delegated_act', 'commission_guidance', 'enisa', 'ncsc', 'national_law', 'interpretation']);
 const STALE_DAYS = 90;
 
-export function checkContent({ sources, tree, i18n }, today = new Date()) {
+export function checkContent({ sources, tree, i18n, runbook }, today = new Date()) {
   const errors = [];
   const warnings = [];
 
@@ -87,6 +87,29 @@ export function checkContent({ sources, tree, i18n }, today = new Date()) {
     if (a === b) continue;
     for (const k of Object.keys(flat[a])) {
       if (!ignore.has(k) && !(k in flat[b])) errors.push(`i18n parity: "${k}" in ${a} but not in ${b}`);
+    }
+  }
+
+  // Runbook: same chapters in every language, valid citations and chapter links
+  const books = Object.entries(runbook ?? {});
+  const chapterSets = books.map(([lang, files]) => [lang, Object.keys(files)]);
+  for (const [a, filesA] of chapterSets) for (const [b, filesB] of chapterSets) {
+    for (const f of filesA) if (!filesB.includes(f)) errors.push(`runbook parity: ${f} in ${a} but not in ${b}`);
+  }
+  for (const [lang, files] of books) {
+    for (const [file, md] of Object.entries(files)) {
+      const where = `runbook ${lang}/${file}`;
+      if (!/^# /.test(md)) errors.push(`${where}: must start with a level-1 heading`);
+      for (const id of citations(md)) if (!sources[id]) errors.push(`${where}: unknown source "${id}"`);
+      for (const link of chapterLinks(md)) if (!(link in files)) errors.push(`${where}: broken link to ${link}`);
+    }
+  }
+  // Citation parity: a chapter cites the same sources in every language
+  for (const [file] of books[0]?.[1] ? Object.entries(books[0][1]) : []) {
+    const sets = books.filter(([, files]) => file in files)
+      .map(([lang, files]) => [lang, [...new Set(citations(files[file]))].sort().join(',')]);
+    if (new Set(sets.map(([, s]) => s)).size > 1) {
+      errors.push(`runbook ${file}: cited sources differ between languages (${sets.map(([l, s]) => `${l}: ${s}`).join(' | ')})`);
     }
   }
 

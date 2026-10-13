@@ -18,4 +18,5 @@ const write = (name, data) => writeFileSync(join(out, name), `${JSON.stringify(d
 write('sources.json', content.sources);
 write('tree.json', content.tree);
 for (const [lang, doc] of Object.entries(content.i18n)) write(`i18n.${lang}.json`, doc);
+for (const [lang, chapters] of Object.entries(content.runbook)) write(`runbook.${lang}.json`, chapters);
 console.log(`built ${out}`);

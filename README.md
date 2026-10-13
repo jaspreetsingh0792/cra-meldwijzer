@@ -1,6 +1,8 @@
 # CRA Meldwijzer
 
-**CRA Article 14 reporting guide for manufacturers in the Netherlands. Bilingual (NL/EN), offline, open source.**
+**CRA Article 14 reporting guide for makers and sellers of software and connected products in the Netherlands. Bilingual (NL/EN), offline, open source.**
+
+**Read the runbook:** [English](content/runbook/en/00-overview.md) · [Nederlands](content/runbook/nl/00-overview.md)
 
 > ⚠️ **Work in progress (v0.1).** Not ready for use in a real incident. The legal logic has not
 > been reviewed by a lawyer yet; see [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md). Not legal advice; see
@@ -9,7 +11,13 @@
 Since **11 September 2026**, manufacturers of products with digital elements must report actively
 exploited vulnerabilities and severe incidents under Article 14 of the Cyber Resilience Act
 (Regulation (EU) 2024/2847): an early warning within 24 hours, a notification within 72 hours and a
-final report. CRA Meldwijzer helps a Dutch manufacturer answer three questions fast:
+final report.
+
+**Do you sell software, an app, firmware or a connected device in the EU? Then you are probably a
+"manufacturer" under the CRA.** Importers, distributors, component suppliers and open-source stewards
+have their own chapter in the runbook.
+
+CRA Meldwijzer helps a Dutch manufacturer answer three questions fast:
 
 1. **Do we have to report?** A decision tree that checks both triggers (actively exploited
    vulnerability, severe incident) independently, and never turns "unsure" into "no".
@@ -33,7 +41,7 @@ MijnNCSC of het CRA-meldformulier). Geen juridisch advies; zie [DISCLAIMER.md](D
 | Decision tree (`content/tree.yaml`, `src/core/tree.js`) | ✅ v0.1, exhaustively tested |
 | Deadline engine (`src/core/clock.js`) | ✅ v0.1, tested incl. DST and month ends |
 | YAML -> JSON build and content checks | ✅ |
-| Runbook text (roles, hour-by-hour steps, evidence, user communication) | ⏳ |
+| Runbook (`content/runbook/`): preparation, roles, timeline, informing users, evidence, Cbw/GDPR, other roles, drill | ✅ v0.1, NL + EN |
 | Report templates sized to the reporting forms | ⏳ |
 | Static web app, print view, offline package | ⏳ |
 | Legal review (release gate) | ⏳ |
@@ -46,6 +54,7 @@ content/          source of truth: editable without touching code
   tree.yaml       decision tree (language-neutral) + outcome citations
   i18n/nl.yaml    Dutch wording
   i18n/en.yaml    English wording
+  runbook/nl, en  the runbook chapters; cite sources as [src:id]
 src/core/         pure functions, no DOM, no network
   tree.js         walk the tree, derive outcomes
   clock.js        Article 14 deadlines
@@ -74,13 +83,13 @@ Requires Node.js 22 or later.
 ```bash
 npm install
 npm test          # tree + deadline tests (including every possible answer path)
-npm run check     # content integrity: sources, reachability, NL/EN parity
+npm run check     # content integrity: sources, reachability, NL/EN parity, runbook citations and links
 npm run build     # compile content to dist/data/*.json
 ```
 
 ## Contributing
 
-Corrections to legal content are the most valuable contribution. Change the YAML, cite a source in
+Corrections to legal content are the most valuable contribution. Change the YAML or Markdown, cite a source in
 `content/sources.yaml` (with `last_verified`), update or add a test, and explain the change in the
 pull request. **Never include real vulnerability or incident details**; see [SECURITY.md](SECURITY.md).
 

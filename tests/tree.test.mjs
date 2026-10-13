@@ -26,6 +26,17 @@ test('the integrity check catches a broken reference', () => {
   assert.ok(errors.some((e) => e.includes('"nowhere" does not exist')));
 });
 
+test('the integrity check catches runbook problems', () => {
+  const broken = structuredClone(content);
+  broken.runbook.en['03-timeline.md'] += '\nSee [missing](99-missing.md) [src:no_such_source]\n';
+  delete broken.runbook.nl['08-drill.md'];
+  const { errors } = checkContent(broken);
+  assert.ok(errors.some((e) => e.includes('broken link to 99-missing.md')));
+  assert.ok(errors.some((e) => e.includes('unknown source "no_such_source"')));
+  assert.ok(errors.some((e) => e.includes('runbook parity: 08-drill.md')));
+  assert.ok(errors.some((e) => e.includes('cited sources differ between languages')));
+});
+
 test('actively exploited vulnerability, Dutch manufacturer', () => {
   const o = run({ vuln_contained: 'yes', vuln_exploited: 'yes' });
   assert.equal(o.tracks.vulnerability, 'reportable');
