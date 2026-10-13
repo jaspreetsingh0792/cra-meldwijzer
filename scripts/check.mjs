@@ -1,11 +1,12 @@
 // Content integrity checks. Exit code 1 on any error; warnings do not fail the build.
 import { loadContent, flatten, citations, chapterLinks } from './content.mjs';
 import { OUTCOME_KEYS, END } from '../src/core/tree.js';
+import { NEEDS, documentIds, documentSections } from '../src/core/templates.js';
 
 const SOURCE_TYPES = new Set(['regulation', 'delegated_act', 'commission_guidance', 'enisa', 'ncsc', 'national_law', 'interpretation']);
 const STALE_DAYS = 90;
 
-export function checkContent({ sources, tree, i18n, runbook }, today = new Date()) {
+export function checkContent({ sources, tree, i18n, runbook, templates }, today = new Date()) {
   const errors = [];
   const warnings = [];
 
@@ -75,6 +76,46 @@ export function checkContent({ sources, tree, i18n, runbook }, today = new Date(
     for (const optId of Object.keys(node.options ?? {})) required.push([`opt.${id}.${optId}`, `opt.${optId}`]);
   }
   for (const key of OUTCOME_KEYS) required.push(`o.${key}`);
+
+  // Templates: valid structure, cited sources, and wording for every field and report
+  const STAGES = ['early_warning', 'notification', 'final_report'];
+  const tmplFields = new Set();
+  for (const [id, s] of Object.entries(templates?.sections ?? {})) {
+    cite(`template section ${id}`, s.sources);
+    required.push(`t.section.${id}`);
+    for (const f of s.fields) {
+      tmplFields.add(f.id);
+      for (const st of f.stages ?? []) if (!STAGES.includes(st)) errors.push(`template field ${f.id}: unknown stage "${st}"`);
+    }
+  }
+  for (const docId of documentIds(templates ?? { reports: {} })) {
+    const meta = docId === 'advisory' ? templates.advisory : templates.reports[docId];
+    cite(`template ${docId}`, meta.sources);
+    if (docId !== 'advisory') {
+      if (docId !== `${meta.track}.${meta.stage}`) errors.push(`template ${docId}: id must be <track>.<stage>`);
+      if (!STAGES.includes(meta.stage)) errors.push(`template ${docId}: unknown stage "${meta.stage}"`);
+      for (const k of ['title', 'ncsc_type', 'deadline']) required.push(`t.report.${docId}.${k}`);
+    }
+    if (!meta.fields.some((f) => f.need === 'legal')) errors.push(`template ${docId}: has no legally required field`);
+    const seen = new Set();
+    for (const s of documentSections(templates, docId)) for (const f of s.fields) {
+      if (seen.has(f.id)) errors.push(`template ${docId}: duplicate field ${f.id}`);
+      seen.add(f.id);
+      if (!NEEDS.includes(f.need)) errors.push(`template ${docId}: field ${f.id} has unknown need "${f.need}"`);
+      tmplFields.add(f.id);
+    }
+  }
+  for (const id of tmplFields) required.push(`t.field.${id}.label`);
+  for (const lang of Object.keys(i18n)) {
+    for (const [id, entry] of Object.entries(i18n[lang].t?.field ?? {})) {
+      const extra = Object.keys(entry ?? {}).filter((k) => k !== 'label' && k !== 'hint');
+      if (extra.length) errors.push(`i18n ${lang}: t.field.${id} has unexpected keys (${extra.join(', ')}); quote text containing commas`);
+    }
+  }
+  for (const n of NEEDS) required.push(`t.need.${n}`);
+  for (const k of ['form_type', 'deadline', 'sources', 'fill_in', 'prepared_in_advance', 'not_a_report', 'disclaimer', 'advisory_title']) {
+    required.push(`t.doc.${k}`);
+  }
   for (const lang of langs) {
     for (const req of required) {
       const alts = Array.isArray(req) ? req : [req];

@@ -2,7 +2,8 @@
 
 **CRA Article 14 reporting guide for makers and sellers of software and connected products in the Netherlands. Bilingual (NL/EN), offline, open source.**
 
-**Read the runbook:** [English](content/runbook/en/00-overview.md) · [Nederlands](content/runbook/nl/00-overview.md)
+**Read the runbook:** [English](content/runbook/en/00-overview.md) · [Nederlands](content/runbook/nl/00-overview.md)  
+**Report templates:** [English](templates/en/README.md) · [Nederlands](templates/nl/README.md)
 
 > ⚠️ **Work in progress (v0.1).** Not ready for use in a real incident. The legal logic has not
 > been reviewed by a lawyer yet; see [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md). Not legal advice; see
@@ -42,7 +43,7 @@ MijnNCSC of het CRA-meldformulier). Geen juridisch advies; zie [DISCLAIMER.md](D
 | Deadline engine (`src/core/clock.js`) | ✅ v0.1, tested incl. DST and month ends |
 | YAML -> JSON build and content checks | ✅ |
 | Runbook (`content/runbook/`): preparation, roles, timeline, informing users, evidence, Cbw/GDPR, other roles, drill | ✅ v0.1, NL + EN |
-| Report templates sized to the reporting forms | ⏳ |
+| Report templates (`content/templates.yaml` -> `templates/`): 6 reports + user advisory, NCSC form sections, Art. 14 content | ✅ v0.1, NL + EN (character limits not yet verified) |
 | Static web app, print view, offline package | ⏳ |
 | Legal review (release gate) | ⏳ |
 
@@ -55,9 +56,12 @@ content/          source of truth: editable without touching code
   i18n/nl.yaml    Dutch wording
   i18n/en.yaml    English wording
   runbook/nl, en  the runbook chapters; cite sources as [src:id]
+  templates.yaml  report templates (language-neutral)
+templates/        generated blank templates (npm run templates), committed
 src/core/         pure functions, no DOM, no network
   tree.js         walk the tree, derive outcomes
   clock.js        Article 14 deadlines
+  templates.js    render report templates
 scripts/          build (YAML -> JSON) and content checks
 tests/            node:test suites
 ```
@@ -84,6 +88,7 @@ Requires Node.js 22 or later.
 npm install
 npm test          # tree + deadline tests (including every possible answer path)
 npm run check     # content integrity: sources, reachability, NL/EN parity, runbook citations and links
+npm run templates # regenerate templates/ after changing content (CI checks they are current)
 npm run build     # compile content to dist/data/*.json
 ```
 

@@ -1,0 +1,124 @@
+# Report templates. Language-neutral: wording lives in content/i18n/*.yaml under `t.`.
+#
+# Sections `organisation` and `reporter` mirror the fixed sections of the NCSC
+# CRA-meldformulier (checked 2026-10-13); prepare them before an incident.
+# Report content follows Article 14 itself, because the form's content fields only
+# appear after choosing a report type. Character limits are deliberately absent until
+# they are checked against the live form.
+#
+# need: legal            - content Article 14 requires for this stage
+#       where_applicable - required by Article 14 "where applicable"
+#       form             - required by the NCSC form (not by Article 14 itself)
+#       recommended      - not required; helps the CSIRT or your own case file
+#
+# Wording keys: t.section.<id>, t.field.<id>.label, t.field.<id>.hint,
+#               t.report.<id>.title, t.report.<id>.ncsc_type, t.report.<id>.deadline
+
+schema: 1
+last_reviewed: 2026-10-13
+
+sections:
+  case:
+    sources: [interpretation]
+    fields:
+      - { id: case_id, need: recommended }
+      - { id: aware_at, need: recommended }
+      - { id: previous_reference, need: recommended, stages: [notification, final_report] }
+  organisation:
+    sources: [ncsc_form]
+    fields:
+      - { id: org_name, need: form }
+      - { id: kvk, need: form }
+      - { id: hq_street, need: form }
+      - { id: hq_postcode, need: form }
+      - { id: hq_city, need: form }
+      - { id: sector, need: form }
+      - { id: other_sector, need: form }
+  reporter:
+    sources: [ncsc_form]
+    fields:
+      - { id: first_name, need: form }
+      - { id: last_name, need: form }
+      - { id: job_title, need: form }
+      - { id: email, need: form }
+      - { id: phone, need: form }
+      - { id: availability, need: recommended }
+      - { id: reporter_is_contact, need: form }
+
+reports:
+  vulnerability.early_warning:
+    track: vulnerability
+    stage: early_warning
+    sources: [cra_art14_1_2, ncsc_melden]
+    fields:
+      - { id: products, need: legal, multiline: true }
+      - { id: summary_vulnerability, need: legal, multiline: true }
+      - { id: member_states, need: where_applicable }
+      - { id: sensitivity, need: recommended, multiline: true }
+
+  incident.early_warning:
+    track: incident
+    stage: early_warning
+    sources: [cra_art14_3_5, ncsc_melden]
+    fields:
+      - { id: products, need: legal, multiline: true }
+      - { id: summary_incident, need: legal, multiline: true }
+      - { id: suspected_malicious, need: legal, multiline: true }
+      - { id: member_states, need: where_applicable }
+      - { id: sensitivity, need: recommended, multiline: true }
+
+  vulnerability.notification:
+    track: vulnerability
+    stage: notification
+    sources: [cra_art14_1_2]
+    fields:
+      - { id: product_information, need: legal, multiline: true }
+      - { id: exploit_nature, need: legal, multiline: true }
+      - { id: measures_taken, need: legal, multiline: true }
+      - { id: user_measures, need: legal, multiline: true }
+      - { id: sensitivity, need: where_applicable, multiline: true }
+      - { id: vulnerability_ids, need: recommended }
+
+  incident.notification:
+    track: incident
+    stage: notification
+    sources: [cra_art14_3_5]
+    fields:
+      - { id: incident_nature, need: legal, multiline: true }
+      - { id: initial_assessment, need: legal, multiline: true }
+      - { id: measures_taken, need: legal, multiline: true }
+      - { id: user_measures, need: legal, multiline: true }
+      - { id: sensitivity, need: where_applicable, multiline: true }
+
+  vulnerability.final_report:
+    track: vulnerability
+    stage: final_report
+    sources: [cra_art14_1_2]
+    fields:
+      - { id: vulnerability_description, need: legal, multiline: true }
+      - { id: malicious_actor, need: where_applicable, multiline: true }
+      - { id: security_update, need: legal, multiline: true }
+      - { id: measure_available_at, need: recommended }
+      - { id: vulnerability_ids, need: recommended }
+
+  incident.final_report:
+    track: incident
+    stage: final_report
+    sources: [cra_art14_3_5]
+    fields:
+      - { id: incident_description, need: legal, multiline: true }
+      - { id: root_cause, need: legal, multiline: true }
+      - { id: mitigations, need: legal, multiline: true }
+
+# Not a report to the authorities: the information users must receive (Art. 14(8)).
+advisory:
+  sources: [cra_art14_8, cra_art17]
+  fields:
+    - { id: advisory_title, need: recommended }
+    - { id: affected_products, need: legal, multiline: true }
+    - { id: risk, need: recommended, multiline: true }
+    - { id: user_actions, need: where_applicable, multiline: true }
+    - { id: update_availability, need: where_applicable, multiline: true }
+    - { id: vulnerability_ids, need: recommended }
+    - { id: contact, need: recommended }
+    - { id: next_update, need: recommended }

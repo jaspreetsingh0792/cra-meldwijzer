@@ -25,6 +25,7 @@ export function loadContent() {
   return {
     sources: load(join(CONTENT, 'sources.yaml')).sources,
     tree: load(join(CONTENT, 'tree.yaml')),
+    templates: load(join(CONTENT, 'templates.yaml')),
     i18n,
     runbook,
   };

@@ -87,3 +87,96 @@ o:
   action:
     record_awareness: "Leg nu drie dingen vast: wanneer het probleem voor het eerst werd gedetecteerd, wanneer je op de hoogte raakte (jouw beoordeling) en waarom op dat moment."
     inform_users: Informeer getroffen gebruikers (en waar passend alle gebruikers) over het probleem en de mitigerende of corrigerende maatregelen die zij kunnen nemen, waar passend in een gestructureerd, machineleesbaar formaat (artikel 14(8)). Dit staat los van je melding aan de autoriteiten.
+
+t:
+  doc:
+    form_type: "NCSC-formulier, \"Welk soort melding maak je?\""
+    deadline: Termijn
+    sources: Bronnen
+    fill_in: "[invullen]"
+    prepared_in_advance: Bereid dit voor vóór een incident; het is voor elke melding hetzelfde.
+    not_a_report: Dit is geen melding aan de autoriteiten. Het is de informatie die je gebruikers volgens artikel 14(8) moet geven.
+    disclaimer: Sjabloon van CRA Meldwijzer. Geen juridisch advies. Controleer het actuele NCSC-formulier voordat je indient.
+    advisory_title: Beveiligingsadvies voor gebruikers
+  need:
+    legal: Verplicht volgens artikel 14
+    where_applicable: Verplicht waar van toepassing
+    form: Verplicht op het NCSC-formulier
+    recommended: Aanbevolen
+  section:
+    case: Zaak
+    organisation: Organisatiegegevens (NCSC-formulier)
+    reporter: Melder (NCSC-formulier)
+    content: Inhoud van de melding
+  report:
+    vulnerability:
+      early_warning:
+        title: "Vroegtijdige waarschuwing: actief uitgebuite kwetsbaarheid"
+        ncsc_type: Vroegtijdige waarschuwing - van een actief misbruikte kwetsbaarheid
+        deadline: Zonder onnodige vertraging, en in elk geval binnen 24 uur na het op de hoogte raken.
+      notification:
+        title: "Melding: actief uitgebuite kwetsbaarheid"
+        ncsc_type: Melding - over een actief misbruikte kwetsbaarheid
+        deadline: Zonder onnodige vertraging, en in elk geval binnen 72 uur na het op de hoogte raken (niet na de vroegtijdige waarschuwing). Informatie die je al gaf hoef je niet te herhalen.
+      final_report:
+        title: "Eindrapport: actief uitgebuite kwetsbaarheid"
+        ncsc_type: Eindverslag - over een actief misbruikte kwetsbaarheid
+        deadline: Uiterlijk 14 dagen nadat een corrigerende of mitigerende maatregel beschikbaar is.
+    incident:
+      early_warning:
+        title: "Vroegtijdige waarschuwing: ernstig incident"
+        ncsc_type: Vroegtijdige waarschuwing - van een ernstig incident
+        deadline: Zonder onnodige vertraging, en in elk geval binnen 24 uur na het op de hoogte raken.
+      notification:
+        title: "Melding: ernstig incident"
+        ncsc_type: Melding - over een ernstig incident
+        deadline: Zonder onnodige vertraging, en in elk geval binnen 72 uur na het op de hoogte raken (niet na de vroegtijdige waarschuwing). Informatie die je al gaf hoef je niet te herhalen.
+      final_report:
+        title: "Eindrapport: ernstig incident"
+        ncsc_type: Eindverslag - over een ernstig incident
+        deadline: Binnen één maand na het indienen van de melding over het incident.
+  field:
+    case_id: { label: Intern zaaknummer, hint: "Je eigen referentie. Niet naar het NCSC sturen, tenzij het helpt." }
+    aware_at: { label: Op de hoogte geraakt op, hint: "Datum, tijd en tijdzone, plus waarom op dat moment. Bewaar dit in je zaakdossier, ook als het formulier er niet om vraagt." }
+    previous_reference: { label: NCSC-referentie van de eerdere melding, hint: "Uit MijnNCSC, of het referentienummer dat je per e-mail kreeg bij het CRA-meldformulier. Koppelt deze melding aan dezelfde zaak." }
+    org_name: { label: Organisatienaam, hint: De juridische entiteit die fabrikant is van dit product. }
+    kvk: { label: KVK-nummer, hint: Inschrijvingsnummer bij de Kamer van Koophandel. }
+    hq_street: { label: Straatnaam en huisnummer, hint: Van de hoofdvestiging. }
+    hq_postcode: { label: Postcode, hint: Van de hoofdvestiging. }
+    hq_city: { label: Plaatsnaam, hint: Van de hoofdvestiging. }
+    sector: { label: Sector, hint: "Kies uit de lijst op het formulier. Fabrikanten kiezen vaak \"Vervaardiging\" of \"Digitale aanbieders\"; kies wat past, of \"Anders\"." }
+    other_sector: { label: Ook actief in een andere sector?, hint: Ja of nee. }
+    first_name: { label: Voornaam, hint: "" }
+    last_name: { label: Achternaam, hint: "" }
+    job_title: { label: Functie, hint: "" }
+    email: { label: E-mailadres, hint: "Gebruik een adres dat tijdens het incident wordt gelezen, ook in het weekend." }
+    phone: { label: Telefoonnummer, hint: "" }
+    availability: { label: Bereikbaarheid, hint: Dagen en tijden waarop je telefonisch bereikbaar bent. }
+    reporter_is_contact: { label: Is de melder ook contactpersoon voor deze zaak?, hint: "Zo niet, noem de contactpersoon en hoe die bereikbaar is." }
+    products: { label: Getroffen producten en versies, hint: Elk getroffen product en elke versie. Vergeet oudere versies die nog in gebruik zijn niet. }
+    summary_vulnerability: { label: Wat er aan de hand is, hint: "Dat er een actief uitgebuite kwetsbaarheid in het product zit, en wat je tot nu toe weet. Kort is prima: de melding volgt binnen 72 uur." }
+    summary_incident: { label: Wat er aan de hand is, hint: "Dat er een ernstig incident is dat de beveiliging van het product raakt, en wat je tot nu toe weet. Kort is prima: de melding volgt binnen 72 uur." }
+    suspected_malicious: { label: Vermoeden van onrechtmatige of kwaadwillige handelingen?, hint: "Ja, nee of onbekend, met een korte toelichting." }
+    member_states: { label: Lidstaten waar het product beschikbaar is, hint: Alle EU-lidstaten waarvan je weet dat het product daar is aangeboden. }
+    sensitivity: { label: Gevoeligheid van de informatie, hint: "Of details aanvallers kunnen helpen (bijvoorbeeld zolang er geen fix is), en waarom. Het CSIRT houdt hier rekening mee bij het delen van de melding." }
+    product_information: { label: Algemene informatie over het product, hint: "Wat het product is, welke versies geraakt zijn, hoe het wordt gebruikt." }
+    exploit_nature: { label: Algemene aard van het misbruik en van de kwetsbaarheid, hint: "Soort kwetsbaarheid, hoe die wordt misbruikt, wat een aanvaller ermee kan. Geen stappenplan." }
+    measures_taken: { label: Genomen corrigerende of mitigerende maatregelen, hint: "Wat je tot nu toe hebt gedaan: fix in de maak, workaround, blokkeren, monitoren." }
+    user_measures: { label: Maatregelen die gebruikers kunnen nemen, hint: "Wat gebruikers nu moeten doen: updaten, workaround, configuratie aanpassen, loskoppelen." }
+    vulnerability_ids: { label: Kenmerken van de kwetsbaarheid, hint: "CVE- en EUVD-nummers, als die zijn toegekend." }
+    incident_nature: { label: Aard van het incident, hint: "Wat er gebeurde, welke systemen geraakt zijn, hoe het de beveiliging van het product raakt." }
+    initial_assessment: { label: Eerste beoordeling, hint: "Ernst, omvang en waarschijnlijke impact voor zover bekend, en hoe zeker je bent." }
+    vulnerability_description: { label: Beschrijving van de kwetsbaarheid, hint: Inclusief ernst en impact. }
+    malicious_actor: { label: Informatie over de kwaadwillende actor, hint: Alleen waar beschikbaar. Wie het misbruikte en hoe je dat weet. }
+    security_update: { label: Beveiligingsupdate of andere corrigerende maatregelen, hint: "Welke update of maatregel beschikbaar is, sinds wanneer, en hoe gebruikers die krijgen." }
+    measure_available_at: { label: Maatregel beschikbaar sinds, hint: Datum en tijd waarop de corrigerende of mitigerende maatregel beschikbaar kwam. Daarmee begon de termijn van 14 dagen. }
+    incident_description: { label: Gedetailleerde beschrijving van het incident, hint: Inclusief ernst en impact. }
+    root_cause: { label: Soort dreiging of grondoorzaak, hint: Wat het incident waarschijnlijk veroorzaakte. }
+    mitigations: { label: Toegepaste en lopende mitigerende maatregelen, hint: "Wat er is gedaan en wat nog loopt." }
+    advisory_title: { label: Titel, hint: "Productnaam en het probleem, in gewone woorden." }
+    affected_products: { label: Getroffen producten en hoe je dat controleert, hint: "Producten en versies, en hoe gebruikers kunnen nagaan of zij geraakt zijn." }
+    risk: { label: Wat het risico is, hint: In gewone taal. Geen stapsgewijze aanvalsdetails zolang er geen fix is. }
+    user_actions: { label: Wat je nu moet doen, hint: "Workaround, configuratie aanpassen, loskoppelen, monitoren." }
+    update_availability: { label: Update, hint: "Of er een update is, waar die te krijgen is en hoe je die controleert." }
+    contact: { label: Vragen, hint: Hoe gebruikers je kunnen bereiken. }
+    next_update: { label: Volgende versie van dit advies, hint: Wanneer je gebruikers opnieuw informeert. }

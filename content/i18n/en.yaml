@@ -87,3 +87,96 @@ o:
   action:
     record_awareness: "Record three things now: when the issue was first detected, when you became aware (your assessment), and why at that moment."
     inform_users: Inform impacted users (and, where appropriate, all users) about the issue and the mitigating or corrective measures they can take, in a structured, machine-readable format where appropriate (Article 14(8)). This is separate from your report to the authorities.
+
+t:
+  doc:
+    form_type: "NCSC form, \"Welk soort melding maak je?\""
+    deadline: Deadline
+    sources: Sources
+    fill_in: "[fill in]"
+    prepared_in_advance: Prepare this before an incident; it is the same for every report.
+    not_a_report: This is not a report to the authorities. It is the information Article 14(8) requires you to give users.
+    disclaimer: Template from CRA Meldwijzer. Not legal advice. Check the current NCSC form before submitting.
+    advisory_title: Security advisory for users
+  need:
+    legal: Required by Article 14
+    where_applicable: Required where applicable
+    form: Required by the NCSC form
+    recommended: Recommended
+  section:
+    case: Case
+    organisation: Organisation details (NCSC form)
+    reporter: Reporter (NCSC form)
+    content: Report content
+  report:
+    vulnerability:
+      early_warning:
+        title: "Early warning: actively exploited vulnerability"
+        ncsc_type: Vroegtijdige waarschuwing - van een actief misbruikte kwetsbaarheid
+        deadline: Without undue delay, and in any case within 24 hours of becoming aware.
+      notification:
+        title: "Notification: actively exploited vulnerability"
+        ncsc_type: Melding - over een actief misbruikte kwetsbaarheid
+        deadline: Without undue delay, and in any case within 72 hours of becoming aware (not of the early warning). Information already given need not be repeated.
+      final_report:
+        title: "Final report: actively exploited vulnerability"
+        ncsc_type: Eindverslag - over een actief misbruikte kwetsbaarheid
+        deadline: No later than 14 days after a corrective or mitigating measure is available.
+    incident:
+      early_warning:
+        title: "Early warning: severe incident"
+        ncsc_type: Vroegtijdige waarschuwing - van een ernstig incident
+        deadline: Without undue delay, and in any case within 24 hours of becoming aware.
+      notification:
+        title: "Notification: severe incident"
+        ncsc_type: Melding - over een ernstig incident
+        deadline: Without undue delay, and in any case within 72 hours of becoming aware (not of the early warning). Information already given need not be repeated.
+      final_report:
+        title: "Final report: severe incident"
+        ncsc_type: Eindverslag - over een ernstig incident
+        deadline: Within one month after submitting the incident notification.
+  field:
+    case_id: { label: Internal case number, hint: Your own reference. Not sent to the NCSC unless useful. }
+    aware_at: { label: Became aware at, hint: "Date, time and time zone, plus why at that moment. Keep this in your case file even though the form may not ask for it." }
+    previous_reference: { label: NCSC reference of the earlier report, hint: "From MijnNCSC, or the reference number you received by email when using the CRA reporting form. Links this report to the same case." }
+    org_name: { label: Organisation name, hint: The legal entity that is the manufacturer of this product. }
+    kvk: { label: KVK number, hint: Chamber of Commerce registration number. }
+    hq_street: { label: Street and house number, hint: Of the main establishment. }
+    hq_postcode: { label: Postcode, hint: Of the main establishment. }
+    hq_city: { label: City, hint: Of the main establishment. }
+    sector: { label: Sector, hint: "Choose from the form's list. Manufacturers often pick \"Vervaardiging\" or \"Digitale aanbieders\"; choose what fits, or \"Anders\"." }
+    other_sector: { label: Also active in another sector?, hint: Yes or no. }
+    first_name: { label: First name, hint: "" }
+    last_name: { label: Last name, hint: "" }
+    job_title: { label: Job title, hint: "" }
+    email: { label: Email address, hint: "Use an address that is monitored during the incident, including weekends." }
+    phone: { label: Phone number, hint: "" }
+    availability: { label: Availability, hint: Days and times you can be reached by phone. }
+    reporter_is_contact: { label: Is the reporter also the contact person for this case?, hint: "If not, name the contact person and how to reach them." }
+    products: { label: Affected products and versions, hint: Every affected product and version. Include older versions still in use. }
+    summary_vulnerability: { label: What is happening, hint: "That there is an actively exploited vulnerability in the product, and what you know so far. Short is fine: the notification follows within 72 hours." }
+    summary_incident: { label: What is happening, hint: "That there is a severe incident affecting the security of the product, and what you know so far. Short is fine: the notification follows within 72 hours." }
+    suspected_malicious: { label: Suspected unlawful or malicious acts?, hint: "Yes, no or unknown, with a short explanation." }
+    member_states: { label: Member States where the product is available, hint: All EU Member States where you know the product has been made available. }
+    sensitivity: { label: Sensitivity of the information, hint: "Whether details could help attackers (for example before a fix exists), and why. The CSIRT takes this into account when sharing the report." }
+    product_information: { label: General information about the product, hint: "What the product is, which versions are affected, how it is used." }
+    exploit_nature: { label: General nature of the exploit and of the vulnerability, hint: "Type of vulnerability, how it is being exploited, what an attacker can achieve. Avoid a step-by-step recipe." }
+    measures_taken: { label: Corrective or mitigating measures taken, hint: "What you have done so far: fix in progress, workaround, blocking, monitoring." }
+    user_measures: { label: Measures users can take, hint: "What users should do now: update, workaround, configuration change, disconnecting." }
+    vulnerability_ids: { label: Vulnerability identifiers, hint: "CVE and EUVD identifiers, if assigned." }
+    incident_nature: { label: Nature of the incident, hint: "What happened, which systems were affected, how it affects the product's security." }
+    initial_assessment: { label: Initial assessment, hint: "Severity, scope and likely impact as far as known, and how certain you are." }
+    vulnerability_description: { label: Description of the vulnerability, hint: Including its severity and impact. }
+    malicious_actor: { label: Information about the malicious actor, hint: Only where available. Who exploited it and how you know. }
+    security_update: { label: Security update or other corrective measures, hint: "Which update or measure is available, from when, and how users get it." }
+    measure_available_at: { label: Measure available since, hint: Date and time the corrective or mitigating measure became available. This started the 14-day deadline. }
+    incident_description: { label: Detailed description of the incident, hint: Including its severity and impact. }
+    root_cause: { label: Type of threat or root cause, hint: What likely triggered the incident. }
+    mitigations: { label: Applied and ongoing mitigation measures, hint: "What has been done and what is still in progress." }
+    advisory_title: { label: Title, hint: "Product name and the issue, in plain words." }
+    affected_products: { label: Affected products and how to check, hint: "Products and versions, and how users can find out whether they are affected." }
+    risk: { label: What the risk is, hint: In plain language. No step-by-step attack details before a fix is available. }
+    user_actions: { label: What to do now, hint: "Workaround, configuration change, disconnecting, monitoring." }
+    update_availability: { label: Update, hint: "Whether an update is available, where to get it, and how to verify it." }
+    contact: { label: Questions, hint: How users can reach you. }
+    next_update: { label: Next update of this advisory, hint: When you will inform users again. }
