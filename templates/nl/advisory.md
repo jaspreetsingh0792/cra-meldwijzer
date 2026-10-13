@@ -8,42 +8,42 @@
 
 ## Inhoud van de melding
 
-**Titel** · Aanbevolen
+**Titel** · Aanbevolen  
 _Productnaam en het probleem, in gewone woorden._
 
 [invullen]
 
-**Getroffen producten en hoe je dat controleert** · Verplicht volgens artikel 14
+**Getroffen producten en hoe je dat controleert** · Verplicht volgens artikel 14  
 _Producten en versies, en hoe gebruikers kunnen nagaan of zij geraakt zijn._
 
 [invullen]
 
-**Wat het risico is** · Aanbevolen
+**Wat het risico is** · Aanbevolen  
 _In gewone taal. Geen stapsgewijze aanvalsdetails zolang er geen fix is._
 
 [invullen]
 
-**Wat je nu moet doen** · Verplicht waar van toepassing
+**Wat je nu moet doen** · Verplicht waar van toepassing  
 _Workaround, configuratie aanpassen, loskoppelen, monitoren._
 
 [invullen]
 
-**Update** · Verplicht waar van toepassing
+**Update** · Verplicht waar van toepassing  
 _Of er een update is, waar die te krijgen is en hoe je die controleert._
 
 [invullen]
 
-**Kenmerken van de kwetsbaarheid** · Aanbevolen
+**Kenmerken van de kwetsbaarheid** · Aanbevolen  
 _CVE- en EUVD-nummers, als die zijn toegekend._
 
 [invullen]
 
-**Vragen** · Aanbevolen
+**Vragen** · Aanbevolen  
 _Hoe gebruikers je kunnen bereiken._
 
 [invullen]
 
-**Volgende versie van dit advies** · Aanbevolen
+**Volgende versie van dit advies** · Aanbevolen  
 _Wanneer je gebruikers opnieuw informeert._
 
 [invullen]

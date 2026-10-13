@@ -42,6 +42,7 @@ export function templatesView(docId) {
         h('div', { class: 'field-head' },
           h('label', { for: id }, t(`t.field.${field.id}.label`)),
           h('span', { class: `need need-${field.need}` }, t(`t.need.${field.need}`))),
+        field.ncsc ? h('p', { class: 'ncsc-field' }, `${t('t.doc.ncsc_field')}: `, h('q', { lang: 'nl' }, field.ncsc)) : null,
         hint ? h('p', { class: 'hint', id: hintId }, hint) : null,
         h('div', { class: 'row' }, input, copyButton(t('ui.templates.copy'), t('ui.templates.copied'), () => input.value)));
     })));

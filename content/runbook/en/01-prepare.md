@@ -57,7 +57,7 @@ Keep this list offline as well (printed, or in your incident channel):
 |---|---|
 | NCSC | CRA reports (MijnNCSC / CRA reporting form) [src:ncsc_melden] |
 | RDI | Questions about CRA scope and supervision; the NCSC is not the supervisor [src:ncsc_melden] |
-| Your sector CSIRT / supervisor | If your organisation falls under the Cyberbeveiligingswet [src:cbw] |
+| MijnNCSC (Cbw central reporting point) | If your organisation falls under the Cyberbeveiligingswet; reaches your sector CSIRT and supervisor [src:cbw] [src:ncsc_cbw_meldplicht] |
 | Autoriteit Persoonsgegevens | If personal data may be involved [src:gdpr_art33_34] |
 | Legal counsel | Reportability decisions |
 | Key upstream suppliers | Vulnerabilities in their components |

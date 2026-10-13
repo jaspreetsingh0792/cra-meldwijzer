@@ -113,7 +113,7 @@ export function checkContent({ sources, tree, i18n, runbook, templates }, today 
     }
   }
   for (const n of NEEDS) required.push(`t.need.${n}`);
-  for (const k of ['form_type', 'deadline', 'sources', 'fill_in', 'prepared_in_advance', 'not_a_report', 'disclaimer', 'advisory_title']) {
+  for (const k of ['form_type', 'deadline', 'sources', 'fill_in', 'prepared_in_advance', 'not_a_report', 'disclaimer', 'advisory_title', 'ncsc_field']) {
     required.push(`t.doc.${k}`);
   }
   for (const lang of langs) {

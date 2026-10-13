@@ -150,6 +150,12 @@ test('awareness before 11 Sep 2026 is flagged, not shown as overdue', () => {
   assert.equal(APPLICATION_START, t('2026-09-10T22:00:00Z'));
 });
 
+test('incident awareness before 11 Sep 2026 is flagged but deadlines keep running', () => {
+  const r = computeTrack({ kind: 'incident', triggered: true, awareAt: '2026-09-01T10:00:00Z' }, { now: NOW });
+  assert.ok(r.flags.includes('aware_before_application'));
+  assert.equal(byId(r, 'early_warning').status, 'overdue');
+});
+
 test('untriggered track and missing awareness', () => {
   assert.equal(computeTrack({ kind: 'incident', triggered: false }).status, 'not_applicable');
   assert.equal(computeTrack({ kind: 'incident', triggered: true }).status, 'needs_awareness');

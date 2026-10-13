@@ -1,0 +1,93 @@
+all | optional | markup_04 | 
+all | optional | fasering | 
+all | optional | type | 
+all | required | fase | Welk soort melding maak je? | Vroegtijdige waarschuwing  - van een actief misbruikte kwetsbaarheid / Vroegtijdige waarschuwing  - van een ernstig incident / Melding - over een actief misbruikte kwetsbaarheid / Melding - over een ernstig incident / Eindverslag - over een actief misbruikte kwetsbaarheid / Eindverslag - over een ernstig incident
+all | optional | meldgegevens | 
+all | optional | markup | 
+all | required | organisatienaam | Organisatienaam
+all | required | kvk_nummer | KVK-nummer pattern=^\d{8}$
+all | required | adres | Straatnaam + huisnummer
+all | required | postcode | Postcode
+all | required | plaatsnaam | Plaatsnaam
+all | required | sector | Sector | Afvalstoffenbeheer / Afvalwater / Bankwezen / Beheer van ICT-diensten (B2B) / Digitale aanbieders / Digitale Infrastructuur / Drinkwater / Energie / Gezondheidszorg / Infrastructuur voor de financiële markt / Nucleaire industrie / Onderwijs / Onderzoek / Overheid / Post- en koeriersdiensten / Productie, verwerking en distributie van levensmiddelen / Ruimtevaart / Vervaardiging / Vervaardiging, productie en distributie van chemische stoffen / Vervoer
+all | required | alt_sector | Valt de organisatie ook onder een andere sector? | Ja / Nee
+all | optional | contactgegevens | 
+all | required | naam_melder | Voornaam
+all | required | achternaam_melder | Achternaam
+all | required | functie_melder | Functie melder
+all | required | emailadres_melder | E-mailadres melder format=email
+all | required | telefoonnummer | Telefoonnummer pattern=^(?:\+31|0)(?:\s?|[-\s(]*)[1-9](?:[0-9]{1,2})?(?:[-\s)]*)[0-9]{6,7}$
+all | optional | bereikbaarheid | Bereikbaarheid
+all | required | melder_contactpersoon | Is de melder ook contactpersoon voor het incident? | Ja / Nee
+all | optional | privacy | 
+all | optional | gegevensverwerking | Extra informatie over gegevensverwerking
+all | required | akkoordverklaring | Akkoordverklaring
+all | optional | container | 
+all | optional | lijn4 | lijn
+all | optional | lijn2 | lijn
+all | optional | lijn | lijn
+all | optional | lijn1 | lijn
+all | optional | mail | Leave this field blank
+fase=Vroegtijdige waarschuwing van een actief misbruikte kwetsbaarheid | optional | vroegtijdig_kwetsbaarheid | 
+fase=Vroegtijdige waarschuwing van een actief misbruikte kwetsbaarheid | required | titel | Titel van de waarschuwing
+fase=Vroegtijdige waarschuwing van een actief misbruikte kwetsbaarheid | required | product | Welk(e) product(en) betreft het?
+fase=Vroegtijdige waarschuwing van een actief misbruikte kwetsbaarheid | required | producent | Wie is de producent of open-source steward van het product?
+fase=Vroegtijdige waarschuwing van een actief misbruikte kwetsbaarheid | required | lidstaten | In welke EU-lidstaten is het product beschikbaar? items=27
+fase=Vroegtijdige waarschuwing van een ernstig incident dat de beveiliging van het product zelf raakt | optional | voegtijdig | 
+fase=Vroegtijdige waarschuwing van een ernstig incident dat de beveiliging van het product zelf raakt | required | titel_incident | Titel van de waarschuwing
+fase=Vroegtijdige waarschuwing van een ernstig incident dat de beveiliging van het product zelf raakt | required | product_incident | Welk(e) product(en) betreft het?
+fase=Vroegtijdige waarschuwing van een ernstig incident dat de beveiliging van het product zelf raakt | required | producent_incident | Wie is de producent of open-source steward van het product?
+fase=Vroegtijdige waarschuwing van een ernstig incident dat de beveiliging van het product zelf raakt | required | lidstaten_incident | In welke EU-lidstaten is het product beschikbaar? items=27
+fase=Vroegtijdige waarschuwing van een ernstig incident dat de beveiliging van het product zelf raakt | required | onrechtmatig | Wordt het incident vermoedelijk door een onrechtmatige of kwaadwillende handeling veroorzaakt? | Ja / Nee
+fase=Melding over een actief misbruikte kwetsbaarheid | optional | tussentijds_kwetsbaarheid | 
+fase=Melding over een actief misbruikte kwetsbaarheid | required | f2_titel_kwetsbaarheid | Titel van de waarschuwing
+fase=Melding over een actief misbruikte kwetsbaarheid | optional | f2_referentienummer_kwetsbaarheid | Referentienummer
+fase=Melding over een actief misbruikte kwetsbaarheid | optional | cve_nummer | CVE-nummer
+fase=Melding over een actief misbruikte kwetsbaarheid | required | euvd_nummer | EUVD-nummer
+fase=Melding over een actief misbruikte kwetsbaarheid | required | f2_product_kwetsbaarheid | Welk(e) product(en) betreft het?
+fase=Melding over een actief misbruikte kwetsbaarheid | required | f2_producent_kwetsbaarheid | Wie is de producent of open-source steward van het product?
+fase=Melding over een actief misbruikte kwetsbaarheid | required | beschrijving | Beschrijving van de kwetsbaarheid
+fase=Melding over een actief misbruikte kwetsbaarheid | required | f2_lidstaten_kwetsbaarheid | In welke EU-lidstaten is het product beschikbaar? items=27
+fase=Melding over een actief misbruikte kwetsbaarheid | required | maatregelen_kwetsbaarheid_voorkomen | Welke maatregelen zijn getroffen om herhaling in de toekomst te voorkomen?
+fase=Melding over een actief misbruikte kwetsbaarheid | required | maatregelen_voor_eindgebruikers_kwetsbaarheid | Welke maatregelen zijn er voor eindgebruikers beschikbaar?
+fase=Melding over een ernstig incident | optional | tussentijds_incident | 
+fase=Melding over een ernstig incident | required | f2_titel_incident | Titel van de waarschuwing
+fase=Melding over een ernstig incident | optional | f2_referentienummer_incident | Referentienummer
+fase=Melding over een ernstig incident | required | f2_product_incident | Welk(e) product(en) betreft het?
+fase=Melding over een ernstig incident | required | f2_producent_incident | Wie is de producent of open-source steward van het product?
+fase=Melding over een ernstig incident | required | kwetsbaarheid_ontdekt | Wanneer is de kwetsbaarheid ontdekt? format=date-time
+fase=Melding over een ernstig incident | required | beschrijving_incident | Beschrijving van het incident
+fase=Melding over een ernstig incident | required | incident_ontdekt | Wanneer is het incident ontdekt? format=date-time
+fase=Melding over een ernstig incident | required | incident_plaatsgevonden | Wanneer heeft het incident plaatsgevonden? format=date-time
+fase=Melding over een ernstig incident | required | f2_lidstaten_incident | In welke EU-lidstaten is het product beschikbaar? items=27
+fase=Melding over een ernstig incident | required | f2_onrechtmatig | Wordt het incident vermoedelijk door een onrechtmatige of kwaadwillende handeling veroorzaakt? | Ja / Nee
+fase=Melding over een ernstig incident | required | status_incident | Wat is de status van het incident? | Oorzaak onduidelijk, in onderzoek /  Oorzaak duidelijk, niet afgehandeld / Oorzaak duidelijk, afgehandeld
+fase=Melding over een ernstig incident | required | maatregelen_incident_voorkomen | Welke maatregelen zijn getroffen om herhaling in de toekomst te voorkomen?
+fase=Melding over een ernstig incident | required | maatregelen_voor_eindgebruikers | Welke maatregelen zijn er voor eindgebruikers beschikbaar?
+fase=Eindverslag over een actief misbruikte kwetsbaarheid | optional | cve_nummer_eindverslag | CVE-nummer
+fase=Eindverslag over een actief misbruikte kwetsbaarheid | optional | eindverslag_kwetsbaarheid | 
+fase=Eindverslag over een actief misbruikte kwetsbaarheid | optional | f3_referentienummer_kwetsbaarheid | Referentienummer
+fase=Eindverslag over een actief misbruikte kwetsbaarheid | required | tijdstip_patch_eindgebruikers_kwetsbaarheid | Sinds wanneer is er een oplossing (patch) beschikbaar voor eindgebruikers? format=date-time
+fase=Eindverslag over een actief misbruikte kwetsbaarheid | optional | potentiele_gevolgen_kwetsbaarheid | Wat zijn de potentiële gevolgen van de kwetsbaarheid?
+fase=Eindverslag over een actief misbruikte kwetsbaarheid | required | misbruik_kwetsbaarheid | Is bekend of de kwetsbaarheid actief wordt of is misbruikt? | Ja / Nee
+fase=Eindverslag over een actief misbruikte kwetsbaarheid | required | geef_een_gedetailleerde_beschrijving_van_de_oplossing_patch_die | Geef een gedetailleerde beschrijving van de oplossing (patch) die beschikbaar is
+fase=Eindverslag over een ernstig incident | optional | eindverslag | 
+fase=Eindverslag over een ernstig incident | optional | f3_referentienummer_incident | Referentienummer
+fase=Eindverslag over een ernstig incident | required | gevolg_incident | Wat zijn de zichtbare en verwachte gevolgen van het incident?
+fase=Eindverslag over een ernstig incident | required | oorzaak_incident | Wat is de meest waarschijnlijke oorzaak of aanleiding geweest van het incident?
+fase=Eindverslag over een ernstig incident | required | eindverslag_maatregelen_toekomst_incident | Welke maatregelen zijn getroffen om herhaling in de toekomst te voorkomen?
+sector=Beheer van ICT-diensten (B2B) | optional | subsector_beheer_ictdiensten | Selecteer de subsector | Aanbieders van beheerde beveiligingsdiensten / Aanbieders van beheerde diensten
+sector=Digitale aanbieders | optional | subsector_digitale_aanbieders | Selecteer de subsector | Aanbieders van online marktplaatsen / Aanbieders van online zoekmachines / Aanbieders van platforms voor sociale netwerkdiensten
+sector=Digitale Infrastructuur | optional | subsector_digitale_infrastructuur | Selecteer de subsector | Aanbieders van internetknooppunten / DNS-dienstverleners, met uitzondering van exploitanten van root-naamservers / Register voor topleveldomeinnamen Domeinnaamregistratiediensten / Aanbieders van domeinnaamregistratiediensten / Aanbieders van cloudcomputingdiensten / Aanbieders van datacentrumdiensten / Aanbieders van netwerken voor de levering van inhoud / Vertrouwensdienstverleners (niet-gekwalificeerd) / Vertrouwensdienstverleners (gekwalificeerd) / Aanbieders van openbare elektronischecommunicatienetwerken / Aanbieders van openbare elektronischecommunicatiediensten
+sector=Energie | optional | subsector_energie | Selecteer de subsector | Aardgas / Aardolie / Elektriciteit / Stadsverwarming en -koeling / Waterstof
+sector=Overheid | optional | subsector_overheid | Selecteer de subsector | Gemeenten / Ministeries / Provincies / Rijksoverheid / Waterschappen / Overig
+sector=Vervaardiging | optional | subsector_vervaardiging | Selecteer de subsector | Vervaardiging van elektrische apparatuur / Vervaardiging van informaticaproducten en van elektronische en optische producten / Vervaardiging van machines, apparaten en werktuigen, niet elders geclassificeerd / Vervaardiging van medische hulpmiddelen en medische hulpmiddelen voor in-vitrodiagnostiek / Vervaardiging van motorvoertuigen, aanhangers en opleggers / Vervaardiging van andere transportmiddelen
+sector=Vervoer | optional | subsector_vervoer | Selecteer de subsector | Lucht / Spoor / Water / Weg
+alt_sector=Ja | required | andere_sector | Andere sector(en) items=21
+melder_contactpersoon=Nee | optional | markup_03 | 
+melder_contactpersoon=Nee | required | voornaam_contactpersoon | Voornaam
+melder_contactpersoon=Nee | required | achternaam_contactpersoon | Achternaam
+melder_contactpersoon=Nee | optional | functietitel_contactpersoon | Functietitel
+melder_contactpersoon=Nee | required | mailadres_contactpersoon | E-mailadres format=email
+melder_contactpersoon=Nee | required | telefoonnummer_contactpersoon | Telefoonnummer pattern=^(?:\+31|0)(?:\s?|[-\s(]*)[1-9](?:[0-9]{1,2})?(?:[-\s)]*)[0-9]{6,7}$
+melder_contactpersoon=Nee | required | bereikbaarheid_contactpersoon | Bereikbaarheid

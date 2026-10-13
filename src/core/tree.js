@@ -11,10 +11,9 @@ export const END = 'end';
 export const OUTCOME_KEYS = [
   'scope.out.not_pde', 'scope.out.not_on_market', 'scope.out.excluded',
   'role.importer_distributor', 'role.steward',
-  ...['vulnerability', 'incident'].flatMap((t) =>
-    ['reportable', 'potentially_reportable', 'not_reportable', 'no_retroactive_duty']
-      .map((s) => `track.${t}.${s}`)),
-  'caveat.scope_or_role_unsure', 'caveat.pre_application_check', 'caveat.awareness_unsure',
+  ...['reportable', 'potentially_reportable', 'not_reportable', 'no_retroactive_duty'].map((s) => `track.vulnerability.${s}`),
+  ...['reportable', 'potentially_reportable', 'not_reportable'].map((s) => `track.incident.${s}`),
+  'caveat.scope_or_role_unsure', 'caveat.pre_application_check', 'caveat.pre_application_incident', 'caveat.awareness_unsure',
   'routing.nl', 'routing.other_eu', 'routing.non_eu', 'routing.unsure',
   'parallel.cbw', 'parallel.cbw_check', 'parallel.gdpr',
   'action.record_awareness', 'action.inform_users',
@@ -84,10 +83,15 @@ export function derive(f) {
     }
   }
 
+  // ENISA FAQ 13 (citing the Commission FAQ): no retroactive reporting of an actively exploited
+  // vulnerability the manufacturer was already aware of before 11 Sep 2026. There is no such
+  // guidance for severe incidents, so those stay (potentially) reportable.
   if (f.aware_timing === 'before') {
-    for (const t of Object.keys(tracks)) {
-      if (tracks[t] === 'reportable') tracks[t] = 'no_retroactive_duty';
-      else if (tracks[t] === 'potentially_reportable') caveats.add('caveat.pre_application_check');
+    if (tracks.vulnerability === 'reportable') tracks.vulnerability = 'no_retroactive_duty';
+    else if (tracks.vulnerability === 'potentially_reportable') caveats.add('caveat.pre_application_check');
+    if (TRIGGERED.has(tracks.incident)) {
+      tracks.incident = 'potentially_reportable';
+      caveats.add('caveat.pre_application_incident');
     }
   }
 

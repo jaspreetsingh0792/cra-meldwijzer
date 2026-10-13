@@ -9,7 +9,7 @@
 # (falls back to opt.<option>).
 
 schema: 1
-version: 0.1.0
+version: 0.2.0
 last_reviewed: 2026-10-13
 start: product
 
@@ -98,7 +98,7 @@ nodes:
       unsure: { set: { aware_timing: unsure }, next: cbw }
 
   cbw:
-    sources: [cbw]
+    sources: [cbw, ncsc_cbw_meldplicht]
     options:
       yes:    { set: { cbw: 'yes' }, next: gdpr }
       no:     { set: { cbw: 'no' }, next: gdpr }
@@ -125,16 +125,16 @@ outcomes:
   track.incident.reportable:               { sources: [cra_art14_3_5] }
   track.incident.potentially_reportable:   { sources: [cra_art14_3_5, interpretation] }
   track.incident.not_reportable:           { sources: [cra_art14_3_5, cra_art15] }
-  track.incident.no_retroactive_duty:      { sources: [enisa_srp_faq, cra_art71_2] }
   caveat.scope_or_role_unsure:             { sources: [interpretation] }
   caveat.pre_application_check:            { sources: [enisa_srp_faq, interpretation] }
+  caveat.pre_application_incident:         { sources: [enisa_srp_faq, cra_art14_3_5, interpretation] }
   caveat.awareness_unsure:                 { sources: [interpretation] }
   routing.nl:                              { sources: [ncsc_melden, ncsc_form, cra_art14_7] }
   routing.other_eu:                        { sources: [cra_art14_7, ec_cra_reporting] }
   routing.non_eu:                          { sources: [cra_art14_7] }
   routing.unsure:                          { sources: [cra_art14_7] }
-  parallel.cbw:                            { sources: [cbw] }
-  parallel.cbw_check:                      { sources: [cbw] }
+  parallel.cbw:                            { sources: [cbw, ncsc_cbw_meldplicht] }
+  parallel.cbw_check:                      { sources: [cbw, ncsc_cbw_meldplicht] }
   parallel.gdpr:                           { sources: [gdpr_art33_34] }
   action.record_awareness:                 { sources: [ec_cra_reporting, interpretation] }
   action.inform_users:                     { sources: [cra_art14_8] }

@@ -3,6 +3,24 @@
 Content changes that affect what users are told: decision logic, deadlines, reporting routes,
 runbook and templates. Newest first. Dates are when the change was published.
 
+## 2026-10-13: rules version 0.2.0 (second external review)
+
+- **Severe incidents and awareness before 11 September 2026:** the tool said there was no
+  retroactive duty. ENISA's FAQ (question 13) only covers actively exploited vulnerabilities, so
+  incidents now stay "potentially reportable" with a caveat, and their deadlines keep running in the
+  case view. Vulnerabilities are unchanged; ENISA FAQ question 13 is now verified (open point Q5
+  resolved).
+- **Report templates now match the NCSC form field by field**, read from the form's own definition:
+  title, manufacturer or steward, EUVD number (required by the form), three incident timestamps,
+  incident status, and where Article 14 content without its own form field should go. The form
+  has no character limits.
+- **Cyberbeveiligingswet:** sources completed (NCSC reporting page, government announcement);
+  runbook chapters 1 and 6 now give the Cbw route (central reporting point on MijnNCSC), deadlines,
+  sector thresholds and exceptions.
+- Decision-tree help text clarifies dual roles (steward and manufacturer, white-label, components)
+  and that products no longer sold still count.
+- The source watcher also watches the NCSC form's field definitions and the Cbw pages.
+
 ## 2026-10-13: EUR-Lex corrigenda checked
 
 - Checked all corrigenda to Regulation (EU) 2024/2847 against the official texts:
