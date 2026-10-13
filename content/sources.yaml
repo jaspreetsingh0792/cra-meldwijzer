@@ -171,9 +171,9 @@ sources:
     binding: false
     title: ENISA - SRP Frequently Asked Questions
     url: https://www.enisa.europa.eu/topics/product-security/single-reporting-platform-srp/frequently-asked-questions
-    status: todo
-    last_verified: null
-    notes: Claims used here (no retroactive reporting before 11 Sep 2026; 72h counter behaviour; outage handling) come from secondary summaries. Verify against the FAQ text.
+    status: verified
+    last_verified: 2026-10-13
+    notes: "Q13: no retroactive reporting of an actively exploited vulnerability the manufacturer was already aware of before 11 Sep 2026 (citing Commission FAQs on CRA implementation, 5.1 and 5.3); covers vulnerabilities only, not severe incidents. Q12: Art. 14 applies to products placed on the market before 11 Dec 2027. Known issue: SRP 72h counter runs 48h from the early warning submission."
 
   # --- Netherlands ------------------------------------------------------------
   ncsc_cra:
@@ -201,11 +201,20 @@ sources:
   cbw:
     type: national_law
     binding: true
-    title: Cyberbeveiligingswet (Dutch NIS2 implementation), in force 15 Aug 2026
-    url: null
-    status: todo
-    last_verified: null
-    notes: Add official wetten.overheid.nl link and NCSC Cbw reporting page.
+    title: Cyberbeveiligingswet (Dutch NIS2 implementation)
+    pinpoint: in force since 15 August 2026 (government announcement)
+    url: https://www.rijksoverheid.nl/actueel/nieuws/2026/07/07/cyberbeveiligingswet-en-wet-weerbaarheid-kritieke-entiteiten-vanaf-15-augustus-2026-van-kracht
+    status: verified
+    last_verified: 2026-10-13
+    notes: Official consolidated text on wetten.overheid.nl not found yet; replace the URL when it is available.
+  ncsc_cbw_meldplicht:
+    type: ncsc
+    binding: false
+    title: NCSC - Meld incidenten onder de Cyberbeveiligingswet (meldplicht)
+    url: https://www.ncsc.nl/cyberbeveiligingswet-nis2/meldplicht
+    status: verified
+    last_verified: 2026-10-13
+    notes: "Significant incidents; sector thresholds in ministerial regulations; central reporting point MijnNCSC reaches sector CSIRT and supervisor; 24h early warning, 72h notification, final report within 1 month of the notification (progress report if ongoing); exceptions e.g. DORA, trust services."
 
   # --- Our own reading ----------------------------------------------------------
   interpretation:

@@ -95,6 +95,13 @@ test('awareness before 11 Sep 2026: no retroactive duty; unfinished assessments 
   assert.ok(p.keys.includes('caveat.pre_application_check'));
 });
 
+test('awareness before 11 Sep 2026 never removes the duty for severe incidents (FAQ covers vulnerabilities only)', () => {
+  const o = run({ awareness: 'before', incident_occurred: 'yes', incident_a: 'yes', incident_b: 'no' });
+  assert.equal(o.tracks.incident, 'potentially_reportable');
+  assert.ok(o.keys.includes('caveat.pre_application_incident'));
+  assert.ok(o.keys.some((k) => k.startsWith('routing.')), 'routing is still shown');
+});
+
 test('unsure awareness timing keeps the duty and adds a caveat', () => {
   const o = run({ awareness: 'unsure', vuln_contained: 'yes', vuln_exploited: 'yes' });
   assert.equal(o.tracks.vulnerability, 'reportable');

@@ -8,42 +8,42 @@
 
 ## Report content
 
-**Title** · Recommended
+**Title** · Recommended  
 _Product name and the issue, in plain words._
 
 [fill in]
 
-**Affected products and how to check** · Required by Article 14
+**Affected products and how to check** · Required by Article 14  
 _Products and versions, and how users can find out whether they are affected._
 
 [fill in]
 
-**What the risk is** · Recommended
+**What the risk is** · Recommended  
 _In plain language. No step-by-step attack details before a fix is available._
 
 [fill in]
 
-**What to do now** · Required where applicable
+**What to do now** · Required where applicable  
 _Workaround, configuration change, disconnecting, monitoring._
 
 [fill in]
 
-**Update** · Required where applicable
+**Update** · Required where applicable  
 _Whether an update is available, where to get it, and how to verify it._
 
 [fill in]
 
-**Vulnerability identifiers** · Recommended
+**Vulnerability identifiers** · Recommended  
 _CVE and EUVD identifiers, if assigned._
 
 [fill in]
 
-**Questions** · Recommended
+**Questions** · Recommended  
 _How users can reach you._
 
 [fill in]
 
-**Next update of this advisory** · Recommended
+**Next update of this advisory** · Recommended  
 _When you will inform users again._
 
 [fill in]

@@ -6,17 +6,17 @@
 |---|---|
 | NCSC form, "Welk soort melding maak je?" | Vroegtijdige waarschuwing - van een ernstig incident |
 | Deadline | Without undue delay, and in any case within 24 hours of becoming aware. |
-| Sources | [Regulation (EU) 2024/2847 (CRA), Art. 14(3)-(5) (severe incidents; severity test in 14(5))](https://eur-lex.europa.eu/eli/reg/2024/2847/oj); [NCSC - CRA melden](https://www.ncsc.nl/wet-en-regelgeving/cyber-resilience-act-cra/melden) |
+| Sources | [Regulation (EU) 2024/2847 (CRA), Art. 14(3)-(5) (severe incidents; severity test in 14(5))](https://eur-lex.europa.eu/eli/reg/2024/2847/oj); [NCSC - CRA-meldformulier](https://www.ncsc.nl/cra-meldformulier); [NCSC - CRA melden](https://www.ncsc.nl/wet-en-regelgeving/cyber-resilience-act-cra/melden) |
 
 ## Case
 
-**Internal case number** · Recommended
+**Internal case number** · Recommended  
 _Your own reference. Not sent to the NCSC unless useful._
 
 [fill in]
 
-**Became aware at** · Recommended
-_Date, time and time zone, plus why at that moment. Keep this in your case file even though the form may not ask for it._
+**Became aware at** · Recommended  
+_Date, time and time zone, plus why at that moment. The CRA form does not ask for it, but your deadlines run from it: keep it in your case file._
 
 [fill in]
 
@@ -24,38 +24,45 @@ _Date, time and time zone, plus why at that moment. Keep this in your case file 
 
 _Prepare this before an incident; it is the same for every report._
 
-**Organisation name** · Required by the NCSC form
+**Organisation name** · Required by the NCSC form  
+NCSC form field: "Organisatienaam"  
 _The legal entity that is the manufacturer of this product._
 
 [fill in]
 
-**KVK number** · Required by the NCSC form
-_Chamber of Commerce registration number._
+**KVK number** · Required by the NCSC form  
+NCSC form field: "KVK-nummer"  
+_Chamber of Commerce number: exactly 8 digits (the form checks this)._
 
 [fill in]
 
-**Street and house number** · Required by the NCSC form
+**Street and house number** · Required by the NCSC form  
+NCSC form field: "Straatnaam + huisnummer"  
 _Of the main establishment._
 
 [fill in]
 
-**Postcode** · Required by the NCSC form
+**Postcode** · Required by the NCSC form  
+NCSC form field: "Postcode"  
 _Of the main establishment._
 
 [fill in]
 
-**City** · Required by the NCSC form
+**City** · Required by the NCSC form  
+NCSC form field: "Plaatsnaam"  
 _Of the main establishment._
 
 [fill in]
 
-**Sector** · Required by the NCSC form
+**Sector** · Required by the NCSC form  
+NCSC form field: "Sector"  
 _Choose from the form's list. Manufacturers often pick "Vervaardiging" or "Digitale aanbieders"; choose what fits, or "Anders"._
 
 [fill in]
 
-**Also active in another sector?** · Required by the NCSC form
-_Yes or no._
+**Also active in another sector?** · Required by the NCSC form  
+NCSC form field: "Valt de organisatie ook onder een andere sector?"  
+_Yes or no; if yes, the form asks which._
 
 [fill in]
 
@@ -63,60 +70,83 @@ _Yes or no._
 
 _Prepare this before an incident; it is the same for every report._
 
-**First name** · Required by the NCSC form
+**First name** · Required by the NCSC form  
+NCSC form field: "Voornaam"
 
 [fill in]
 
-**Last name** · Required by the NCSC form
+**Last name** · Required by the NCSC form  
+NCSC form field: "Achternaam"
 
 [fill in]
 
-**Job title** · Required by the NCSC form
+**Job title** · Required by the NCSC form  
+NCSC form field: "Functie melder"
 
 [fill in]
 
-**Email address** · Required by the NCSC form
+**Email address** · Required by the NCSC form  
+NCSC form field: "E-mailadres melder"  
 _Use an address that is monitored during the incident, including weekends._
 
 [fill in]
 
-**Phone number** · Required by the NCSC form
+**Phone number** · Required by the NCSC form  
+NCSC form field: "Telefoonnummer"  
+_The form only accepts Dutch numbers (starting with 0 or +31)._
 
 [fill in]
 
-**Availability** · Recommended
+**Availability** · Recommended  
+NCSC form field: "Bereikbaarheid"  
 _Days and times you can be reached by phone._
 
 [fill in]
 
-**Is the reporter also the contact person for this case?** · Required by the NCSC form
-_If not, name the contact person and how to reach them._
+**Is the reporter also the contact person for this case?** · Required by the NCSC form  
+NCSC form field: "Is de melder ook contactpersoon voor het incident?"  
+_Yes or no._
+
+[fill in]
+
+**Contact person (if not the reporter)** · Recommended  
+_Required by the form if the reporter is not the contact person: first name, last name, job title, email, phone (Dutch number) and availability._
 
 [fill in]
 
 ## Report content
 
-**Affected products and versions** · Required by Article 14
+**Title** · Required by the NCSC form  
+NCSC form field: "Titel van de waarschuwing"  
+_As short as possible, for example: "Actively exploited vulnerability in HR-200 router firmware". The early warning has no description field, so the title carries the message._
+
+[fill in]
+
+**Affected products and versions** · Required by Article 14  
+NCSC form field: "Welk(e) product(en) betreft het?"  
 _Every affected product and version. Include older versions still in use._
 
 [fill in]
 
-**What is happening** · Required by Article 14
-_That there is a severe incident affecting the security of the product, and what you know so far. Short is fine: the notification follows within 72 hours._
+**Manufacturer or open-source steward** · Required by the NCSC form  
+NCSC form field: "Wie is de producent of open-source steward van het product?"  
+_The legal entity that is the manufacturer (or steward) of the product._
 
 [fill in]
 
-**Suspected unlawful or malicious acts?** · Required by Article 14
-_Yes, no or unknown, with a short explanation._
+**Member States where the product is available** · Required where applicable  
+NCSC form field: "In welke EU-lidstaten is het product beschikbaar?"  
+_Tick every EU Member State where you know the product has been made available. The form requires at least one._
 
 [fill in]
 
-**Member States where the product is available** · Required where applicable
-_All EU Member States where you know the product has been made available._
+**Suspected unlawful or malicious acts?** · Required by Article 14  
+NCSC form field: "Wordt het incident vermoedelijk door een onrechtmatige of kwaadwillende handeling veroorzaakt?"  
+_Yes or no on the form. Keep a short explanation in your case file._
 
 [fill in]
 
-**Sensitivity of the information** · Recommended
-_Whether details could help attackers (for example before a fix exists), and why. The CSIRT takes this into account when sharing the report._
+**Sensitivity of the information** · Recommended  
+_Whether details could help attackers (for example before a fix exists), and why. Article 14 asks for this where applicable; the form has no separate field, so state it in the description and check whether MijnNCSC lets you mark the report as sensitive._
 
 [fill in]

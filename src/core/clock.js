@@ -185,8 +185,11 @@ export function computeTrack(track, { now = Date.now(), dueSoonMs = DEFAULT_DUE_
   const now_ = toMs(now);
 
   const flags = [];
-  const preApplication = awareAt < APPLICATION_START;
-  if (preApplication) flags.push('aware_before_application');
+  // Only for vulnerabilities is there guidance (ENISA FAQ 13) that awareness before the start
+  // date means no retroactive duty. Incident deadlines keep running; the flag still warns.
+  const awareBefore = awareAt < APPLICATION_START;
+  const preApplication = awareBefore && kind === 'vulnerability';
+  if (awareBefore) flags.push('aware_before_application');
   const ctx = { now: now_, dueSoonMs, preApplication, awareAt };
 
   // Both early deadlines are anchored to awareness. A late early warning never moves the 72h deadline.

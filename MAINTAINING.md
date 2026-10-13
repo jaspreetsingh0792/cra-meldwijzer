@@ -15,6 +15,8 @@ The project stays honest through three mechanisms:
 | Source | How |
 |---|---|
 | NCSC CRA pages and reporting form | Page text, weekly |
+| NCSC CRA reporting form: fields per report type | Form definition (JSON schema in the page), weekly |
+| NCSC Cyberbeveiligingswet reporting page, government announcement | Page text, weekly |
 | ENISA Single Reporting Platform and FAQ | Page text, weekly |
 | European Commission CRA reporting page | Page text, weekly |
 | Regulation (EU) 2024/2847 | EUR-Lex data service (SPARQL): new corrigenda, amending acts, and acts based on or implementing it |

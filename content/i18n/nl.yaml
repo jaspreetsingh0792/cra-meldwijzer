@@ -18,9 +18,9 @@ q:
 
 h:
   product: Losse SaaS valt in principe buiten de CRA. Een cloudbackend kan er wel onder vallen als het gegevensverwerking op afstand is zonder welke het product een van zijn functies niet kan uitvoeren. Dat iets in de cloud draait of als abonnement wordt verkocht, beslist dit niet.
-  market: Artikel 69(3) laat de meldplicht van artikel 14 gelden voor alle producten binnen de reikwijdte die vóór 11 december 2027 in de handel zijn gebracht, ook als ze niet zijn gewijzigd. De leeftijd van het product doet er niet toe.
+  market: "Artikel 69(3) laat de meldplicht van artikel 14 gelden voor alle producten binnen de reikwijdte die vóór 11 december 2027 in de handel zijn gebracht, ook als ze niet zijn gewijzigd. De leeftijd van het product doet er niet toe, en ook niet of je het nog verkoopt: kies \"ja\" als het ooit op de EU-markt is aangeboden."
   exclusion: Artikel 2 sluit onder meer producten uit die onder de EU-regels voor medische hulpmiddelen, in-vitrodiagnostiek, motorvoertuigen, burgerluchtvaart en scheepsuitrusting vallen, en producten die uitsluitend voor nationale veiligheid of defensie zijn ontwikkeld. Deze uitzonderingen hebben precieze grenzen; een andere sectorwet sluit een product niet automatisch uit. Twijfel je, kies dan "Weet ik niet zeker".
-  role: Bepaal dit per product en per juridische entiteit. Contractlabels zoals "OEM", "reseller" of "leverancier" zijn niet de juridische toets.
+  role: "Beantwoord dit voor dit product en deze gebeurtenis, per juridische entiteit. Verkoop je het product van een ander onder je eigen naam of merk, of na een ingrijpende wijziging, dan ben je de fabrikant. Verkoop je een component los, dan ben je fabrikant van die component. Ben je steward van een opensourceproject, dan verandert dat niets aan je rol voor een product dat je commercieel verkoopt: beantwoord de vragen voor dat product als fabrikant. Contractlabels zoals \"OEM\", \"reseller\" of \"leverancier\" zijn niet de juridische toets."
   establishment: "Artikel 14(7): de lidstaat waar beslissingen over de cyberbeveiliging van je producten overwegend worden genomen; als dat niet vast te stellen is, waar de fabrikant de meeste werknemers in de EU heeft. Pas dit toe op de fabrikant van dit product, niet automatisch op het statutaire hoofdkantoor van de groep."
   vuln_contained: Een advisory of KEV-vermelding voor een component is een reden om te controleren, geen conclusie. Stel eerst vast dat de kwetsbare code echt in de betrokken productversies zit.
   vuln_exploited: "Artikel 3(42). Op zichzelf niet genoeg: een hoge CVSS-score, een openbare proof of concept, een melding van een onderzoeker of bugbounty, of een bevinding uit je eigen tests. Vaak wel relevant: misbruik in je eigen telemetrie of logs, een getroffen klant, een melding van een CSIRT of een KEV-vermelding, telkens beoordeeld op relevantie voor jouw product."
@@ -65,15 +65,15 @@ o:
       reportable: "Op basis van je antwoorden lijkt dit een meldplichtige actief uitgebuite kwetsbaarheid. Vroegtijdige waarschuwing binnen 24 uur na het op de hoogte raken; melding binnen 72 uur na het op de hoogte raken; eindrapport uiterlijk 14 dagen nadat een corrigerende of mitigerende maatregel beschikbaar is."
       potentially_reportable: "Actief uitgebuite kwetsbaarheid: mogelijk meldplichtig, dringende beoordeling nodig. Houd het vroegst denkbare moment van op de hoogte raken aan, schaal op naar je incident- en juridische verantwoordelijken en overweeg het CSIRT om advies te vragen. Wacht niet op een volledige forensische conclusie."
       not_reportable: Op basis van je antwoorden is er geen actief uitgebuite kwetsbaarheid die je onder artikel 14 moet melden. Leg je redenering vast, behandel de kwetsbaarheid via je normale proces en beoordeel opnieuw als er bewijs van misbruik opduikt. Vrijwillig melden (artikel 15) blijft mogelijk.
-      no_retroactive_duty: Je werd vóór 11 september 2026 op de hoogte van het misbruik. Volgens de FAQ van ENISA geldt dan geen meldplicht met terugwerkende kracht. Dit is een richtsnoer, niet de tekst van de verordening; bewaar het bewijs voor je datum van op de hoogte raken.
+      no_retroactive_duty: "Je werd vóór 11 september 2026 op de hoogte van het misbruik. Volgens de FAQ van ENISA (vraag 13, met verwijzing naar de FAQ van de Commissie over de uitvoering van de CRA) geldt dan geen meldplicht met terugwerkende kracht. Dit is een richtsnoer, niet de tekst van de verordening. Het geldt niet meer als je na die datum op de hoogte raakt van nieuw misbruik. Bewaar het bewijs voor je datum van op de hoogte raken."
     incident:
       reportable: "Op basis van je antwoorden lijkt dit een meldplichtig ernstig incident. Vroegtijdige waarschuwing binnen 24 uur na het op de hoogte raken, inclusief of je onrechtmatige of kwaadwillige handelingen vermoedt; melding binnen 72 uur na het op de hoogte raken; eindrapport binnen één maand na het indienen van de melding."
       potentially_reportable: "Ernstig incident: mogelijk meldplichtig, dringende beoordeling nodig. Houd het vroegst denkbare moment van op de hoogte raken aan, schaal op naar je incident- en juridische verantwoordelijken en overweeg het CSIRT om advies te vragen. Wacht niet op een volledige forensische conclusie."
       not_reportable: Op basis van je antwoorden is er geen ernstig incident dat je onder artikel 14 moet melden. Leg je redenering vast en beoordeel opnieuw als er nieuwe feiten zijn. Vrijwillig melden (artikel 15) blijft mogelijk.
-      no_retroactive_duty: Je werd vóór 11 september 2026 op de hoogte van het incident. Volgens de FAQ van ENISA geldt dan geen meldplicht met terugwerkende kracht. Dit is een richtsnoer, niet de tekst van de verordening; bewaar het bewijs voor je datum van op de hoogte raken.
   caveat:
     scope_or_role_unsure: De reikwijdte of je rol is onzeker, dus de uitkomst hierboven is hooguit "mogelijk meldplichtig". Zoek dit snel uit; de termijnen lopen gewoon door.
     pre_application_check: Je werd vóór 11 september 2026 op de hoogte, maar de beoordeling is niet afgerond. Controleer of nieuwe feiten of nieuw misbruik na die datum een nieuw moment van op de hoogte raken opleveren.
+    pre_application_incident: Je werd vóór 11 september 2026 op de hoogte van het incident. De FAQ van ENISA over het ontbreken van een meldplicht met terugwerkende kracht gaat alleen over actief uitgebuite kwetsbaarheden; voor ernstige incidenten bestaat zo'n richtsnoer niet. Behandel het incident als mogelijk meldplichtig en vraag het NCSC of je juridisch adviseur.
     awareness_unsure: Je weet niet zeker wanneer je op de hoogte raakte. Gebruik het vroegst denkbare moment voor je termijnen.
   routing:
     nl: Meld bij het NCSC via MijnNCSC (aanbevolen; inloggen met eHerkenning of SSOnRijk) of via het CRA-meldformulier (geen account nodig; bewaar het referentienummer voor vervolgmeldingen). Het NCSC stuurt je melding door naar ENISA en naar de CSIRT's van andere lidstaten. Meld dezelfde zaak niet nog een keer bij ENISA.
@@ -81,7 +81,7 @@ o:
     non_eu: "Zonder hoofdvestiging in de EU bepaalt artikel 14(7) de lidstaat in deze volgorde: waar je gemachtigde voor de meeste producten gevestigd is; anders de importeur die de meeste van je producten in de handel brengt; anders de distributeur die er de meeste aanbiedt; anders de lidstaat met de meeste gebruikers."
     unsure: "Bepaal eerst je hoofdvestiging (artikel 14(7)): waar beslissingen over de cyberbeveiliging van de producten overwegend worden genomen; anders waar de fabrikant de meeste werknemers in de EU heeft. Laat dit je vroegtijdige waarschuwing niet vertragen."
   parallel:
-    cbw: Beoordeel apart of dit een significant incident is onder de Cyberbeveiligingswet. Die wet heeft een eigen toets, eigen termijnen en een eigen melding; een CRA-melding vervangt die niet.
+    cbw: "Beoordeel apart of dit een significant incident is onder de Cyberbeveiligingswet (per sector gelden drempelwaarden). Die wet heeft een eigen toets en een eigen melding, via het centrale meldpunt op MijnNCSC, waarmee je je sectorale CSIRT en de toezichthouder bereikt: vroegtijdige waarschuwing binnen 24 uur, melding binnen 72 uur, eindverslag binnen één maand na de melding. Een CRA-melding vervangt die niet. Sectorwetten zoals DORA kunnen een eigen route hebben."
     cbw_check: Controleer of je organisatie onder de Cyberbeveiligingswet valt. Zo ja, beoordeel deze gebeurtenis apart.
     gdpr: Beoordeel apart of dit een datalek is onder de AVG. De verwerkingsverantwoordelijke meldt dit binnen 72 uur na het op de hoogte raken bij de Autoriteit Persoonsgegevens, tenzij het waarschijnlijk geen risico voor personen oplevert.
   action:
@@ -98,6 +98,7 @@ t:
     not_a_report: Dit is geen melding aan de autoriteiten. Het is de informatie die je gebruikers volgens artikel 14(8) moet geven.
     disclaimer: Sjabloon van CRA Meldwijzer. Geen juridisch advies; niet juridisch getoetst. Controleer het actuele NCSC-formulier voordat je indient.
     advisory_title: Beveiligingsadvies voor gebruikers
+    ncsc_field: Veld op het NCSC-formulier
   need:
     legal: Verplicht volgens artikel 14
     where_applicable: Verplicht waar van toepassing
@@ -137,42 +138,50 @@ t:
         deadline: Binnen één maand na het indienen van de melding over het incident.
   field:
     case_id: { label: Intern zaaknummer, hint: "Je eigen referentie. Niet naar het NCSC sturen, tenzij het helpt." }
-    aware_at: { label: Op de hoogte geraakt op, hint: "Datum, tijd en tijdzone, plus waarom op dat moment. Bewaar dit in je zaakdossier, ook als het formulier er niet om vraagt." }
+    aware_at: { label: Op de hoogte geraakt op, hint: "Datum, tijd en tijdzone, plus waarom op dat moment. Het CRA-formulier vraagt er niet om, maar je termijnen lopen vanaf dit moment: bewaar het in je zaakdossier." }
     previous_reference: { label: NCSC-referentie van de eerdere melding, hint: "Uit MijnNCSC, of het referentienummer dat je per e-mail kreeg bij het CRA-meldformulier. Koppelt deze melding aan dezelfde zaak." }
     org_name: { label: Organisatienaam, hint: De juridische entiteit die fabrikant is van dit product. }
-    kvk: { label: KVK-nummer, hint: Inschrijvingsnummer bij de Kamer van Koophandel. }
+    kvk: { label: KVK-nummer, hint: "Precies 8 cijfers (het formulier controleert dit)." }
     hq_street: { label: Straatnaam en huisnummer, hint: Van de hoofdvestiging. }
     hq_postcode: { label: Postcode, hint: Van de hoofdvestiging. }
     hq_city: { label: Plaatsnaam, hint: Van de hoofdvestiging. }
     sector: { label: Sector, hint: "Kies uit de lijst op het formulier. Fabrikanten kiezen vaak \"Vervaardiging\" of \"Digitale aanbieders\"; kies wat past, of \"Anders\"." }
-    other_sector: { label: Ook actief in een andere sector?, hint: Ja of nee. }
+    other_sector: { label: Ook actief in een andere sector?, hint: "Ja of nee; bij ja vraagt het formulier welke." }
     first_name: { label: Voornaam, hint: "" }
     last_name: { label: Achternaam, hint: "" }
     job_title: { label: Functie, hint: "" }
     email: { label: E-mailadres, hint: "Gebruik een adres dat tijdens het incident wordt gelezen, ook in het weekend." }
-    phone: { label: Telefoonnummer, hint: "" }
+    phone: { label: Telefoonnummer, hint: "Het formulier accepteert alleen Nederlandse nummers (beginnend met 0 of +31)." }
     availability: { label: Bereikbaarheid, hint: Dagen en tijden waarop je telefonisch bereikbaar bent. }
-    reporter_is_contact: { label: Is de melder ook contactpersoon voor deze zaak?, hint: "Zo niet, noem de contactpersoon en hoe die bereikbaar is." }
-    products: { label: Getroffen producten en versies, hint: Elk getroffen product en elke versie. Vergeet oudere versies die nog in gebruik zijn niet. }
-    summary_vulnerability: { label: Wat er aan de hand is, hint: "Dat er een actief uitgebuite kwetsbaarheid in het product zit, en wat je tot nu toe weet. Kort is prima: de melding volgt binnen 72 uur." }
-    summary_incident: { label: Wat er aan de hand is, hint: "Dat er een ernstig incident is dat de beveiliging van het product raakt, en wat je tot nu toe weet. Kort is prima: de melding volgt binnen 72 uur." }
-    suspected_malicious: { label: Vermoeden van onrechtmatige of kwaadwillige handelingen?, hint: "Ja, nee of onbekend, met een korte toelichting." }
-    member_states: { label: Lidstaten waar het product beschikbaar is, hint: Alle EU-lidstaten waarvan je weet dat het product daar is aangeboden. }
-    sensitivity: { label: Gevoeligheid van de informatie, hint: "Of details aanvallers kunnen helpen (bijvoorbeeld zolang er geen fix is), en waarom. Het CSIRT houdt hier rekening mee bij het delen van de melding." }
+    reporter_is_contact: { label: Is de melder ook contactpersoon voor deze zaak?, hint: "Ja of nee." }
+    contact_person: { label: Contactpersoon (als dat niet de melder is), hint: "Verplicht op het formulier als de melder niet de contactpersoon is: voornaam, achternaam, functietitel, e-mailadres, telefoonnummer (Nederlands) en bereikbaarheid." }
+    report_title: { label: Titel, hint: "Zo kort mogelijk, bijvoorbeeld: \"Actief misbruikte kwetsbaarheid in firmware HR-200-router\". De vroegtijdige waarschuwing heeft geen beschrijvingsveld, dus de titel draagt de boodschap." }
+    products: { label: Getroffen producten en versies, hint: "Elk getroffen product en elke versie. Vergeet oudere versies die nog in gebruik zijn niet." }
+    manufacturer_name: { label: Fabrikant of opensourcebeheerder, hint: De juridische entiteit die fabrikant (of steward) van het product is. }
+    suspected_malicious: { label: Vermoeden van onrechtmatige of kwaadwillige handelingen?, hint: "Ja of nee op het formulier. Bewaar een korte toelichting in je zaakdossier." }
+    member_states: { label: Lidstaten waar het product beschikbaar is, hint: "Vink elke EU-lidstaat aan waarvan je weet dat het product daar is aangeboden. Het formulier vereist er minstens één." }
+    sensitivity: { label: Gevoeligheid van de informatie, hint: "Of details aanvallers kunnen helpen (bijvoorbeeld zolang er geen fix is), en waarom. Artikel 14 vraagt hierom waar van toepassing; het formulier heeft geen apart veld, dus vermeld het in de beschrijving en kijk of je de melding in MijnNCSC als gevoelig kunt markeren." }
+    cve_id: { label: CVE-nummer, hint: Als het is toegekend. }
+    euvd_id: { label: EUVD-nummer, hint: "Kenmerk in de European Vulnerability Database. Het formulier maakt dit verplicht. Bestaat het nog niet, vermeld dat in het veld en overleg met het NCSC." }
     product_information: { label: Algemene informatie over het product, hint: "Wat het product is, welke versies geraakt zijn, hoe het wordt gebruikt." }
     exploit_nature: { label: Algemene aard van het misbruik en van de kwetsbaarheid, hint: "Soort kwetsbaarheid, hoe die wordt misbruikt, wat een aanvaller ermee kan. Geen stappenplan." }
-    measures_taken: { label: Genomen corrigerende of mitigerende maatregelen, hint: "Wat je tot nu toe hebt gedaan: fix in de maak, workaround, blokkeren, monitoren." }
+    measures_taken: { label: Genomen corrigerende of mitigerende maatregelen, hint: "Het formulier vraagt naar het voorkomen van herhaling. Artikel 14 vraagt naar de al genomen corrigerende of mitigerende maatregelen: beschrijf hier beide." }
     user_measures: { label: Maatregelen die gebruikers kunnen nemen, hint: "Wat gebruikers nu moeten doen: updaten, workaround, configuratie aanpassen, loskoppelen." }
     vulnerability_ids: { label: Kenmerken van de kwetsbaarheid, hint: "CVE- en EUVD-nummers, als die zijn toegekend." }
-    incident_nature: { label: Aard van het incident, hint: "Wat er gebeurde, welke systemen geraakt zijn, hoe het de beveiliging van het product raakt." }
-    initial_assessment: { label: Eerste beoordeling, hint: "Ernst, omvang en waarschijnlijke impact voor zover bekend, en hoe zeker je bent." }
-    vulnerability_description: { label: Beschrijving van de kwetsbaarheid, hint: Inclusief ernst en impact. }
-    malicious_actor: { label: Informatie over de kwaadwillende actor, hint: Alleen waar beschikbaar. Wie het misbruikte en hoe je dat weet. }
+    incident_discovered_at: { label: "Ontdekt op (formulier vraagt \"wanneer is de kwetsbaarheid ontdekt\")", hint: "Bij de melding over een incident gaat de vraag op het formulier over de kwetsbaarheid, maar de toelichting vraagt om datum en tijd van de ontdekking van het incident, in CET. Vul het ontdekmoment in; vermeld het als er geen kwetsbaarheid bij betrokken is." }
+    incident_nature: { label: Aard van het incident, hint: "Wat er gebeurde, welke systemen geraakt zijn, hoe het de beveiliging van het product raakt. Hoort in het beschrijvingsveld van het formulier." }
+    initial_assessment: { label: Eerste beoordeling, hint: "Ernst, omvang en waarschijnlijke impact voor zover bekend, en hoe zeker je bent. Verplicht volgens artikel 14; het formulier heeft geen apart veld, dus voeg het toe aan de beschrijving van het incident." }
+    incident_detected_at: { label: Incident ontdekt op, hint: "Datum en tijd, CET (Nederlandse tijd)." }
+    incident_occurred_at: { label: Incident vond plaats op, hint: "Datum en tijd, CET (Nederlandse tijd). Beste schatting als het niet precies bekend is." }
+    incident_status: { label: Status van het incident, hint: "Het formulier biedt: oorzaak onduidelijk, in onderzoek / oorzaak duidelijk, niet afgehandeld / oorzaak duidelijk, afgehandeld." }
+    vulnerability_description: { label: Beschrijving van de kwetsbaarheid, hint: "Inclusief ernst en impact (artikel 14). Het veld op het formulier vraagt naar potentiële gevolgen: geef daar de volledige beschrijving." }
+    exploitation_known: { label: Is misbruik bekend?, hint: "Ja of nee op het formulier." }
+    malicious_actor: { label: Informatie over de kwaadwillende actor, hint: "Alleen waar beschikbaar (artikel 14). Het formulier heeft geen apart veld: voeg het toe aan de beschrijving." }
     security_update: { label: Beveiligingsupdate of andere corrigerende maatregelen, hint: "Welke update of maatregel beschikbaar is, sinds wanneer, en hoe gebruikers die krijgen." }
-    measure_available_at: { label: Maatregel beschikbaar sinds, hint: Datum en tijd waarop de corrigerende of mitigerende maatregel beschikbaar kwam. Daarmee begon de termijn van 14 dagen. }
-    incident_description: { label: Gedetailleerde beschrijving van het incident, hint: Inclusief ernst en impact. }
+    measure_available_at: { label: Maatregel beschikbaar sinds, hint: "Datum en tijd waarop de corrigerende of mitigerende maatregel beschikbaar kwam. Daarmee begon de termijn van 14 dagen." }
+    incident_description: { label: Gedetailleerde beschrijving van het incident, hint: "Inclusief ernst en impact. Het formulier vraagt naar de zichtbare en verwachte gevolgen: geef daar de volledige beschrijving." }
     root_cause: { label: Soort dreiging of grondoorzaak, hint: Wat het incident waarschijnlijk veroorzaakte. }
-    mitigations: { label: Toegepaste en lopende mitigerende maatregelen, hint: "Wat er is gedaan en wat nog loopt." }
+    mitigations: { label: Toegepaste en lopende mitigerende maatregelen, hint: "Het formulier vraagt naar het voorkomen van herhaling. Artikel 14 vraagt naar toegepaste en lopende mitigerende maatregelen: beschrijf beide." }
     advisory_title: { label: Titel, hint: "Productnaam en het probleem, in gewone woorden." }
     affected_products: { label: Getroffen producten en hoe je dat controleert, hint: "Producten en versies, en hoe gebruikers kunnen nagaan of zij geraakt zijn." }
     risk: { label: Wat het risico is, hint: In gewone taal. Geen stapsgewijze aanvalsdetails zolang er geen fix is. }
@@ -269,7 +278,7 @@ ui:
       not_started: Nog niet gestart
       pre_application: Vóór 11 sep 2026
     flag:
-      aware_before_application: Je raakte vóór 11 september 2026 op de hoogte. Volgens de FAQ van ENISA geldt geen meldplicht met terugwerkende kracht; controleer dit.
+      aware_before_application: "Je raakte vóór 11 september 2026 op de hoogte. Voor actief uitgebuite kwetsbaarheden zegt de FAQ van ENISA dat er geen meldplicht met terugwerkende kracht is. Voor ernstige incidenten bestaat zo'n richtsnoer niet: de termijnen worden gewoon getoond. Controleer dit bij het NCSC of je juridisch adviseur."
       measure_before_awareness: De maatregel was al beschikbaar voordat je op de hoogte raakte. Bespreek de termijn voor het eindrapport met je juridisch verantwoordelijke.
       submitted_before_awareness: Een tijdstip van indienen ligt vóór het moment van op de hoogte raken. Controleer de tijden.
     needs_awareness: Vul in wanneer je op de hoogte raakte om de klokken te starten.

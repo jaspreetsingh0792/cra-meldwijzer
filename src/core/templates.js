@@ -65,9 +65,10 @@ export function renderMarkdown({ templates, sources, text }, docId, values = {})
     if (section.id === 'organisation' || section.id === 'reporter') out.push(`_${t('doc.prepared_in_advance')}_`, '');
     for (const field of section.fields) {
       const hint = t(`field.${field.id}.hint`);
-      out.push(`**${t(`field.${field.id}.label`)}** · ${t(`need.${field.need}`)}`);
-      if (hint) out.push(`_${hint}_`);
-      out.push('', values[field.id]?.trim() || t('doc.fill_in'), '');
+      const head = [`**${t(`field.${field.id}.label`)}** · ${t(`need.${field.need}`)}`];
+      if (field.ncsc) head.push(`${t('doc.ncsc_field')}: "${field.ncsc}"`);
+      if (hint) head.push(`_${hint}_`);
+      out.push(head.join('  \n'), '', values[field.id]?.trim() || t('doc.fill_in'), '');
     }
   }
   return `${out.join('\n').trimEnd()}\n`;

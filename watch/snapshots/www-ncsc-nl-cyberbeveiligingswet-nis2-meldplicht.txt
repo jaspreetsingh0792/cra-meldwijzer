@@ -1,0 +1,34 @@
+Meld incidenten onder de Cyberbeveiligingswet (meldplicht)
+Artikel
+Leestijd:
+Cyberbeveiligingswet (NIS2)
+De Cyberbeveiligingswet (NIS2) is gericht op de verbetering van de digitale weerbaarheid van belangrijke en essentiële diensten en organisaties. De wet schrijft de zorgplicht, registratieplicht en meldplicht voor. De meldplicht betekent dat organisaties significante incidenten moeten melden bij het centrale meldpunt op MijnNCSC.
+Wat moet je melden?
+De meldplicht geldt voor significante incidenten. Dat zijn incidenten die je dienstverlening ernstig verstoren, financiële schade veroorzaken of grote schade bij andere organisaties kunnen aanrichten. De drempelwaarden voor een melding verschillen per sector. Deze zijn per departement uitgewerkt in ministeriële regelingen . Kleinere incidenten en bijna-incidenten mag je vrijwillig melden .
+Waar meld je?
+Je meldt via het centrale meldpunt op MijnNCSC. Met één melding bereik je in één keer je sectorale CSIRT en de toezichthouder.
+Binnen welke termijnen meld je?
+De meldplicht is gefaseerd. Je meldt in 3 stappen. De termijnen tellen vanaf het moment dat je kennis krijgt van het incident. Meld altijd zo snel mogelijk. Lukt dat niet? Dan geldt de uiterste termijn.
+Vroegtijdige waarschuwing binnen 24 uur. Je geeft aan of het incident vermoedelijk kwaadwillig is en of er gevolgen zijn over de grens. Ook deel je de contactgegevens van je contactpersoon.
+Melding binnen 72 uur. Je werkt je eerste waarschuwing bij en geeft een eerste beoordeling van de ernst en de gevolgen. Heb je indicatoren van aantasting? Deel die dan ook.
+Eindverslag binnen 1 maand na je melding. Je beschrijft het incident, de oorzaak en de maatregelen die je nam.
+Duurt het incident langer dan 1 maand? Dan stuur je op dat moment een voortgangsverslag. Je eindverslag volgt binnen 1 maand nadat je het incident hebt afgehandeld.
+Je CSIRT of de toezichthouder kan je tussendoor om een update vragen. Dat heet een tussentijds verslag.
+Wat gebeurt er na je melding?
+Je melding gaat automatisch naar je sectorale CSIRT en naar de toezichthouder. Je hoeft ze dus niet apart te informeren.
+Je CSIRT reageert zo snel mogelijk op je vroegtijdige waarschuwing en in ieder geval binnen 24 uur. Je krijgt een eerste terugkoppeling op je melding. Vraag je om advies? Dan krijg je richtsnoeren of operationeel advies over maatregelen die je kunt nemen. Heb je meer nodig? Je CSIRT kan ook aanvullende technische ondersteuning geven.
+Lijkt het incident een strafbaar feit? Dan legt je CSIRT uit hoe je het incident meldt bij de opsporingsdiensten. De toezichthouder ontvangt dezelfde melding en gebruikt die voor het toezicht op de wet.
+Heeft het incident gevolgen in andere landen? Dan informeert het centrale contactpunt de andere lidstaten en het EU-agentschap voor cybersecurity (Enisa).
+Je melding telt ook mee in een overzicht per sector. Dat overzicht wordt cijfermatig gedeeld met de Europese Unie (EU).
+Meld je vrijwillig? Dan gaat je melding alleen naar het CSIRT en niet naar de toezichthouder. Het CSIRT kan verplichte meldingen voorrang geven boven vrijwillige meldingen.
+Gelden er uitzonderingen?
+Voor sommige organisaties gelden andere regels.
+Verleen je een vertrouwensdienst? Dan doe je de melding al binnen 24 uur in plaats van 72 uur. Dat geldt als het incident gevolgen heeft voor je vertrouwensdienst. De vroegtijdige waarschuwing blijft 24 uur.
+Val je ook onder een Europese sectorwet met eigen meldregels? Denk aan de Digital Operational Resilience Act (DORA) of de netcode cybersecurity voor elektriciteit. Dan kan het zijn dat je meldt via de route van die wet en niet via de Cbw. Ook de termijnen kunnen dan korter zijn. Twijfel je welke route voor jou geldt? Neem contact op met je toezichthouder .
+Maak een melding op MijnNCSC
+Ander relevante pagina's over de CBW
+Startpunt Cyberbeveiligingswet (NIS2)
+Registreer je organisatie voor de Cyberbeveiligingswet
+Veelgestelde vragen Cyberbeveiligingswet
+Resultaten laden...
+Alles binnen Cyberbeveiligingswet (NIS2)

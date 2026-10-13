@@ -40,12 +40,12 @@ MijnNCSC of het CRA-meldformulier). Geen juridisch advies; zie [DISCLAIMER.md](D
 
 | Part | State |
 |---|---|
-| Source registry (`content/sources.yaml`) | ✅ v0.1, 2 sources still `todo` |
+| Source registry (`content/sources.yaml`) | ✅ all sources verified (2026-10-13) |
 | Decision tree (`content/tree.yaml`, `src/core/tree.js`) | ✅ v0.1, exhaustively tested |
 | Deadline engine (`src/core/clock.js`) | ✅ v0.1, tested incl. DST and month ends |
 | YAML -> JSON build and content checks | ✅ |
 | Runbook (`content/runbook/`): preparation, roles, timeline, informing users, evidence, Cbw/GDPR, other roles, drill | ✅ v0.1, NL + EN |
-| Report templates (`content/templates.yaml` -> `templates/`): 6 reports + user advisory, NCSC form sections, Art. 14 content | ✅ v0.1, NL + EN (character limits not yet verified) |
+| Report templates (`content/templates.yaml` -> `templates/`): 6 reports + user advisory, matched field by field to the NCSC form, plus Art. 14 content | ✅ NL + EN (the form sets no character limits) |
 | Web app (`app/`): assessment, case with deadlines and .ics export, templates with per-field copy, runbook and print view, offline (service worker), NL/EN | ✅ v0.1 |
 | Legal review | Not done; see [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) |
 

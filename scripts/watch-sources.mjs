@@ -37,7 +37,8 @@ SELECT DISTINCT ?celex ?rel ?date WHERE {
 export function targets(content) {
   const byUrl = new Map();
   for (const [id, s] of Object.entries(content.sources)) {
-    if (!s.url || new URL(s.url).hostname === 'eur-lex.europa.eu') continue;
+    // EU legal texts (EUR-Lex, ELI links) are watched through SPARQL below, not as pages.
+    if (!s.url || ['eur-lex.europa.eu', 'data.europa.eu'].includes(new URL(s.url).hostname)) continue;
     const t = byUrl.get(s.url) ?? { key: keyFor(s.url), url: s.url, title: s.title, sourceIds: [] };
     t.sourceIds.push(id);
     byUrl.set(s.url, t);
@@ -46,7 +47,53 @@ export function targets(content) {
     key: `eurlex-${c}`, url: `https://eur-lex.europa.eu/legal-content/EN/ALL/?uri=CELEX:${c}`, title, celex: c,
     sourceIds: Object.entries(content.sources).filter(([, s]) => s.url?.includes('/eli/reg/2024/2847')).map(([id]) => id),
   }));
-  return [...byUrl.values(), ...celex];
+  // The NCSC CRA form shows its content fields only after a report type is chosen, so its page
+  // text misses them. Watch the form definition (JSON schema embedded in the page) as well.
+  const form = content.sources.ncsc_form?.url
+    ? [{ key: 'ncsc-cra-meldformulier-schema', url: content.sources.ncsc_form.url, title: 'NCSC CRA-meldformulier: form fields per report type', formSchema: true, sourceIds: ['ncsc_form'] }]
+    : [];
+  return [...byUrl.values(), ...celex, ...form];
+}
+
+/** Extract the form fields (per report type) from the NCSC form page, one line per field. */
+export function formSchemaLines(html) {
+  const chunks = [...html.matchAll(/self\.__next_f\.push\(\[1,"((?:[^"\\]|\\.)*)"\]\)/g)].map((m) => JSON.parse(`"${m[1]}"`)).join('');
+  const at = chunks.indexOf('"field_form":{');
+  if (at < 0) throw new Error('form schema not found in page');
+  const { schema } = JSON.parse(extractObject(chunks, at + '"field_form":'.length));
+  const line = (scope, req, id, d) => {
+    const opts = d.enum ?? (d.anyOf ?? d.oneOf ?? []).map((o) => o.title ?? o.enum?.[0]);
+    const items = d.items?.anyOf ? ` items=${d.items.anyOf.length}` : '';
+    const extra = ['format', 'pattern', 'maxLength'].filter((k) => d[k] != null).map((k) => ` ${k}=${d[k]}`).join('');
+    return `${scope} | ${req.has(id) ? 'required' : 'optional'} | ${id} | ${d.title ?? ''}${opts.length ? ` | ${opts.join(' / ')}` : ''}${items}${extra}`;
+  };
+  const out = [];
+  const top = new Set(schema.required ?? []);
+  for (const [id, d] of Object.entries(schema.properties)) out.push(line('all', top, id, d));
+  for (const [dep, v] of Object.entries(schema.dependencies ?? {})) {
+    for (const alt of v.oneOf ?? []) {
+      const when = alt.properties?.[dep]?.enum?.join(',') ?? '?';
+      const req = new Set(alt.required ?? []);
+      for (const [id, d] of Object.entries(alt.properties ?? {})) if (id !== dep) out.push(line(`${dep}=${when}`, req, id, d));
+    }
+  }
+  return out.join('\n');
+}
+
+// Return the source text of the JSON object starting at `start` (balanced braces, string-aware).
+function extractObject(text, start) {
+  let depth = 0;
+  let inString = false;
+  for (let i = start; i < text.length; i++) {
+    const c = text[i];
+    if (inString) {
+      if (c === '\\') i++;
+      else if (c === '"') inString = false;
+    } else if (c === '"') inString = true;
+    else if (c === '{') depth++;
+    else if (c === '}' && --depth === 0) return text.slice(start, i + 1);
+  }
+  throw new Error('unterminated form schema');
 }
 
 const keyFor = (url) => url.replace(/^https?:\/\//, '').replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase().slice(0, 100);
@@ -85,6 +132,7 @@ async function fetchText(target) {
   }
   const res = await fetch(target.url, { headers: { 'user-agent': UA }, redirect: 'follow', signal: AbortSignal.timeout(60_000) });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  if (target.formSchema) return formSchemaLines(await res.text());
   const text = htmlToText(await res.text());
   if (text.length < 200) throw new Error(`suspiciously short page (${text.length} chars)`);
   return text;

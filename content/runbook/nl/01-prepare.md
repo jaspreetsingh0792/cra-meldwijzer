@@ -59,7 +59,7 @@ Bewaar deze lijst ook offline (geprint, of in je incidentkanaal):
 |---|---|
 | NCSC | CRA-meldingen (MijnNCSC / CRA-meldformulier) [src:ncsc_melden] |
 | RDI | Vragen over de reikwijdte van de CRA en toezicht; het NCSC is geen toezichthouder [src:ncsc_melden] |
-| Je sectorale CSIRT / toezichthouder | Als je organisatie onder de Cyberbeveiligingswet valt [src:cbw] |
+| MijnNCSC (centraal meldpunt Cbw) | Als je organisatie onder de Cyberbeveiligingswet valt; bereikt je sectorale CSIRT en toezichthouder [src:cbw] [src:ncsc_cbw_meldplicht] |
 | Autoriteit Persoonsgegevens | Als persoonsgegevens geraakt kunnen zijn [src:gdpr_art33_34] |
 | Juridisch adviseur | Beslissingen over de meldplicht |
 | Belangrijke toeleveranciers | Kwetsbaarheden in hun componenten |

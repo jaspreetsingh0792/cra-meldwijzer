@@ -38,6 +38,21 @@ test('Article 14 content requirements appear in the right reports', () => {
   assert.ok(fields('vulnerability.final_report').includes('security_update'));
 });
 
+test('templates cover every field the NCSC form requires (schema read 2026-10-13)', () => {
+  const ncsc = (id) => documentSections(content.templates, id).flatMap((s) => s.fields.map((f) => f.ncsc)).filter(Boolean);
+  const required = {
+    'vulnerability.early_warning': ['Titel van de waarschuwing', 'Welk(e) product(en) betreft het?', 'Wie is de producent of open-source steward van het product?', 'In welke EU-lidstaten is het product beschikbaar?'],
+    'incident.early_warning': ['Titel van de waarschuwing', 'Welk(e) product(en) betreft het?', 'Wie is de producent of open-source steward van het product?', 'In welke EU-lidstaten is het product beschikbaar?', 'Wordt het incident vermoedelijk door een onrechtmatige of kwaadwillende handeling veroorzaakt?'],
+    'vulnerability.notification': ['Titel van de waarschuwing', 'EUVD-nummer', 'Welk(e) product(en) betreft het?', 'Wie is de producent of open-source steward van het product?', 'Beschrijving van de kwetsbaarheid', 'In welke EU-lidstaten is het product beschikbaar?', 'Welke maatregelen zijn getroffen om herhaling in de toekomst te voorkomen?', 'Welke maatregelen zijn er voor eindgebruikers beschikbaar?'],
+    'incident.notification': ['Titel van de waarschuwing', 'Welk(e) product(en) betreft het?', 'Wie is de producent of open-source steward van het product?', 'Wanneer is de kwetsbaarheid ontdekt?', 'Beschrijving van het incident', 'Wanneer is het incident ontdekt?', 'Wanneer heeft het incident plaatsgevonden?', 'In welke EU-lidstaten is het product beschikbaar?', 'Wordt het incident vermoedelijk door een onrechtmatige of kwaadwillende handeling veroorzaakt?', 'Wat is de status van het incident?', 'Welke maatregelen zijn getroffen om herhaling in de toekomst te voorkomen?', 'Welke maatregelen zijn er voor eindgebruikers beschikbaar?'],
+    'vulnerability.final_report': ['Sinds wanneer is er een oplossing (patch) beschikbaar voor eindgebruikers?', 'Is bekend of de kwetsbaarheid actief wordt of is misbruikt?', 'Geef een gedetailleerde beschrijving van de oplossing (patch) die beschikbaar is'],
+    'incident.final_report': ['Wat zijn de zichtbare en verwachte gevolgen van het incident?', 'Wat is de meest waarschijnlijke oorzaak of aanleiding geweest van het incident?', 'Welke maatregelen zijn getroffen om herhaling in de toekomst te voorkomen?'],
+  };
+  for (const [id, labels] of Object.entries(required)) {
+    for (const label of labels) assert.ok(ncsc(id).includes(label), `${id} misses NCSC field "${label}"`);
+  }
+});
+
 test('the earlier-report reference is only asked for follow-up reports', () => {
   const has = (id) => documentSections(content.templates, id).some((s) => s.fields.some((f) => f.id === 'previous_reference'));
   assert.equal(has('vulnerability.early_warning'), false);
