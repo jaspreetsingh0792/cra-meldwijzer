@@ -17,12 +17,13 @@ export function assessView(rerender) {
   const { tree } = store.data;
   const { facts, path, pending } = walk(tree, store.answers);
 
+  const next = () => rerender({ focus: '#main .question h2, #main h1' });
   const back = () => {
     const last = path.at(-1);
     if (last) delete store.answers[last.node];
-    rerender();
+    next();
   };
-  const restart = () => { store.answers = {}; rerender(); };
+  const restart = () => { store.answers = {}; next(); };
   const controls = h('div', { class: 'actions' },
     path.length ? h('button', { type: 'button', class: 'btn', onClick: back }, t('ui.assess.back')) : null,
     path.length ? h('button', { type: 'button', class: 'btn link', onClick: restart }, t('ui.assess.restart')) : null);
@@ -34,13 +35,13 @@ export function assessView(rerender) {
       pageTitle(t('ui.assess.title')),
       h('section', { class: 'question', 'aria-labelledby': qid },
         h('p', { class: 'step' }, t('ui.assess.question', { n: path.length + 1 })),
-        h('h2', { id: qid }, t(`q.${pending}`)),
+        h('h2', { id: qid, tabindex: '-1' }, t(`q.${pending}`)),
         h('p', { class: 'help' }, t(`h.${pending}`)),
         h('div', { class: 'options', role: 'group', 'aria-labelledby': qid },
           Object.keys(node.options).map((opt) => h('button', {
             type: 'button',
             class: `btn option${opt === 'unsure' ? ' unsure' : ''}`,
-            onClick: () => { store.answers[pending] = opt; rerender(); },
+            onClick: () => { store.answers[pending] = opt; next(); },
           }, optionLabel(pending, opt)))),
         h('h3', { class: 'visually-hidden' }, t('ui.assess.sources')),
         sourceChips(node.sources)),

@@ -20,10 +20,18 @@ The project stays honest through three mechanisms:
 | ENISA Single Reporting Platform and FAQ | Page text, weekly |
 | European Commission CRA reporting page | Page text, weekly |
 | Regulation (EU) 2024/2847 | EUR-Lex data service (SPARQL): new corrigenda, amending acts, and acts based on or implementing it |
+| Delegated Regulation 2026/881, Regulation 1182/71, GDPR | EUR-Lex data service (SPARQL): new corrigenda, amendments and repeals |
 
-Snapshots of the last accepted versions live in [`watch/snapshots/`](watch/snapshots). A source
-that is not in `content/sources.yaml` with a URL is **not** watched: new guidance on a page nobody
-links to is only found in the quarterly review.
+Snapshots of the last accepted versions live in [`watch/snapshots/`](watch/snapshots).
+
+**What the watcher does not catch:** new guidance published on pages that are not in
+`content/sources.yaml` (for example a new Commission FAQ document), changes that only appear after
+interacting with a page, and acts that are merely "based on" the GDPR. These are only found in the
+quarterly review.
+
+**If a source cannot be read**, the watcher opens a `Source unreachable` issue and the workflow
+run fails, so a silent gap is not possible. Read official EU texts with
+`node scripts/fetch-eu-text.mjs <CELEX> [eng|nld]` (HTTPS only).
 
 ## When a `source-watch` issue opens
 

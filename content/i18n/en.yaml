@@ -12,7 +12,8 @@ q:
   incident_occurred: Has there been an incident affecting the security of this product, for example in your development, build, update or signing environment?
   incident_a: Does the incident negatively affect, or is it capable of negatively affecting, the product's ability to protect the availability, authenticity, integrity or confidentiality of sensitive or important data or functions?
   incident_b: Has the incident led, or is it capable of leading, to the introduction or execution of malicious code in the product or in users' network and information systems?
-  awareness: When did you become aware of the exploitation or the incident?
+  awareness_vulnerability: When did you become aware of the active exploitation of this vulnerability?
+  awareness_incident: When did you become aware of the severe incident?
   cbw: Is your organisation an essential or important entity under the Cyberbeveiligingswet (the Dutch NIS2 law, in force since 15 August 2026)?
   gdpr: Could personal data be affected (a possible personal data breach)?
 
@@ -22,12 +23,13 @@ h:
   exclusion: Article 2 excludes, among others, products covered by the EU rules on medical devices, in vitro diagnostics, motor vehicles, civil aviation and marine equipment, and products developed exclusively for national security or defence. These exclusions have precise boundaries; another sector law does not automatically exclude a product. If in doubt, answer "unsure".
   role: "Answer for this product and this event, per legal entity. Selling someone else's product under your own name or trademark, or after a substantial modification, makes you its manufacturer. A component you sell separately makes you the manufacturer of that component. Being an open-source steward for one project does not change your role for a product you sell commercially: answer as manufacturer for that product. Contract labels such as \"OEM\", \"reseller\" or \"supplier\" are not the legal test."
   establishment: "Article 14(7): the Member State where decisions on the cybersecurity of your products are predominantly taken; if that cannot be determined, where the manufacturer has the most employees in the EU. Apply this to the manufacturer entity for this product, not automatically to the group's registered head office."
-  vuln_contained: An advisory or KEV listing for a component is a reason to check, not a conclusion. First confirm the vulnerable code is actually present in the affected product versions.
+  vuln_contained: "An advisory or KEV listing for a component is a reason to check, not a conclusion. First confirm the vulnerable code is actually present in the affected product versions. If you sell that component separately as your own product, assess it separately as its manufacturer too: one report does not necessarily cover every manufacturer's duty."
   vuln_exploited: "Article 3(42). Not enough on its own: a high CVSS score, a public proof of concept, a researcher or bug bounty report, or a finding from your own testing. Often relevant: exploitation seen in your telemetry or logs, a compromised customer, a CSIRT notice, or a KEV listing, each assessed for relevance to your product."
   incident_occurred: An incident is an event that compromises the availability, authenticity, integrity or confidentiality of data or services. Examples relevant here are a stolen signing key, a compromised update server or a compromised build pipeline. Answer this even if the vulnerability questions already led to a "yes".
   incident_a: Article 14(5)(a). Either limb is enough on its own.
   incident_b: Article 14(5)(b). Answer this even if you answered "no" to the previous question.
-  awareness: Awareness is when an initial assessment gives you a reasonable degree of certainty (Commission guidance, non-binding), usually after first detection. Record detection time, awareness time and the reason separately. ENISA's FAQ says there is no retroactive reporting for exploitation you were already aware of before 11 September 2026; becoming aware after that date counts even if the vulnerability is older.
+  awareness_vulnerability: "Awareness is when an initial assessment gives you a reasonable degree of certainty (Commission guidance, non-binding), usually after first detection. Answer for the exploitation itself, not for when the vulnerability became known: according to ENISA's FAQ there is no retroactive reporting for exploitation you were already aware of before 11 September 2026, but becoming aware of exploitation after that date counts even if the vulnerability is older."
+  awareness_incident: "Answer separately from the vulnerability: the incident can have become known at a different moment. ENISA's FAQ on no retroactive reporting covers vulnerabilities only, so for an incident known before 11 September 2026 the tool stays cautious."
   cbw: The Cyberbeveiligingswet has its own test (significant incident) and its own reports. It is assessed separately from the CRA.
   gdpr: Under the GDPR, a breach is notified to the Autoriteit Persoonsgegevens unless it is unlikely to result in a risk to individuals. That is a separate assessment.
 
@@ -46,7 +48,11 @@ opt:
     other_eu: Another EU Member State
     non_eu: No establishment in the EU
     unsure: Unsure
-  awareness:
+  awareness_vulnerability:
+    after: On or after 11 September 2026
+    before: Before 11 September 2026
+    unsure: Unsure
+  awareness_incident:
     after: On or after 11 September 2026
     before: Before 11 September 2026
     unsure: Unsure
@@ -71,7 +77,7 @@ o:
       potentially_reportable: "Severe incident: potentially reportable, urgent assessment required. Keep the earliest plausible awareness time, escalate to your incident and legal leads, and consider asking the CSIRT for advice. Do not wait for a full forensic conclusion."
       not_reportable: Based on your answers, there is no severe incident to report under Article 14. Record your reasoning and reassess if new facts emerge. Voluntary reporting (Article 15) remains possible.
   caveat:
-    scope_or_role_unsure: Scope or your role is uncertain, so the result above is "potentially reportable" at most. Resolve this quickly; the deadlines run regardless.
+    scope_or_role_unsure: Scope or your role is uncertain, so the result above is "potentially reportable" at most. Until that is resolved, the cautious course is to treat the deadlines as running from your awareness moment, and to confirm scope and role urgently.
     pre_application_check: You became aware before 11 September 2026, but the assessment is not complete. Check whether new facts or new exploitation after that date create a new awareness moment.
     pre_application_incident: You became aware of the incident before 11 September 2026. ENISA's FAQ on no retroactive reporting covers actively exploited vulnerabilities only; there is no such guidance for severe incidents. Treat the incident as potentially reportable and ask the NCSC or your legal adviser.
     awareness_unsure: You are unsure when you became aware. Use the earliest plausible awareness time for your deadlines.
@@ -86,6 +92,7 @@ o:
     gdpr: Separately assess whether this is a personal data breach under the GDPR. The controller notifies the Autoriteit Persoonsgegevens within 72 hours of becoming aware, unless the breach is unlikely to result in a risk to individuals.
   action:
     record_awareness: "Record three things now: when the issue was first detected, when you became aware (your assessment), and why at that moment."
+    consider_users: "No retroactive report does not mean nothing to do. Check whether affected users still need information or measures to protect themselves, and keep monitoring: becoming aware of new exploitation after 11 September 2026 starts the reporting duty."
     inform_users: Inform impacted users (and, where appropriate, all users) about the issue and the mitigating or corrective measures they can take, in a structured, machine-readable format where appropriate (Article 14(8)). This is separate from your report to the authorities.
 
 t:
@@ -197,6 +204,9 @@ ui:
   lang_switch: Nederlands
   lang_switch_label: Switch language to Dutch
   wip: "Not legally reviewed. Not legal advice. Use at your own risk and check the official NCSC guidance."
+  unverified: "Some sources ({count}) are not yet verified. Treat statements that rely on them with extra care and check the official NCSC guidance."
+  update: A new version of this guide is available.
+  reload: Reload
   stale: "Outdated? Some sources were last checked on {date}, more than four months ago. Laws and guidance may have changed since: always check the official NCSC guidance."
   checked: "checked {date}"
   notice:
@@ -217,7 +227,7 @@ ui:
     runbook: Read the runbook
     templates: Prepare report templates
     privacy_title: Your data stays here
-    privacy: Everything runs in your browser. Nothing is sent anywhere. Case data is kept in memory unless you choose to save it in this browser.
+    privacy: Case data stays in your browser and is not transmitted by this app. Loading the site makes normal requests to GitHub Pages, which hosts it. Case data is kept in memory unless you choose to save it in this browser.
     rules: "Rules version {version}. Oldest source check: {date}."
   assess:
     title: Assessment
@@ -250,6 +260,11 @@ ui:
     case_id: Case number
     detected_at: First detected
     times_note: "Times are entered and shown in Amsterdam time; UTC is shown alongside."
+    outer_limits: "These deadlines are outer limits. The law requires reporting without undue delay: do not wait for a deadline to come close."
+    time_nonexistent: "This time does not exist in Amsterdam (the clocks skip this hour when summer time starts). Choose a valid time; nothing was saved."
+    time_ambiguous: "This time occurs twice in Amsterdam (the clocks go back an hour). The earlier of the two moments was saved; adjust it if you meant the later one."
+    announce: "{milestone}, {track}: {status}"
+    import_ok: Case imported.
     applies: This track applies
     aware_at: Became aware
     basis: Why at that moment
@@ -281,6 +296,7 @@ ui:
       aware_before_application: "You became aware before 11 September 2026. For actively exploited vulnerabilities, ENISA's FAQ says there is no retroactive reporting duty. For severe incidents there is no such guidance: the deadlines are shown as usual. Check this with the NCSC or your legal adviser."
       measure_before_awareness: The measure was available before you became aware. Check the final report deadline with your legal lead.
       submitted_before_awareness: A submission time is earlier than the awareness time. Check the times.
+      aware_in_future: The awareness time is in the future. Check for a typo; the deadlines below are calculated from it.
     needs_awareness: Enter when you became aware to start the clocks.
     not_applicable: Not triggered by the assessment. Tick the box if it does apply.
     ics: Add deadlines to calendar (.ics)

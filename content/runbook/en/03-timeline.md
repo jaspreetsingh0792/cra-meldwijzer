@@ -54,6 +54,14 @@ information; the later reports fill in the details.
 - [ ] **Where:** MijnNCSC (recommended) or the CRA reporting form [src:ncsc_melden]. Main
       establishment elsewhere? That Member State's coordinating CSIRT [src:cra_art14_7].
 - [ ] **Do not also report the same case to ENISA.** The NCSC forwards it [src:ncsc_melden].
+      Background: the CRA requires notifications through ENISA's single reporting platform, using
+      the electronic end-point of your coordinating CSIRT [src:cra_art14_7]. For the Netherlands,
+      the NCSC directs manufacturers to MijnNCSC or its CRA reporting form and forwards the report
+      to ENISA and other CSIRTs [src:ncsc_melden].
+- [ ] **Channel unavailable?** If MijnNCSC does not work, use the CRA reporting form, and the other
+      way round [src:ncsc_melden]. ENISA's FAQ says that if the single reporting platform is
+      temporarily unavailable, you submit as soon as it is available again [src:enisa_srp_faq].
+      Record the outage (times, error messages, screenshots) in the case log.
 - [ ] Mark the report as **sensitive** if details could help attackers [src:ncsc_melden].
 - [ ] Record the submission time and the reference number in the case log.
 - [ ] Both tracks triggered? Then you need a report for each.

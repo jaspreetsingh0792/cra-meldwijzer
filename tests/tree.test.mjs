@@ -10,7 +10,7 @@ const { tree } = content;
 // A Dutch manufacturer, in scope, aware after 11 Sep 2026, no Cbw/GDPR angle.
 const BASE = {
   product: 'yes', market: 'yes', exclusion: 'no', role: 'manufacturer', establishment: 'nl',
-  vuln_contained: 'no', incident_occurred: 'no', awareness: 'after', cbw: 'no', gdpr: 'no',
+  vuln_contained: 'no', incident_occurred: 'no', awareness_vulnerability: 'after', awareness_incident: 'after', cbw: 'no', gdpr: 'no',
 };
 const run = (overrides) => evaluate(tree, { ...BASE, ...overrides }).outcome;
 
@@ -88,22 +88,49 @@ test('importers/distributors and stewards get role outcomes', () => {
 });
 
 test('awareness before 11 Sep 2026: no retroactive duty; unfinished assessments get a caveat', () => {
-  const o = run({ awareness: 'before', vuln_contained: 'yes', vuln_exploited: 'yes' });
+  const o = run({ awareness_vulnerability: 'before', vuln_contained: 'yes', vuln_exploited: 'yes' });
   assert.equal(o.tracks.vulnerability, 'no_retroactive_duty');
-  const p = run({ awareness: 'before', vuln_contained: 'yes', vuln_exploited: 'unsure' });
+  const p = run({ awareness_vulnerability: 'before', vuln_contained: 'yes', vuln_exploited: 'unsure' });
   assert.equal(p.tracks.vulnerability, 'potentially_reportable');
   assert.ok(p.keys.includes('caveat.pre_application_check'));
 });
 
 test('awareness before 11 Sep 2026 never removes the duty for severe incidents (FAQ covers vulnerabilities only)', () => {
-  const o = run({ awareness: 'before', incident_occurred: 'yes', incident_a: 'yes', incident_b: 'no' });
+  const o = run({ awareness_incident: 'before', incident_occurred: 'yes', incident_a: 'yes', incident_b: 'no' });
   assert.equal(o.tracks.incident, 'potentially_reportable');
   assert.ok(o.keys.includes('caveat.pre_application_incident'));
   assert.ok(o.keys.some((k) => k.startsWith('routing.')), 'routing is still shown');
 });
 
+test('awareness is per track: a vulnerability known before 11 Sep does not affect an incident found after', () => {
+  const both = { vuln_contained: 'yes', vuln_exploited: 'yes', incident_occurred: 'yes', incident_a: 'yes', incident_b: 'no' };
+  const a = run({ ...both, awareness_vulnerability: 'before', awareness_incident: 'after' });
+  assert.equal(a.tracks.vulnerability, 'no_retroactive_duty');
+  assert.equal(a.tracks.incident, 'reportable');
+  const b = run({ ...both, awareness_vulnerability: 'after', awareness_incident: 'before' });
+  assert.equal(b.tracks.vulnerability, 'reportable');
+  assert.equal(b.tracks.incident, 'potentially_reportable');
+});
+
+test('awareness questions are only asked for tracks that may be triggered', () => {
+  const asked = (answers) => walk(tree, { ...BASE, ...answers }).path.map((p) => p.node);
+  const none = asked({});
+  assert.ok(!none.includes('awareness_vulnerability') && !none.includes('awareness_incident'));
+  const vulnOnly = asked({ vuln_contained: 'yes', vuln_exploited: 'unsure' });
+  assert.ok(vulnOnly.includes('awareness_vulnerability') && !vulnOnly.includes('awareness_incident'));
+  const incOnly = asked({ incident_occurred: 'yes', incident_a: 'no', incident_b: 'unsure' });
+  assert.ok(!incOnly.includes('awareness_vulnerability') && incOnly.includes('awareness_incident'));
+  assert.ok(!asked({ incident_occurred: 'yes', incident_a: 'no', incident_b: 'no' }).includes('awareness_incident'));
+});
+
+test('no retroactive report still prompts a check on affected users', () => {
+  const o = run({ awareness_vulnerability: 'before', vuln_contained: 'yes', vuln_exploited: 'yes' });
+  assert.ok(o.keys.includes('action.consider_users'));
+  assert.ok(o.keys.includes('action.record_awareness'));
+});
+
 test('unsure awareness timing keeps the duty and adds a caveat', () => {
-  const o = run({ awareness: 'unsure', vuln_contained: 'yes', vuln_exploited: 'yes' });
+  const o = run({ awareness_vulnerability: 'unsure', vuln_contained: 'yes', vuln_exploited: 'yes' });
   assert.equal(o.tracks.vulnerability, 'reportable');
   assert.ok(o.keys.includes('caveat.awareness_unsure'));
 });
@@ -146,8 +173,11 @@ test('exhaustive: every path ends, emits only known keys, and "unsure" never yie
       }
       return;
     }
-    for (const [opt, { next }] of Object.entries(tree.nodes[id].options)) visit(next, { ...answers, [id]: opt });
+    for (const opt of Object.keys(tree.nodes[id].options)) {
+      const next = { ...answers, [id]: opt };
+      visit(walk(tree, next).pending ?? END, next);
+    }
   };
-  visit(tree.start, {});
+  visit(walk(tree, {}).pending, {});
   assert.ok(paths > 1000, `only ${paths} paths`);
 });

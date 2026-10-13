@@ -21,7 +21,7 @@ Informeer je gebruikers niet op tijd, dan kan het CSIRT dat voor je doen [src:cr
 
 | Kanaal | Wanneer |
 |---|---|
-| Security advisory op je website | Altijd. Dit is het referentiepunt voor al het andere. |
+| Security advisory op je website | In de meeste gevallen aanbevolen, vooral als de groep getroffen gebruikers groot of onbekend is: het wordt het referentiepunt voor al het andere. Niet in elk geval wettelijk verplicht; weeg het af tegen de gevoeligheid en of er al een fix is. |
 | Machineleesbare advisory (bijvoorbeeld CSAF) | Waar passend, vooral voor zakelijke klanten die advisories automatisch verwerken |
 | Directe e-mail of klantportaal | Voor bekende getroffen klanten |
 | Melding in het product of bij een update | Als gebruikers anders moeilijk te bereiken zijn |

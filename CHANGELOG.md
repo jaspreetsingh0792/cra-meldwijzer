@@ -3,6 +3,32 @@
 Content changes that affect what users are told: decision logic, deadlines, reporting routes,
 runbook and templates. Newest first. Dates are when the change was published.
 
+## 2026-10-13: rules version 0.3.0 (third external review)
+
+- **Awareness timing is now asked per track.** The single "before or after 11 September 2026"
+  question applied to both the vulnerability and the incident. A vulnerability known before that
+  date could hide an incident discovered after it, and the other way round. Each question is only
+  asked for a track that may be triggered.
+- No retroactive report for a vulnerability now still prompts a check on affected users, instead
+  of dropping the user-information reminder.
+- A security advisory on your website is now "recommended in most cases", not "always": Article
+  14(8) requires informing affected users, not a public page in every case.
+- The "scope or role unsure" caveat now gives cautious advice instead of stating that the deadlines
+  run regardless.
+- Runbook chapter 3 explains how the NCSC channels relate to ENISA's single reporting platform, and
+  what to do when a channel is unavailable (ENISA FAQ 25).
+- Component suppliers: the help text says to assess a separately sold component as its own product.
+- Case view: a time that does not exist in Amsterdam (summer-time gap) is refused instead of
+  silently moved; a repeated time (winter-time change) is flagged; awareness in the future is
+  flagged; deadlines are labelled as outer limits; status changes are announced to screen readers.
+- Imports are fully validated before they replace the open case. The assessment keeps keyboard and
+  screen-reader focus on the next question. A notice appears when a new version is available.
+- Privacy wording narrowed: case data is not transmitted; loading the site still makes normal
+  requests to GitHub Pages.
+- Source watcher: an unreachable source opens an issue and fails the run; Delegated Regulation
+  2026/881, Regulation 1182/71 and the GDPR are watched for corrigenda and amendments; official EU
+  texts are fetched over HTTPS only.
+
 ## 2026-10-13: rules version 0.2.0 (second external review)
 
 - **Severe incidents and awareness before 11 September 2026:** the tool said there was no

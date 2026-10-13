@@ -45,6 +45,7 @@ export function checkContent({ sources, tree, i18n, runbook, templates }, today 
     if (reachable.has(id) || !tree.nodes[id]) continue;
     reachable.add(id);
     for (const opt of Object.values(tree.nodes[id].options ?? {})) queue.push(opt.next);
+    if (tree.nodes[id].skip_to) queue.push(tree.nodes[id].skip_to);
   }
   if (!reachesEnd) errors.push('tree: no path reaches end');
   for (const [id, node] of Object.entries(tree.nodes)) {
@@ -55,6 +56,13 @@ export function checkContent({ sources, tree, i18n, runbook, templates }, today 
     if (!node.options?.unsure) errors.push(`node ${id}: every question needs an "unsure" option`);
     for (const [optId, opt] of options) {
       if (opt.next !== END && !tree.nodes[opt.next]) errors.push(`node ${id}.${optId}: next "${opt.next}" does not exist`);
+    }
+    if (node.skip_if) {
+      const factsSet = new Set(Object.values(tree.nodes).flatMap((n) => Object.values(n.options ?? {}).flatMap((o) => Object.keys(o.set ?? {}))));
+      if (!node.skip_to || (node.skip_to !== END && !tree.nodes[node.skip_to])) errors.push(`node ${id}: skip_if needs an existing skip_to`);
+      for (const cond of node.skip_if) for (const fact of Object.keys(cond)) {
+        if (!factsSet.has(fact)) errors.push(`node ${id}: skip_if uses unknown fact "${fact}"`);
+      }
     }
   }
 

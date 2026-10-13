@@ -13,8 +13,9 @@ vulnerability"). Please do not open a public issue.
 
 ## Privacy design
 
-- The app makes no network requests after loading: no analytics, no fonts or scripts from third
-  parties, no backend.
+- The app never transmits case data. Its only network requests load its own files from GitHub
+  Pages (which, like any web host, sees your IP address and browser type): no analytics, no fonts
+  or scripts from third parties, no backend.
 - Case data stays in memory unless you explicitly opt in to saving it in your browser.
 - Exported case files are plain JSON on your own device. They are not an official notification and
   not a secure evidence vault.
